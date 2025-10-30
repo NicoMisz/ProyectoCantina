@@ -1,0 +1,34 @@
+// main.scss
+@use 'abstracts/index' as abstracts;
+@use 'base/index' as *;
+@use 'components/index' as *;
+@use 'layout/index' as *;
+@use 'pages/index' as *;
+@use 'themes/index' as themes;
+@use 'vendors/index' as *;
+
+
+body {
+  background-color: abstracts.$color-primary; // ✅ Correcto
+}
+
+.content {
+  background-color: gray;
+
+}
+
+.row {
+  display: grid;
+  grid-auto-flow: dense;
+  /* Fill gaps smartly */
+}
+
+.w50 {
+  width: 50%;
+  background: lightgray;
+}
+
+// .container {
+//   height: 20em;
+//   background-color: black;
+// }
