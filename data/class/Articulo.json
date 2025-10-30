@@ -1,0 +1,16 @@
+{
+    "articulo": {
+        "id": 0,
+        "nombre": null,
+        "precio": 0,
+        "horario": null,
+        "cantidad": 0,
+        "ingredientes": [
+            {
+                "id": 0,
+                "nombre": null,
+                "cantidad": null
+            }
+        ]
+    }
+}

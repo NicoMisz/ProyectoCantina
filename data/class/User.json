@@ -1,0 +1,12 @@
+{
+    "usuario": {
+        "id": 0,
+        "nombre": null,
+        "apellidos": null,
+        "email": null,
+        "fechaCreacion": null,
+        "password": null,
+        "rol": null,
+        "activo": false
+    }
+}

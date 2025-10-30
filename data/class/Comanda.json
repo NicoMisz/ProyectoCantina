@@ -1,0 +1,14 @@
+{
+    "comanda": {
+        "id": 0,
+        "fecha": null,
+        "estado": false,
+        "total": 0,
+        "usuario": {
+            "id": null,
+            "nombre": null,
+            "apellidos": null
+        },
+        "articulos": []
+    }
+}
