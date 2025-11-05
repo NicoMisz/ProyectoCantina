@@ -5,7 +5,7 @@
         "estado": false,
         "total": 0,
         "usuario": {
-            "id": null,
+            "id": 0,
             "nombre": null,
             "apellidos": null
         },
