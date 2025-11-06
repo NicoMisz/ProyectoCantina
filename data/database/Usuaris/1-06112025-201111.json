@@ -1,0 +1,10 @@
+{
+    "id": 1,
+    "nombre": "Jan",
+    "apellidos": "Lopez",
+    "email": "jancoten@gmail.com",
+    "fechaCreacion": "06112025-201111",
+    "password": "58c344eacd3cebd1f1312f2d7a1d36d0e9db663cf2714f2b369a1f53045509995906142ee30d7727f7803e16a1f618d0ce8f3ccee94b08a758b1f7ae8799ca0d",
+    "rol": "usuario",
+    "activo": true
+}

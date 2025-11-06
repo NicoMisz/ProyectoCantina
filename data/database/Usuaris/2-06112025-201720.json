@@ -1,0 +1,10 @@
+{
+    "id": 2,
+    "nombre": "Nicolas",
+    "apellidos": "Miszczak",
+    "email": "nicommisz@gmail.com",
+    "fechaCreacion": "06112025-201720",
+    "password": "ab36c0a82c8c82f8669ab232c2ae7c646d544fc528f788d3fb1c2a654db59f264c9505cdbf9a2f67ad031766c3465b0e6c704b3cdcfff5dcd5ed00bf91613b0e",
+    "rol": "usuario",
+    "activo": true
+}

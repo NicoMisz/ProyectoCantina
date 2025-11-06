@@ -1,0 +1,10 @@
+{
+    "id": 3,
+    "nombre": "John",
+    "apellidos": "Esparrell Molina",
+    "email": "johnesparrell70@gmail.com",
+    "fechaCreacion": "06112025-201640",
+    "password": "e63ba7291223df3fc49f2c09da95f8523aa709ec7a89b575c209248d0680132d5d3743ad34382856beb87ee178f70683314bbbd03152ec5b801bd0ee3c2064d5",
+    "rol": "usuario",
+    "activo": true
+}
