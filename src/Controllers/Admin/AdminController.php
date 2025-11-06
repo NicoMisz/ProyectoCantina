@@ -5,6 +5,7 @@ class AdminController
 {
     public function index()
     {
-        echo "AdminController funcionando";
+
+        // echo "AdminController funcionando";
     }
 }

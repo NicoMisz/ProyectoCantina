@@ -1,7 +1,7 @@
 <?php
 namespace Src\Controllers\User;
 
-class CommonController
+class UserController
 {
     public function index()
     {

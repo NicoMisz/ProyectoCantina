@@ -2,19 +2,19 @@
 require_once __DIR__ . '/../src/Controllers/CommonController.php';
 require_once __DIR__ . '/../src/Controllers/User/UserController.php';
 require_once __DIR__ . '/../src/Controllers/Admin/AdminController.php';
-
 use Src\Controllers\CommonController;
 use Src\Controllers\User\UserController;
 use Src\Controllers\Admin\AdminController;
-
 session_start();
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
-
+// echo "Pagina TEST";
+// exit;
 if ($uri === '/login') {
     if ($method === 'GET') {
-        (new DefaultController())->login();
+        // echo "Hola";
+        (new CommonController())->login();
     } elseif ($method === 'POST') {
         $controller = new UserController();
         $response = $controller->autenticarLogin($_POST);
@@ -27,8 +27,8 @@ if ($uri === '/login') {
 
 if (!isset($_SESSION['user'])) {
     echo "HOLA TEST";
-    // header('Location: /login');
-    exit;
+    header('Location: /login');
+    // exit;
 }
 
 $role = $_SESSION['user']['role'];
@@ -36,7 +36,7 @@ $role = $_SESSION['user']['role'];
 if ($role === 'admin') {
     if ($method === 'GET') {
         if ($uri === '/') {
-            (new DefaultController())->homeAdmin();
+            (new CommonController())->homeAdmin();
         } elseif ($uri === '/admin/panel') {
             (new AdminController())->dashboard();
         } else {
@@ -48,7 +48,7 @@ if ($role === 'admin') {
 } elseif ($role === 'usuario') {
     if ($method === 'GET') {
         if ($uri === '/') {
-            (new DefaultController())->homeUsuario();
+            (new CommonController())->homeUsuario();
         } elseif ($uri === '/perfil') {
             (new UserController())->perfil();
         } else {
@@ -62,3 +62,4 @@ if ($role === 'admin') {
     echo "403 - Acceso denegado";
     exit;
 }
+?>
