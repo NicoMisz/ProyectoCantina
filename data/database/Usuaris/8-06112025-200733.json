@@ -1,0 +1,10 @@
+{
+    "id": 8,
+    "nombre": "test",
+    "apellidos": "test",
+    "email": "test",
+    "fechaCreacion": "06112025-200733",
+    "password": "cfb2a40c4aaa500fc648239647440f9f182986bc043f50fa7f2db0b6aa15ca02a92eedd1348958fb12fc89bef3c537bfc9584f906eda1e52a59c8eac1666d1e5",
+    "rol": "usuario",
+    "activo": true
+}

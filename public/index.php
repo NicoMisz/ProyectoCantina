@@ -16,7 +16,8 @@ if ($uri === '/login') {
         // echo "Hola";
         (new CommonController())->login();
     } elseif ($method === 'POST') {
-        $controller = new UserController();
+        // echo "Post";
+        $controller = new CommonController();
         $response = $controller->autenticarLogin($_POST);
 
         header('Content-Type: application/json');
@@ -25,8 +26,23 @@ if ($uri === '/login') {
     exit;
 }
 
+if ($uri === '/registrar') {
+    if ($method === 'GET') {
+        // echo "Hola";
+        (new CommonController())->registrar();
+    } elseif ($method === 'POST') {
+        // echo "Post";
+        $controller = new CommonController();
+        $response = $controller->registrarUsuari($_POST);
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+    exit;
+}
+
 if (!isset($_SESSION['user'])) {
-    echo "HOLA TEST";
+    // echo "HOLA TEST";
     header('Location: /login');
     // exit;
 }

@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Usuario</title>
+    <title>Form Registrar Usuario</title>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 
             const formData = new FormData(this);
 
-            fetch('/login', {
+            fetch('/registrar', {
                 method: 'POST',
                 body: formData
             })
