@@ -69,28 +69,20 @@ class CommonController
         $jsondecode["password"] = $hash;
         $jsondecode["rol"] = $rol;
         $jsondecode["activo"] = $activo;
-
-        $path = '../data/database/Usuaris/' . $id . '-' . $fechaCreacion . '.json';
+        $fitxer = $id . '-' . $fechaCreacion;
+        $path = '../data/database/Usuaris/' . $fitxer . '.json';
+        $this->afegirCorreu($email, $fitxer);
         file_put_contents($path, json_encode($jsondecode, JSON_PRETTY_PRINT), LOCK_EX);
-
-
-        echo "<pre>";
-        var_dump($jsondecode);
-        exit;
-
-
-
-
-        echo "Usuario<br>";
-        echo $id . "<br>";
-        echo $nombre . "<br>";
-        echo $email . "<br>";
-
-
-
-
         // Desencriptar contraseña
         // echo hash_equals($hash, hash('sha512', $password . $fechaCreacion));
+    }
 
+    public function afegirCorreu($correu, $fitxer)
+    {
+        $path = '../data/database/Usuaris/userEmail.json';
+        $json = file_get_contents($path);
+        $jsondecode = json_decode($json, true);
+        $jsondecode[$correu] = $fitxer;
+        file_put_contents($path, json_encode($jsondecode, JSON_PRETTY_PRINT), LOCK_EX);
     }
 }

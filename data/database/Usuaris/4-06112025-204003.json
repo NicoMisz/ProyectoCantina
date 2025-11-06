@@ -1,0 +1,10 @@
+{
+    "id": 4,
+    "nombre": "test",
+    "apellidos": "test",
+    "email": "test@gmail.com",
+    "fechaCreacion": "06112025-204003",
+    "password": "23a256162a6b3c0de4e151785181921c51d672299a6d0177cea14f83a238747e55657186f756f5475aec3f41bf88efa8893c0ecaba71b12eadf087cf8e1b425b",
+    "rol": "usuario",
+    "activo": true
+}
