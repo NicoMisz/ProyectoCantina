@@ -14,10 +14,6 @@
 <body>
 
     <form id="userForm">
-        <input type="hidden" name="id" value="0">
-
-        <input type="text" name="nombre" placeholder="Nombre">
-        <input type="text" name="apellidos" placeholder="Apellidos">
         <input type="text" name="email" placeholder="Email">
         <!-- <input type="email" name="email" placeholder="Email"> -->
         <input type="password" name="password" placeholder="Password">
