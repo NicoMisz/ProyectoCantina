@@ -31,6 +31,7 @@ class AdminController
             $path = __DIR__ . '/../../../data/database/Usuaris/' . $fitxer . '.json';
             file_put_contents($path, json_encode($usuari, JSON_PRETTY_PRINT), LOCK_EX);
             $res = ["res" => 1, "msg" => "Usuari login correcte."];
+            session_destroy();
             return json_encode($res, JSON_PRETTY_PRINT);
         } else {
             $res = ["res" => 0, "msg" => "Contraseña diferente"];
