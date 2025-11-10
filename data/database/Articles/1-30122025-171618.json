@@ -10,5 +10,5 @@
         "huevo",
         "salsa"
     ],
-    "imagen": "public/media/img"
+    "imagen": "public/assets/media/img"
 }

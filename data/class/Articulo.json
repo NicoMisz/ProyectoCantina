@@ -5,5 +5,5 @@
     "horario": "",
     "cantidad": 0,
     "ingredientes": [],
-    "imagen": "public/media/img"
+    "imagen": "public/assets/media/img"
 }

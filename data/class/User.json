@@ -7,5 +7,5 @@
     "password": null,
     "rol": null,
     "activo": false,
-    "imagen": "data/media/img"
+    "imagen": "data/assets/media/img"
 }

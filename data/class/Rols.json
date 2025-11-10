@@ -3,5 +3,5 @@
     "nom": null,
     "permisos": null,
     "activo": false,
-    "icono": "public/media/img"
+    "icono": "public/assets/media/img"
 }
