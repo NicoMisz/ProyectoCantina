@@ -21,6 +21,7 @@
         <input type="text" name="email" placeholder="Email">
         <!-- <input type="email" name="email" placeholder="Email"> -->
         <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password_comprovacio" placeholder="Repeteix la Coontrasenya">
         <button type="submit">Guardar</button>
     </form>
 

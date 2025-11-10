@@ -17,6 +17,7 @@
         <input type="text" name="email" placeholder="Email">
         <!-- <input type="email" name="email" placeholder="Email"> -->
         <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password_comprovacio" placeholder="Repeteix la Coontrasenya">
         <button type="submit">Guardar</button>
     </form>
 
@@ -28,16 +29,17 @@
 
             const formData = new FormData(this);
 
-            fetch('/login', {
+            fetch('/admin/cambiar-password', {
                 method: 'POST',
                 body: formData
             })
                 .then(r => r.text())
                 .then(d => {
-                    document.getElementById('respuesta').innerHTML = d;
+                    //     document.getElementById('respuesta').innerHTML = d;
+
                 })
                 .catch(err => {
-                    document.getElementById('respuesta').innerHTML = "Error: " + err;
+                    // document.getElementById('respuesta').innerHTML = "Error: " + err;
                 });
         });
     </script>
