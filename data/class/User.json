@@ -6,5 +6,6 @@
     "fechaCreacion": null,
     "password": null,
     "rol": null,
-    "activo": false
+    "activo": false,
+    "imagen": "data/media/img"
 }

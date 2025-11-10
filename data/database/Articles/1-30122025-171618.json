@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "nombre": "Tonkatsu Don",
+    "precio": 8.85,
+    "horario": "Comida",
+    "cantidad": 10,
+    "ingredientes": [
+        "cerdo rebozado",
+        "arroz",
+        "huevo",
+        "salsa"
+    ],
+    "imagen": "public/media/img"
+}
