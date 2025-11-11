@@ -67,3 +67,30 @@ server {
         deny all;
     }
 }
+
+
+Configuracio apache2
+  GNU nano 7.2                                                               /opt/lampp/apache2/conf/httpd.conf                                                                   M     
+Alias /bitnami/ "/opt/lampp/apache2/htdocs/"
+Alias /bitnami "/opt/lampp/apache2/htdocs"
+
+
+<VirtualHost *:80>
+    DocumentRoot "/opt/lampp/ProyectoCantina/public"
+    ServerName localhost
+    
+    <Directory "/opt/lampp/ProyectoCantina/public">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+        
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteRule ^(.*)$ index.php [QSA,L]
+        </IfModule>
+    </Directory>
+</VirtualHost>
+
+
