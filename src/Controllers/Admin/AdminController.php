@@ -49,6 +49,4 @@ class AdminController
         require __DIR__ . '/../../Views/common/usuaris/perfil.php';
         exit;
     }
-
-
 }
