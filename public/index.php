@@ -104,10 +104,17 @@ switch ($rol) {
                 }
                 exit;
 
-            case '/admin/gestioProductes':
+            case '/admin/gestio-productes':
                 $controller = new AdminController();
                 if ($method === 'GET') {
                     $controller->gestioProductes();
+                }
+                exit;
+
+            case '/admin/gestio-usuaris':
+                $controller = new AdminController();
+                if ($method === 'GET') {
+                    $controller->gestioUsuaris();
                 }
                 exit;
 
@@ -126,6 +133,13 @@ switch ($rol) {
                 }
                 exit;
 
+            case '/common/usuaris/gestio-perfil':
+                $controller = new AdminController();
+                if ($method === 'GET') {
+                    $controller->gestioUsuari();
+                }
+                exit;
+
             default:
                 http_response_code(404);
                 echo "404 - Página no encontrada";
@@ -138,6 +152,12 @@ switch ($rol) {
                 case '/perfil':
                     (new UserController())->perfil();
                     exit;
+
+                case '/common/usuaris/gestio-perfil':
+                    (new UserController())->perfil();
+                    exit;
+
+                
                 default:
                     http_response_code(404);
                     echo "404 - Página no encontrada";

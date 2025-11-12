@@ -50,10 +50,15 @@ class AdminController
         exit;
     }
 
-
     public function gestioProductes()
     {
         require __DIR__ . '/../../Views/admin/gestioProductes.php';
+        exit;
+    }
+
+    public function gestioUsuaris()
+    {
+        require __DIR__ . '/../../Views/admin/gestioUsuaris.php';
         exit;
     }
 }
