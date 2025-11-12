@@ -1,7 +1,3 @@
-<?php
-?>
-
-</html>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Usuario</title>
-    <link rel="stylesheet" href="../../../public/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
@@ -20,14 +16,13 @@
         <input type="password" name="password" placeholder="Password">
         <button type="submit">Guardar</button>
     </form>
-
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+    <div class="row">
+        <div class="col-6">1</div>
+        <div class="col-6">2</div>
+    </div>
+    <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            This is some text within a card body.
         </div>
     </div>
     <div id="respuesta"></div>

@@ -9,6 +9,13 @@ use Src\Controllers\Admin\AdminController;
 
 session_start();
 
+define('ROOT_PATH', dirname(__DIR__));
+define('SRC_PATH', ROOT_PATH . '/src');
+define('PUBLIC_PATH', ROOT_PATH . '/public');
+define('RELATIVE_PUBLIC_PATH', '/public');
+define('VIEWS_PATH', ROOT_PATH . '/views');
+define('CONTROLLERS_PATH', SRC_PATH . '/Controllers');
+
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
