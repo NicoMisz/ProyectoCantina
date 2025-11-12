@@ -104,6 +104,13 @@ switch ($rol) {
                 }
                 exit;
 
+            case '/admin/gestioProductes':
+                $controller = new AdminController();
+                if ($method === 'GET') {
+                    $controller->gestioProductes();
+                }
+                exit;
+
             case '/admin/cambiar-password':
                 switch ($method) {
                     case 'GET':

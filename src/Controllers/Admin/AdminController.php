@@ -49,4 +49,11 @@ class AdminController
         require __DIR__ . '/../../Views/common/usuaris/perfil.php';
         exit;
     }
+
+
+    public function gestioProductes()
+    {
+        require __DIR__ . '/../../Views/admin/gestioProductes.php';
+        exit;
+    }
 }
