@@ -49,6 +49,14 @@ if ($uri === '/login' || $uri === '/registrar') {
     }
 }
 
+if ($uri === '' || $uri === '/' || $uri === '/dashboard') {
+    $rol = $_SESSION['user']['rol'];
+
+    (new CommonController())->dashboard();
+
+    exit;
+}
+
 if (!empty($_SESSION['user']) && !empty($_SESSION['user']['token'])) {
     $currToken = new DateTime();
     $tokenDateTime = DateTime::createFromFormat('dmY-His', $_SESSION['user']['token']);
@@ -75,57 +83,49 @@ if (!empty($_SESSION['user']) && !empty($_SESSION['user']['token'])) {
     exit;
 }
 
-if ($uri === '' || $uri === '/' || $uri === '/dashboard') {
-    $rol = $_SESSION['user']['rol'];
-    switch () {
-        (new CommonController())->dashboard();
-    }
-    exit;
-}
 
 $rol = $_SESSION['user']['rol'];
-if(!empty($rol)) {
-    echo "hola";
+if (!empty($rol)) {
     // switch commun
     switch ($uri) {
         case '/common/usuaris/about_us':
-            (new UserController())->aboutUs();
+            (new CommonController())->aboutUs();
             exit;
-        
+
         case '/common/usuaris/cambiar_password':
-            (new UserController())->cambiarPassword();
+            (new CommonController())->cambiarPassword();
             exit;
-        
+
         case '/common/usuaris/carrito':
-            (new UserController())->carrito();
+            (new CommonController())->carrito();
             exit;
-        
+
         case '/common/usuaris/catalogo':
-            (new UserController())->catalogo();
+            (new CommonController())->catalogo();
             exit;
-        
+
         case '/common/usuaris/dashboard':
-            (new UserController())->dashboard();
+            (new CommonController())->dashboard();
             exit;
-        
+
         case '/common/usuaris/formulari':
-            (new UserController())->formulari();
+            (new CommonController())->formulari();
             exit;
-        
+
         case '/common/usuaris/login':
-            (new UserController())->login();
+            (new CommonController())->login();
             exit;
-        
+
         case '/common/usuaris/perfil':
-            (new UserController())->perfil();
+            (new CommonController())->perfil();
             exit;
-        
+
         case '/common/usuaris/registrar':
-            (new UserController())->registrar();
+            (new CommonController())->registrar();
             exit;
-        
+
         case '/common/usuaris/ticket':
-            (new UserController())->ticket();
+            (new CommonController())->ticket();
             exit;
     }
 }
@@ -173,7 +173,7 @@ switch ($rol) {
             case '/common/usuaris/gestio-perfil':
                 $controller = new AdminController();
                 if ($method === 'GET') {
-                    $controller->gestioUsuari();
+                    $controller->gestioUsuaris();
                 }
                 exit;
 
@@ -194,7 +194,7 @@ switch ($rol) {
                     (new UserController())->perfil();
                     exit;
 
-                
+
                 default:
                     http_response_code(404);
                     echo "404 - Página no encontrada";
@@ -208,4 +208,3 @@ switch ($rol) {
         echo "403 - Acceso denegado";
         exit;
 }
-?>

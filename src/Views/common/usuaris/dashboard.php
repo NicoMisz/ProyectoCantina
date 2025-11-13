@@ -15,7 +15,7 @@
 <body>
     <header class="header nav">
         <a href="/dashboard"> <img class="logo-header" src="/assets/media/E.png" alt="Logo cantina tony's"></a>
-        <ul>
+        <ul class="navigation">
             <li>
                 <ul class="menu-dropdown">
                     <li><a href="/catalogo">El catalogo</a></li>
@@ -23,10 +23,10 @@
                     <li><a href="/formulari">Contacto</a></li>
                 </ul>
             </li>
-            <li><a href="/carrito">Carrito</a></li>
-            <li><a href="/perfil">Perfil</a></li>
+            <li class="carrito"><a href="/carrito">Carrito</a></li>
+            <li class="perfil"><a href="/perfil">Perfil</a></li>
         </ul>
-        <hr>
+
     </header>
 
 

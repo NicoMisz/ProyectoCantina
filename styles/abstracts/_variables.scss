@@ -1,1 +1,171 @@
 // abstracts/_variables.scss
+// Colores principales Java
+$java-red: #DB380D;
+$java-blue: #5382A1;
+
+// Variaciones de rojo
+$red-light: #E85835;
+$red-dark: #B02D0A;
+$red-pale: #FFF5F3;
+
+// Variaciones de azul
+$blue-light: #7BA3BC;
+$blue-dark: #3D5F7A;
+$blue-pale: #F0F5F8;
+
+// Neutros claros
+$dark-gray: #2C3E50;
+$medium-gray: #7F8C8D;
+$light-gray: #ECF0F1;
+$white: #FFFFFF;
+$off-white: #F8F9FA;
+
+// Neutros oscuros (para modo oscuro)
+$dark-bg: #1a1a1a;
+$dark-surface: #2d2d2d;
+$dark-surface-elevated: #3a3a3a;
+$dark-border: #404040;
+$dark-text: #e0e0e0;
+$dark-text-secondary: #a0a0a0;
+
+// Estados
+$success: #27AE60;
+$warning: #F39C12;
+$error: $java-red;
+$info: $java-blue;
+
+// ========================================
+// CSS CUSTOM PROPERTIES - MODO CLARO
+// ========================================
+
+:root {
+    // Colores de marca
+    --color-primary: #{$java-red};
+    --color-primary-light: #{$red-light};
+    --color-primary-dark: #{$red-dark};
+    --color-primary-pale: #{$red-pale};
+
+    --color-secondary: #{$java-blue};
+    --color-secondary-light: #{$blue-light};
+    --color-secondary-dark: #{$blue-dark};
+    --color-secondary-pale: #{$blue-pale};
+
+    // Colores de fondo
+    --bg-primary: #{$white};
+    --bg-secondary: #{$off-white};
+    --bg-tertiary: #{$light-gray};
+
+    // Colores de superficie (cards, modales, etc)
+    --surface-primary: #{$white};
+    --surface-elevated: #{$white};
+    --surface-hover: #{$off-white};
+
+    // Colores de texto
+    --text-primary: #{$dark-gray};
+    --text-secondary: #{$medium-gray};
+    --text-inverse: #{$white};
+    --text-on-primary: #{$white};
+    --text-on-secondary: #{$white};
+
+    // Bordes y separadores
+    --border-color: #{$light-gray};
+    --border-light: #E8EAED;
+    --divider: #{$light-gray};
+
+    // Sombras
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+    // Estados
+    --color-success: #{$success};
+    --color-warning: #{$warning};
+    --color-error: #{$error};
+    --color-info: #{$info};
+
+    // Estados de fondo
+    --bg-success: #d4edda;
+    --bg-warning: #fff3cd;
+    --bg-error: #{$red-pale};
+    --bg-info: #{$blue-pale};
+
+    // Overlays
+    --overlay-light: rgba(255, 255, 255, 0.9);
+    --overlay-dark: rgba(0, 0, 0, 0.5);
+
+    // Inputs
+    --input-bg: #{$white};
+    --input-border: #{$light-gray};
+    --input-border-focus: #{$java-blue};
+    --input-text: #{$dark-gray};
+    --input-placeholder: #{$medium-gray};
+}
+
+// ========================================
+// CSS CUSTOM PROPERTIES - MODO OSCURO
+// ========================================
+
+[data-theme="dark"] {
+    // Colores de marca (mantienen intensidad)
+    --color-primary: #{$red-light};
+    --color-primary-light: #{$red-light};
+    --color-primary-dark: #{$java-red};
+    --color-primary-pale: rgba(219, 56, 13, 0.15);
+
+    --color-secondary: #{$blue-light};
+    --color-secondary-light: #{$blue-light};
+    --color-secondary-dark: #{$java-blue};
+    --color-secondary-pale: rgba(83, 130, 161, 0.15);
+
+    // Colores de fondo
+    --bg-primary: #{$dark-bg};
+    --bg-secondary: #{$dark-surface};
+    --bg-tertiary: #{$dark-surface-elevated};
+
+    // Colores de superficie
+    --surface-primary: #{$dark-surface};
+    --surface-elevated: #{$dark-surface-elevated};
+    --surface-hover: #{$dark-surface-elevated};
+
+    // Colores de texto
+    --text-primary: #{$dark-text};
+    --text-secondary: #{$dark-text-secondary};
+    --text-inverse: #{$dark-gray};
+    --text-on-primary: #{$white};
+    --text-on-secondary: #{$white};
+
+    // Bordes y separadores
+    --border-color: #{$dark-border};
+    --border-light: #505050;
+    --divider: #{$dark-border};
+
+    // Sombras (más sutiles en modo oscuro)
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+
+    // Estados (ajustados para modo oscuro)
+    --color-success: #4ade80;
+    --color-warning: #fbbf24;
+    --color-error: #{$red-light};
+    --color-info: #{$blue-light};
+
+    // Estados de fondo
+    --bg-success: rgba(74, 222, 128, 0.15);
+    --bg-warning: rgba(251, 191, 36, 0.15);
+    --bg-error: rgba(232, 88, 53, 0.15);
+    --bg-info: rgba(123, 163, 188, 0.15);
+
+    // Overlays
+    --overlay-light: rgba(0, 0, 0, 0.7);
+    --overlay-dark: rgba(0, 0, 0, 0.8);
+
+    // Inputs
+    --input-bg: #{$dark-surface-elevated};
+    --input-border: #{$dark-border};
+    --input-border-focus: #{$blue-light};
+    --input-text: #{$dark-text};
+    --input-placeholder: #{$dark-text-secondary};
+}
