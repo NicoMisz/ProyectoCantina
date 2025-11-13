@@ -77,22 +77,58 @@ if (!empty($_SESSION['user']) && !empty($_SESSION['user']['token'])) {
 
 if ($uri === '' || $uri === '/' || $uri === '/dashboard') {
     $rol = $_SESSION['user']['rol'];
-    switch ($rol) {
-        case 'admin':
-            (new CommonController())->dashboard();
-            break;
-        case 'usuario':
-            (new CommonController())->dashboard();
-            break;
-        default:
-            http_response_code(403);
-            echo "403 - Acceso denegado";
-            break;
+    switch () {
+        (new CommonController())->dashboard();
     }
     exit;
 }
 
 $rol = $_SESSION['user']['rol'];
+if(!empty($rol)) {
+    // switch commun
+    switch ($uri) {
+        case '/common/usuaris/about_us':
+            (new UserController())->aboutUs();
+            exit;
+        
+        case '/common/usuaris/cambiar_password':
+            (new UserController())->cambiarPassword();
+            exit;
+        
+        case '/common/usuaris/carrito':
+            (new UserController())->carrito();
+            exit;
+        
+        case '/common/usuaris/catalogo':
+            (new UserController())->catalogo();
+            exit;
+        
+        case '/common/usuaris/dashboard':
+            (new UserController())->dashboard();
+            exit;
+        
+        case '/common/usuaris/formulari':
+            (new UserController())->formulari();
+            exit;
+        
+        case '/common/usuaris/login':
+            (new UserController())->login();
+            exit;
+        
+        case '/common/usuaris/perfil':
+            (new UserController())->perfil();
+            exit;
+        
+        case '/common/usuaris/registrar':
+            (new UserController())->registrar();
+            exit;
+        
+        case '/common/usuaris/ticket':
+            (new UserController())->ticket();
+            exit;
+    }
+}
+
 // echo $rol;
 switch ($rol) {
     case 'admin':

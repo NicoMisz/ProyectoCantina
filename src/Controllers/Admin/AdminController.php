@@ -39,6 +39,8 @@ class AdminController
         }
     }
 
+
+    // Se tiene que eliminar / modificar para que este en el gestioUsuaris
     public function perfil($email = null)
     {
         if ($email == null) {
@@ -56,8 +58,13 @@ class AdminController
         exit;
     }
 
-    public function gestioUsuaris()
+    public function gestioUsuaris($email = null)
     {
+        if ($email == null) {
+            $email = $_SESSION['user']['email'];
+        }
+        $vista = 'admin';
+        $data = (new Usuari())->obtenirUsuariPerEmail($email);
         require __DIR__ . '/../../Views/admin/gestioUsuaris.php';
         exit;
     }

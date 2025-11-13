@@ -6,9 +6,6 @@ use DateTime;
 use Src\Model\Usuari\Usuari;
 class CommonController
 {
-    // public function index()
-    // {
-    // }
 
     public function dashboard()
     {
@@ -22,6 +19,56 @@ class CommonController
         require __DIR__ . '/../Views/common/usuaris/login.php';
         exit;
     }
+
+    public function registrar()
+    {
+        require __DIR__ . '/../Views/common/usuaris/registrar.php';
+        exit;
+    }
+
+    public function aboutUs()
+    {
+        require __DIR__ . '/../Views/common/usuaris/aboutUs.php';
+        exit;
+    }
+    
+    public function cambiarPassword()
+    {
+        require __DIR__ . '/../Views/common/usuaris/cambiarPassword.php';
+        exit;
+    }
+    
+    public function carrito()
+    {
+        require __DIR__ . '/../Views/common/usuaris/carrito.php';
+        exit;
+    }
+    
+    public function catalogo()
+    {
+        require __DIR__ . '/../Views/common/usuaris/catalog.php';
+        exit;
+    }
+    
+    public function formulari()
+    {
+        require __DIR__ . '/../Views/common/usuaris/formulari.php';
+        exit;
+    }
+    
+    public function perfil()
+    {
+        require __DIR__ . '/../Views/common/usuaris/perfil.php';
+        exit;
+    }
+    
+    public function ticket()
+    {
+        require __DIR__ . '/../Views/common/usuaris/ticket.php';
+        exit;
+    }
+    
+
     public function ajaxAutenticarLogin()
     {
         header('Content-Type: application/json; charset=utf-8');
@@ -62,10 +109,6 @@ class CommonController
     }
 
 
-    public function registrar()
-    {
-        require __DIR__ . '/../Views/common/usuaris/registrar.php';
-    }
     public function ajaxRegistrarUsuari()
     {
         $id = $this->obtenirId();
