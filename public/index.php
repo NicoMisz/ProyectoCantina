@@ -85,6 +85,7 @@ if ($uri === '' || $uri === '/' || $uri === '/dashboard') {
 
 $rol = $_SESSION['user']['rol'];
 if(!empty($rol)) {
+    echo "hola";
     // switch commun
     switch ($uri) {
         case '/common/usuaris/about_us':

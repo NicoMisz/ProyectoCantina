@@ -9,7 +9,6 @@ class CommonController
 
     public function dashboard()
     {
-
         require __DIR__ . '/../Views/common/usuaris/dashboard.php';
         exit;
     }
