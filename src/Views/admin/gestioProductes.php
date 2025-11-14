@@ -120,82 +120,100 @@
                 var cardBody = document.createElement('div');
                 cardBody.className = 'card-body';
 
+                var form = document.createElement('form');
+                form.setAttribute("action", "/admin/editar-producte");
+                form.setAttribute("method", "POST");
+
                 function crearInput(inputType, inputClass, inputName, inputValue, inputEstat) {
-                    var input = document.createElement('input');
-                    input.type = inputType;
+                    var div = document.createElement('div');
+                    var input;
+
+                    if (inputType === 'textarea') {
+                        input = document.createElement('textarea');
+                        input.textContent = inputValue;
+                    } else {
+                        input = document.createElement('input');
+                        input.type = inputType;
+                        input.value = inputValue;
+                    }
+
                     input.className = inputClass;
                     input.id = inputName;
                     input.name = inputName;
-                    input.value = inputValue;
                     input.disabled = !inputEstat;
-                    return input;
+                    div.className = "col-3";
+                    div.appendChild(input);
+                    return div;
                 }
 
                 function crearLabel(labelText, labelClass, labelName) {
+                    var div = document.createElement('div')
                     var label = document.createElement('label');
                     label.className = labelClass;
                     label.name = labelName;
                     label.textContent = labelText;
-                    return label;
+                    div.className = "col-3";
+                    div.appendChild(label)
+                    return div;
                 }
-                var div;
-                var input;
-                var label;
+
                 var divNombre = document.createElement('div');
-                divNombre.className = '';
+                divNombre.className = 'row';
                 divNombre.id = 'titol-article';
-                // div.nombre.appendChild(crearLabel())
                 divNombre.appendChild(crearInput('text', 'form-control articulo-nombre', 'articulo-nombre', articleData.nombre, false))
-                // var input = document.createElement('input');
-                // divNombre.appendChild(input);
 
-                // input.type = 'text';
-                // input.className = 'form-control';
-                // input.id = 'nombre';
-                // input.name = 'nombre';
-                // input.value = articleData.nombre;
-                // input.disabled = true;
+                var divDescripcio = document.createElement('div');
+                divDescripcio.className = 'row';
+                divDescripcio.id = '';
+                divDescripcio.appendChild(crearLabel('Descripció', 'form-label articulo-descripcion', 'articulo-descripcion'))
+                divDescripcio.appendChild(crearInput('textarea', 'form-control articulo-descripcion', 'articulo-descripcion', articleData.descripcion, false))
 
+                var divPrecio = document.createElement('div');
+                divPrecio.className = 'row';
+                divPrecio.id = '';
+                divPrecio.appendChild(crearLabel('Preu', 'form-label articulo-precio', 'articulo-precio'))
+                divPrecio.appendChild(crearInput('number', 'form-control articulo-precio', 'articulo-precio', articleData.precio, false))
 
+                var divHorario = document.createElement('div');
+                divHorario.className = 'row';
+                divHorario.id = '';
+                divHorario.appendChild(crearLabel('Horari', 'form-label articulo-precio', 'articulo-horario'))
+                divHorario.appendChild(crearInput('text', 'form-control articulo-precio', 'articulo-horario', articleData.horario, false))
 
-
+                var divCantidad = document.createElement('div');
+                divCantidad.className = 'row';
+                divCantidad.id = '';
+                divCantidad.appendChild(crearLabel('Ració', 'form-label articulo-cantidad', 'articulo-cantidad'))
+                divCantidad.appendChild(crearInput('number', 'form-control articulo-cantidad', 'articulo-cantidad', articleData.cantidad, false))
 
                 var boton = document.createElement('button');
                 boton.textContent = 'Editar';
-                boton.className = 'btn btn-primary'; // Puedes cambiar la clase según tu framework CSS
+                boton.className = 'btn btn-primary';
                 boton.id = 'btnEditarProducte';
+                boton.type = 'button';
 
-                // Añadir el evento click
                 boton.addEventListener('click', function () {
                     alternarEdiciProductes();
-                    // Opcional: cambiar el texto del botón según el estado
                     if (inputs && inputs.length > 0) {
                         boton.textContent = inputs[0].disabled ? 'Editar' : 'Desactivar Edición';
                     }
                 });
-                // div.appendChild(label);
-                // divNombre.appendChild(input);
-                cardBody.appendChild(divNombre);
-                // cardBody.appendChild(createInputGroup('ID', articleData.id));
-                // cardBody.appendChild(createInputGroup('Nombre', articleData.nombre));
-                // cardBody.appendChild(createInputGroup('Descripción', articleData.descripcion));
-                // cardBody.appendChild(createInputGroup('Precio', articleData.precio));
-                // cardBody.appendChild(createInputGroup('Horario', articleData.horario));
-                // cardBody.appendChild(createInputGroup('Cantidad', articleData.cantidad));
-                // cardBody.appendChild(createInputGroup('Imagen', articleData.imagen));
-                cardBody.appendChild(boton);
+
+                form.appendChild(divNombre);
+                form.appendChild(divDescripcio);
+                form.appendChild(divPrecio);
+                form.appendChild(divHorario);
+                form.appendChild(divCantidad);
+                form.appendChild(boton);
+
+                cardBody.appendChild(form);
                 card.appendChild(cardBody);
                 dadesArticle.appendChild(card);
 
-
-
                 inputs = document.getElementsByClassName('form-control');
-
             }
-
         });
     });
-
 </script>
 <style>
     #titol-article {
