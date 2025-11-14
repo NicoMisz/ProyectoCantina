@@ -1,6 +1,7 @@
 {
     "id": 0,
     "nombre": "",
+    "descripcion": "",
     "precio": 0,
     "horario": "",
     "cantidad": 0,

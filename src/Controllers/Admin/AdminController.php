@@ -1,9 +1,11 @@
 <?php
 namespace Src\Controllers\Admin;
 require_once __DIR__ . '/../../Model/Usuari.php';
+require_once __DIR__ . '/../../Model/Article.php';
 
 use DateTime;
 use Src\Model\Usuari\Usuari;
+use Src\Model\Article\Article;
 
 class AdminController
 {
@@ -54,6 +56,11 @@ class AdminController
 
     public function gestioProductes()
     {
+        $data = (new Article())->obtenirArticles();
+        // echo '<pre>';
+        // var_dump($data);
+        // exit;
+
         require __DIR__ . '/../../Views/admin/gestioProductes.php';
         exit;
     }

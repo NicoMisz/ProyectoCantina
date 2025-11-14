@@ -15,6 +15,7 @@ define('PUBLIC_PATH', ROOT_PATH . '/public');
 define('RELATIVE_PUBLIC_PATH', '/public');
 define('VIEWS_PATH', ROOT_PATH . '/views');
 define('CONTROLLERS_PATH', SRC_PATH . '/Controllers');
+define('DATA_PATH', '/data');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
