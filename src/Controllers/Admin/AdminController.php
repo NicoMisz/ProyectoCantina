@@ -64,6 +64,11 @@ class AdminController
         $articuloHorario = htmlspecialchars(trim($_POST['articulo-horario']), ENT_QUOTES, 'UTF-8');
         $articuloCantidad = filter_var($_POST['articulo-cantidad'], FILTER_SANITIZE_NUMBER_INT);
 
+        $articuloImagen = base64_decode(urldecode($_POST['articulo-imagen']));
+        $nombreArchivo = date('dmY-His') . '.json';
+
+        file_put_contents(__DIR__."/../../../public/assets/media/Articles/".$nombreArchivo, $articuloImagen);
+
         $articulo = [
             "id" => intval($articuloId),
             "nombre" => $articuloNombre,

@@ -218,6 +218,7 @@
                 inputImagen.id = 'articulo-imagen';
                 inputImagen.name = 'articulo-imagen';
                 inputImagen.accept = 'image/*';
+                inputImagen.disabled = true;
 
                 divImagen.appendChild(labelImagen);
                 divImagen.appendChild(inputImagen);
@@ -300,7 +301,7 @@
             }
 
 
-            
+
         });
     });
 </script>
