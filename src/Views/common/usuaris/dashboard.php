@@ -75,6 +75,7 @@
             <div class="menu-footer">
                 <div class="menu-footer-content">
                     <div class="menu-social">
+                        <a href="/log-out" class="social-link" aria-label="logOut">X</a>
                         <a href="#" class="social-link" aria-label="Instagram">📱</a>
                         <a href="#" class="social-link" aria-label="Email">📧</a>
                         <a href="#" class="social-link" aria-label="Web">🌐</a>

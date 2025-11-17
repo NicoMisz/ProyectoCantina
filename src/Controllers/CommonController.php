@@ -67,6 +67,12 @@ class CommonController
         exit;
     }
     
+    public function logOut()
+    {
+        session_destroy();
+        header('Location:' .'/dashboard');
+        exit;
+    }
 
     public function ajaxAutenticarLogin()
     {

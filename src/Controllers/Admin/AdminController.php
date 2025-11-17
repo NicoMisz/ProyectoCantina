@@ -63,29 +63,31 @@ class AdminController
         $articuloPrecio = filter_var($_POST['articulo-precio'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $articuloHorario = htmlspecialchars(trim($_POST['articulo-horario']), ENT_QUOTES, 'UTF-8');
         $articuloCantidad = filter_var($_POST['articulo-cantidad'], FILTER_SANITIZE_NUMBER_INT);
-
-
+        
+        $rutaImagen = ""; // Inicializar la variable para la imagen
+        
         if (isset($_FILES['articulo-imagen']) && $_FILES['articulo-imagen']['error'] === UPLOAD_ERR_OK) {
             $archivoTemporal = $_FILES['articulo-imagen']['tmp_name'];
             $nombreOriginal = $_FILES['articulo-imagen']['name'];
             $extension = pathinfo($nombreOriginal, PATHINFO_EXTENSION);
-
+            
             // Validar que sea una imagen
             $tiposPermitidos = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
             if (!in_array(strtolower($extension), $tiposPermitidos)) {
                 die('Tipo de archivo no permitido');
             }
-
+            
             $nombreArchivo = date('dmY-His') . '.' . $extension;
             $rutaDestino = __DIR__ . "/../../../public/assets/media/Articles/" . $nombreArchivo;
-
+            
             if (move_uploaded_file($archivoTemporal, $rutaDestino)) {
-                echo "Archivo subido correctamente: " . $nombreArchivo;
+                $rutaImagen = "/assets/media/Articles/" . $nombreArchivo; // Ruta relativa
+                echo "Archivo subido correctamente: " . $nombreArchivo . "<br>";
             } else {
-                echo "Error al subir el archivo";
+                echo "Error al subir el archivo<br>";
             }
         }
-
+        
         $articulo = [
             "id" => intval($articuloId),
             "nombre" => $articuloNombre,
@@ -94,12 +96,25 @@ class AdminController
             "horario" => $articuloHorario,
             "cantidad" => intval($articuloCantidad),
             "ingredientes" => [],
-            "imagen" => ""
+            "imagen" => $rutaImagen
         ];
-        echo $articuloFile;
+        
+        // Construir la ruta del archivo JSON
+        $rutaJSON = __DIR__ . "/../../../data/database/Articles/" . $articuloFile . ".json";
+        
+        // Guardar el JSON en el archivo (machacando el contenido existente)
+        $resultado = file_put_contents($rutaJSON, json_encode($articulo, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), LOCK_EX);
+        
+        if ($resultado !== false) {
+            echo "Artículo guardado correctamente en: " . $rutaJSON . "<br>";
+        } else {
+            echo "Error al guardar el artículo<br>";
+        }
+        
         echo "<pre>";
         print_r($articulo);
-        // require DIR . '/../../Views/admin/gestioProductes.php';
+        echo "</pre>";
+        
         exit;
     }
     public function afegirProducte()

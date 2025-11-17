@@ -20,7 +20,7 @@ define('DATA_PATH', '/data');
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
-if ($uri === '/login' || $uri === '/registrar') {
+if ($uri === '/login' || $uri === '/registrar' || $uri === '/log-out') {
     switch ($uri) {
         case '/login':
             $controller = new CommonController();
@@ -38,6 +38,20 @@ if ($uri === '/login' || $uri === '/registrar') {
             switch ($method) {
                 case 'GET':
                     (new CommonController())->registrar();
+                    break;
+                case 'POST':
+                    $controller = new CommonController();
+                    $response = $controller->ajaxRegistrarUsuari();
+                    header('Content-Type: application/json');
+                    echo json_encode($response);
+                    break;
+            }
+            exit;
+
+        case '/log-out':
+            switch ($method) {
+                case 'GET':
+                    (new CommonController())->logOut();
                     break;
                 case 'POST':
                     $controller = new CommonController();

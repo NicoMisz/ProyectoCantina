@@ -1,0 +1,11 @@
+{
+    "id": 8,
+    "nombre": "ponme",
+    "apellidos": "un 10",
+    "email": "ponme@un10.com",
+    "fechaCreacion": "17112025-192357",
+    "password": "063ddb50ddc0cdc7672c02e404884e1af16b5d90261b9b64cc1bdab50000f54d195ff9fd9c8352539224ca7b8b24cbf284e4de0cbd6f67f9357a1f7f224b0aeb",
+    "rol": "usuario",
+    "activo": true,
+    "imagen": "data\/assets\/media\/img"
+}

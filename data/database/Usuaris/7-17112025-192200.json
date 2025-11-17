@@ -1,0 +1,11 @@
+{
+    "id": 7,
+    "nombre": "Zaahen",
+    "apellidos": "Darkin",
+    "email": "zaahen@darkin.com",
+    "fechaCreacion": "17112025-192200",
+    "password": "113fda3911794bd487ed8d9d7cdd851751f3e1116b40976a434e23e99a99a30ad624d258fb7c74729d0a04d9828d612f21d582164e1d4deae8651cd2db6db777",
+    "rol": "usuario",
+    "activo": true,
+    "imagen": "data\/assets\/media\/img"
+}

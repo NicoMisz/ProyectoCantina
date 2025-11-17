@@ -1,0 +1,10 @@
+{
+    "id": 1,
+    "nombre": "Tonkatsu Don",
+    "descripcion": "arroz con cer",
+    "precio": 8.85,
+    "horario": "Comida",
+    "cantidad": 10,
+    "ingredientes": [],
+    "imagen": ""
+}
