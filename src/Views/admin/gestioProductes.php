@@ -19,14 +19,16 @@
                         echo '<div ';
                         echo 'data-id="' . $article["id"] . '" ';
                         echo 'data-file="' . $key . '" ';
-                        echo 'class="article card col-12" style="min-height: 7rem;padding:1rem;cursor:pointer;">
-                                <div class="card-body" style="padding:0;display:flex;">
-                                <div style="">
-                                    <img style="width: 100%;height: auto;"src="';
-                        echo "https://placehold.co/90x90";
-                        echo '">';
+                        echo 'class="article card col-12" style="min-height: 7rem;cursor:pointer;">
+                                <div class="card-body" style="">
+                                <div class="row">
+                                <div class="col-4">
+                                    <img style="width: 5rem;height: 5rem;object-fit: cover;"src="';
+                        echo $article["imagen"] ? $article["imagen"] : "https://placehold.co/90x90";
 
+                        echo '">';
                         echo '</div>';
+                        echo '<div class="col-8">';
                         echo '<div class="row"style="display:flex;padding:1rem;">';
                         if (!empty($article["nombre"])) {
                             echo '<span class="col-8" style="padding:0rem 0rem 0rem 1rem;">';
@@ -40,6 +42,8 @@
                             echo '</span>';
 
                         }
+                        echo '</div>';
+                        echo '</div>';
                         echo '</div>
                             </div>
                         ';
@@ -47,6 +51,14 @@
                         echo '</div>';
 
                     }
+
+                    echo '<div class="article card col-12" style="min-height: 7rem;cursor:pointer;">
+                                <div class="card-body" style="">
+                                <svg style="display: block;margin:auto;width:5rem;"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
+                                </div>
+                            </div>
+                        ';
+
                     ?>
                 </div>
             </div>
@@ -57,30 +69,6 @@
                             <?php
                             echo '<pre>';
                             var_dump($data);
-                            ?>
-
-                            <?php
-
-                            if (!empty($data["id"])) {
-                                echo '<p data-type="id">' . $data["id"] . '</p>';
-                            }
-                            if (!empty($data["nombre"])) {
-                                echo '<p data-type="nombre">' . $data["nombre"] . '</p>';
-                            }
-                            if (!empty($data["email"])) {
-                                echo '<p data-type="email">' . $data["email"] . '</p>';
-                            }
-                            if (!empty($data["rol"])) {
-                                echo '<p data-type="rol">' . $data["rol"] . '</p>';
-                            }
-                            if (!empty($data["activo"])) {
-                                echo '<p data-type="activo">' . $data["activo"] . '</p>';
-                            }
-                            if (!empty($data["fechaCreacion"])) {
-                                $tokenDateTime = DateTime::createFromFormat('dmY-His', $data["fechaCreacion"]);
-
-                                echo '<p data-type="fechaCreacion">' . $tokenDateTime->format('d/m/Y') . '</p>';
-                            }
                             ?>
                         </div>
                     </div>
@@ -131,6 +119,11 @@
                     if (inputType === 'textarea') {
                         input = document.createElement('textarea');
                         input.textContent = inputValue;
+                    } else if (inputType == 'number') {
+                        input = document.createElement('input');
+                        input.type = inputType;
+                        input.value = inputValue;
+                        input.setAttribute("step", "0.01");
                     } else {
                         input = document.createElement('input');
                         input.type = inputType;
@@ -141,7 +134,8 @@
                     input.id = inputName;
                     input.name = inputName;
                     input.disabled = !inputEstat;
-                    div.className = "col-3";
+
+                    div.className = "col-9";
                     div.appendChild(input);
                     return div;
                 }
@@ -156,6 +150,14 @@
                     div.appendChild(label)
                     return div;
                 }
+
+                // Crear el row principal
+                var rowPrincipal = document.createElement('div');
+                rowPrincipal.className = 'row';
+
+                // Crear la columna izquierda (col-6)
+                var colIzquierda = document.createElement('div');
+                colIzquierda.className = 'col-6';
 
                 var divNombre = document.createElement('div');
                 divNombre.className = 'row';
@@ -186,6 +188,68 @@
                 divCantidad.appendChild(crearLabel('Ració', 'form-label articulo-cantidad', 'articulo-cantidad'))
                 divCantidad.appendChild(crearInput('number', 'form-control articulo-cantidad', 'articulo-cantidad', articleData.cantidad, false))
 
+                // Añadir campos ocultos a la columna izquierda
+                colIzquierda.appendChild(crearInput('number', 'form-control articulo-id d-none', 'articulo-id', articleData.id, false));
+                colIzquierda.appendChild(crearInput('text', 'form-control articulo-file d-none', 'articulo-id', file, false));
+
+                // Añadir todos los campos al col-6 izquierdo
+                colIzquierda.appendChild(divNombre);
+                colIzquierda.appendChild(divDescripcio);
+                colIzquierda.appendChild(divPrecio);
+                colIzquierda.appendChild(divHorario);
+                colIzquierda.appendChild(divCantidad);
+
+                // Crear la columna derecha (col-6) - con input de imagen
+                var colDerecha = document.createElement('div');
+                colDerecha.className = 'col-6';
+
+                // Crear contenedor para la imagen
+                var divImagen = document.createElement('div');
+                divImagen.className = 'mb-3';
+
+                var labelImagen = document.createElement('label');
+                labelImagen.className = 'form-label';
+                labelImagen.textContent = 'Imatge del producte';
+                labelImagen.setAttribute('for', 'articulo-imagen');
+
+                var inputImagen = document.createElement('input');
+                inputImagen.type = 'file';
+                inputImagen.className = 'form-control';
+                inputImagen.id = 'articulo-imagen';
+                inputImagen.name = 'articulo-imagen';
+                inputImagen.accept = 'image/*';
+
+                divImagen.appendChild(labelImagen);
+                divImagen.appendChild(inputImagen);
+
+                // Crear elemento img para preview
+                var imgPreview = document.createElement('img');
+                imgPreview.id = 'preview-imagen';
+                imgPreview.className = 'img-fluid mt-3';
+                imgPreview.style.maxHeight = '300px';
+                imgPreview.style.display = 'none';
+
+                divImagen.appendChild(imgPreview);
+
+                // Event listener para mostrar la imagen cuando se seleccione
+                inputImagen.addEventListener('change', function (e) {
+                    var file = e.target.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                        var reader = new FileReader();
+                        reader.onload = function (event) {
+                            imgPreview.src = event.target.result;
+                            imgPreview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+
+                colDerecha.appendChild(divImagen);
+
+                // Crear la columna para los botones (col-12)
+                var colBotones = document.createElement('div');
+                colBotones.className = 'col-12';
+
                 var boton = document.createElement('button');
                 boton.textContent = 'Editar';
                 boton.className = 'btn btn-primary';
@@ -199,19 +263,44 @@
                     }
                 });
 
-                form.appendChild(divNombre);
-                form.appendChild(divDescripcio);
-                form.appendChild(divPrecio);
-                form.appendChild(divHorario);
-                form.appendChild(divCantidad);
-                form.appendChild(boton);
+                var submit = document.createElement('button');
+                submit.textContent = 'Guardar';
+                submit.className = 'btn btn-primary';
+                submit.id = 'btnGuardarProducte';
+                submit.type = 'submit';
+
+                var cancela = document.createElement('button');
+                cancela.textContent = 'Cancela';
+                cancela.className = 'btn btn-primary';
+                cancela.id = 'btnCancelarEdicio';
+                cancela.type = 'button';
+                cancela.addEventListener('click', function () {
+                    location.reload();
+                });
+
+                // Añadir botones al col-12
+                colBotones.appendChild(boton);
+                colBotones.appendChild(submit);
+                colBotones.appendChild(cancela);
+
+                // Montar la estructura
+                rowPrincipal.appendChild(colIzquierda);
+                rowPrincipal.appendChild(colDerecha);
+                rowPrincipal.appendChild(colBotones);
+
+                form.appendChild(rowPrincipal);
 
                 cardBody.appendChild(form);
                 card.appendChild(cardBody);
                 dadesArticle.appendChild(card);
 
                 inputs = document.getElementsByClassName('form-control');
+            } else {
+                console.log("AA")
             }
+
+
+            
         });
     });
 </script>
@@ -224,6 +313,11 @@
     #articulo-nombre {
         border: none;
         font-size: 2.5rem;
+    }
+
+
+    .d-none {
+        display: none;
     }
 </style>
 

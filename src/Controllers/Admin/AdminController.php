@@ -54,6 +54,43 @@ class AdminController
         exit;
     }
 
+    public function editarProducte()
+    {
+        $articuloFile = htmlspecialchars(trim($_POST['articulo-file'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $articuloId = filter_var($_POST['articulo-id'], FILTER_SANITIZE_NUMBER_INT);
+        $articuloNombre = htmlspecialchars(trim($_POST['articulo-nombre']), ENT_QUOTES, 'UTF-8');
+        $articuloDescripcion = htmlspecialchars(trim($_POST['articulo-descripcion']), ENT_QUOTES, 'UTF-8');
+        $articuloPrecio = filter_var($_POST['articulo-precio'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $articuloHorario = htmlspecialchars(trim($_POST['articulo-horario']), ENT_QUOTES, 'UTF-8');
+        $articuloCantidad = filter_var($_POST['articulo-cantidad'], FILTER_SANITIZE_NUMBER_INT);
+
+        $articulo = [
+            "id" => intval($articuloId),
+            "nombre" => $articuloNombre,
+            "descripcion" => $articuloDescripcion,
+            "precio" => floatval($articuloPrecio),
+            "horario" => $articuloHorario,
+            "cantidad" => intval($articuloCantidad),
+            "ingredientes" => [],
+            "imagen" => ""
+        ];
+        echo $articuloFile;
+        echo "<pre>";
+        print_r($articulo);
+        // require DIR . '/../../Views/admin/gestioProductes.php';
+        exit;
+    }
+    public function afegirProducte()
+    {
+        // $data = (new Article())->obtenirArticles();
+        // echo '<pre>';
+        // var_dump($data);
+        // exit;
+
+        // require DIR . '/../../Views/admin/gestioProductes.php';
+        exit;
+    }
+
     public function gestioProductes()
     {
         $data = (new Article())->obtenirArticles();
