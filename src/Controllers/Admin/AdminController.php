@@ -64,10 +64,27 @@ class AdminController
         $articuloHorario = htmlspecialchars(trim($_POST['articulo-horario']), ENT_QUOTES, 'UTF-8');
         $articuloCantidad = filter_var($_POST['articulo-cantidad'], FILTER_SANITIZE_NUMBER_INT);
 
-        $articuloImagen = base64_decode(urldecode($_POST['articulo-imagen']));
-        $nombreArchivo = date('dmY-His') . '.json';
 
-        file_put_contents(__DIR__."/../../../public/assets/media/Articles/".$nombreArchivo, $articuloImagen);
+        if (isset($_FILES['articulo-imagen']) && $_FILES['articulo-imagen']['error'] === UPLOAD_ERR_OK) {
+            $archivoTemporal = $_FILES['articulo-imagen']['tmp_name'];
+            $nombreOriginal = $_FILES['articulo-imagen']['name'];
+            $extension = pathinfo($nombreOriginal, PATHINFO_EXTENSION);
+
+            // Validar que sea una imagen
+            $tiposPermitidos = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+            if (!in_array(strtolower($extension), $tiposPermitidos)) {
+                die('Tipo de archivo no permitido');
+            }
+
+            $nombreArchivo = date('dmY-His') . '.' . $extension;
+            $rutaDestino = DIR . "/../../../public/assets/media/Articles/" . $nombreArchivo;
+
+            if (move_uploaded_file($archivoTemporal, $rutaDestino)) {
+                echo "Archivo subido correctamente: " . $nombreArchivo;
+            } else {
+                echo "Error al subir el archivo";
+            }
+        }
 
         $articulo = [
             "id" => intval($articuloId),
