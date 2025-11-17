@@ -149,6 +149,13 @@ switch ($rol) {
                 }
                 exit;
 
+            case '/admin/editar-producte':
+                $controller = new AdminController();
+                if ($method === 'POST') {
+                    $controller->editarProducte();
+                }
+                exit;
+
             case '/admin/gestio-usuaris':
                 $controller = new AdminController();
                 if ($method === 'GET') {
