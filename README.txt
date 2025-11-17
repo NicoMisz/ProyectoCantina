@@ -47,6 +47,8 @@ server {
 
     index index.php index.html;
 
+    client_max_body_size 50M;
+
     access_log /var/log/nginx/proyecto_cantina_access.log;
     error_log /var/log/nginx/proyecto_cantina_error.log;
 
@@ -95,3 +97,8 @@ Alias /bitnami "/opt/lampp/apache2/htdocs"
 </VirtualHost>
 
 
+
+php.ini
+
+upload_max_filesize = 50M
+post_max_size = 55M

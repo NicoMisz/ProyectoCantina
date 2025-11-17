@@ -77,7 +77,7 @@ class AdminController
             }
 
             $nombreArchivo = date('dmY-His') . '.' . $extension;
-            $rutaDestino = DIR . "/../../../public/assets/media/Articles/" . $nombreArchivo;
+            $rutaDestino = __DIR__ . "/../../../public/assets/media/Articles/" . $nombreArchivo;
 
             if (move_uploaded_file($archivoTemporal, $rutaDestino)) {
                 echo "Archivo subido correctamente: " . $nombreArchivo;

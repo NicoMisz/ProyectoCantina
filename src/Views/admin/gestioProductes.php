@@ -111,6 +111,7 @@
                 var form = document.createElement('form');
                 form.setAttribute("action", "/admin/editar-producte");
                 form.setAttribute("method", "POST");
+                form.setAttribute("enctype", "multipart/form-data");
 
                 function crearInput(inputType, inputClass, inputName, inputValue, inputEstat) {
                     var div = document.createElement('div');
