@@ -88,14 +88,14 @@
     <!-- Contenido de ejemplo (eliminar en producción) -->
     <main class="demo-content">
         <h1>¡Bienvenido a Cantina Tony's!</h1>
-        <p>Haz scroll para ver cómo el logo se mueve y reduce de tamaño.</p>
+        <!-- <p>Haz scroll para ver cómo el logo se mueve y reduce de tamaño.</p>
 
         <div style="height: 150vh; padding: 2rem 0;">
             <p>Contenido de ejemplo... Sigue haciendo scroll...</p>
             <p style="margin-top: 2rem;">
                 El header se vuelve compacto y el logo se posiciona a la izquierda.
             </p>
-        </div>
+        </div> -->
     </main>
 
 </body>
