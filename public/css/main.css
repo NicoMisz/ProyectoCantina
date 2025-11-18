@@ -624,17 +624,7 @@ body {
   border-left: 4px solid var(--color-primary);
 }
 
-.navigation::before {
-  content: "🤖👨‍🍳";
-  position: absolute;
-  top: 2rem;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  font-size: 3rem;
-  opacity: 0.15;
-  pointer-events: none;
-}
+
 
 .navigation.active {
   right: 0;

@@ -18,7 +18,7 @@
     <div class="login-container">
         <!-- Header -->
         <div class="login-header">
-            <div class="login-logo">👨‍🍳</div>
+            <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
             <h1 class="login-title">Cantina Tony's</h1>
             <p class="login-subtitle">Bienvenido de vuelta</p>
         </div>

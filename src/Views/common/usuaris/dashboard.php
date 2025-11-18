@@ -65,20 +65,20 @@
 
 
         <ul class="navigation" id="navigation">
-            <li><a href="/catalogo">🍕 El Catálogo</a></li>
-            <li><a href="/aboutUs">ℹ️ About Us</a></li>
-            <li><a href="/formulari">📧 Contacto</a></li>
-            <li><a href="/menu">🍽️ Menú del Día</a></li>
-            <li><a href="/pedidos">📦 Mis Pedidos</a></li>
+            <li><a href="/catalogo">El Catálogo</a></li>
+            <li><a href="/aboutUs">About Us</a></li>
+            <li><a href="/formulari">Contacto</a></li>
+            <li><a href="/menu">Menú del Día</a></li>
+            <li><a href="/pedidos">Mis Pedidos</a></li>
 
             <!-- Footer del menú -->
             <div class="menu-footer">
                 <div class="menu-footer-content">
                     <div class="menu-social">
                         <a href="/log-out" class="social-link" aria-label="logOut">X</a>
-                        <a href="#" class="social-link" aria-label="Instagram">📱</a>
-                        <a href="#" class="social-link" aria-label="Email">📧</a>
-                        <a href="#" class="social-link" aria-label="Web">🌐</a>
+                        <a href="#" class="social-link" aria-label="Instagram">I</a>
+                        <a href="#" class="social-link" aria-label="Email">E</a>
+                        <a href="/dashboard" class="social-link" aria-label="Web">W</a>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
 
     <!-- Contenido de ejemplo (eliminar en producción) -->
     <main class="demo-content">
-        <h1>¡Bienvenido a Cantina Tony's! 🤖</h1>
+        <h1>¡Bienvenido a Cantina Tony's!</h1>
         <p>Haz scroll para ver cómo el logo se mueve y reduce de tamaño.</p>
 
         <div style="height: 150vh; padding: 2rem 0;">
