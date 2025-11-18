@@ -103,43 +103,35 @@ $rol = $_SESSION['user']['rol'];
 if (!empty($rol)) {
     // switch commun
     switch ($uri) {
-        case '/common/usuaris/about_us':
+        case '/about_us':
             (new CommonController())->aboutUs();
             exit;
 
-        case '/common/usuaris/cambiar_password':
+        case '/cambiar_password':
             (new CommonController())->cambiarPassword();
             exit;
 
-        case '/common/usuaris/carrito':
+        case '/carrito':
             (new CommonController())->carrito();
             exit;
 
-        case '/common/usuaris/catalogo':
+        case '/catalogo':
             (new CommonController())->catalogo();
             exit;
 
-        case '/common/usuaris/dashboard':
+        case '/dashboard':
             (new CommonController())->dashboard();
             exit;
 
-        case '/common/usuaris/formulari':
+        case '/formulari':
             (new CommonController())->formulari();
             exit;
 
-        case '/common/usuaris/login':
-            (new CommonController())->login();
-            exit;
-
-        case '/common/usuaris/perfil':
+        case '/perfil':
             (new CommonController())->perfil();
             exit;
 
-        case '/common/usuaris/registrar':
-            (new CommonController())->registrar();
-            exit;
-
-        case '/common/usuaris/ticket':
+        case '/ticket':
             (new CommonController())->ticket();
             exit;
     }
