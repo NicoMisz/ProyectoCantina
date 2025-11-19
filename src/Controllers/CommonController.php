@@ -67,6 +67,12 @@ class CommonController
         exit;
     }
     
+    public function pedidos()
+    {
+        require __DIR__ . '/../Views/common/usuaris/pedidos.php';
+        exit;
+    }
+
     public function logOut()
     {
         session_destroy();

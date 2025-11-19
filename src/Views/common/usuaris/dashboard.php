@@ -16,7 +16,7 @@
         <div class="header-content">
             <!-- Logo (centrado por defecto, se mueve a la izquierda al hacer scroll) -->
             <div class="logo-container">
-                <a href="/">
+                <a href="/dashboard">
                     <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
                 </a>
             </div>
@@ -62,14 +62,11 @@
 
     <!-- Menú lateral -->
     <nav>
-
-
         <ul class="navigation" id="navigation">
             <li><a href="/catalogo">El Catálogo</a></li>
-            <li><a href="/aboutUs">About Us</a></li>
-            <li><a href="/formulari">Contacto</a></li>
-            <li><a href="/menu">Menú del Día</a></li>
             <li><a href="/pedidos">Mis Pedidos</a></li>
+            <li><a href="/about-us">About Us</a></li>
+            <li><a href="/formulari">Contacto</a></li>
 
             <!-- Footer del menú -->
             <div class="menu-footer">
@@ -85,17 +82,8 @@
         </ul>
     </nav>
 
-    <!-- Contenido de ejemplo (eliminar en producción) -->
     <main class="demo-content">
         <h1>¡Bienvenido a Cantina Tony's!</h1>
-        <!-- <p>Haz scroll para ver cómo el logo se mueve y reduce de tamaño.</p>
-
-        <div style="height: 150vh; padding: 2rem 0;">
-            <p>Contenido de ejemplo... Sigue haciendo scroll...</p>
-            <p style="margin-top: 2rem;">
-                El header se vuelve compacto y el logo se posiciona a la izquierda.
-            </p>
-        </div> -->
     </main>
 
 </body>
