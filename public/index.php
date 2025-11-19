@@ -103,11 +103,11 @@ $rol = $_SESSION['user']['rol'];
 if (!empty($rol)) {
     // switch commun
     switch ($uri) {
-        case '/about_us':
+        case '/about-us':
             (new CommonController())->aboutUs();
             exit;
 
-        case '/cambiar_password':
+        case '/cambiar-password':
             (new CommonController())->cambiarPassword();
             exit;
 
@@ -133,6 +133,10 @@ if (!empty($rol)) {
 
         case '/ticket':
             (new CommonController())->ticket();
+            exit;
+
+        case '/pedidos':
+            (new CommonController())->pedidos();
             exit;
     }
 }
