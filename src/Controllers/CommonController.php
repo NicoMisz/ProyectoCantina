@@ -4,6 +4,8 @@ require_once __DIR__ . '/../Model/Usuari.php';
 
 use DateTime;
 use Src\Model\Usuari\Usuari;
+use Src\Model\Article\Article;
+
 class CommonController
 {
 
@@ -30,47 +32,51 @@ class CommonController
         require __DIR__ . '/../Views/common/usuaris/aboutUs.php';
         exit;
     }
-    
+
     public function cambiarPassword()
     {
         require __DIR__ . '/../Views/common/usuaris/cambiarPassword.php';
         exit;
     }
-    
+
     public function carrito()
     {
         require __DIR__ . '/../Views/common/usuaris/carrito.php';
         exit;
     }
-    
+
     public function catalogo()
     {
-        require __DIR__ . '/../Views/common/usuaris/catalog.php';
+        $data = (new Article())->obtenirArticles();
+        // echo "<pre>";
+        // var_dump($data);
+        // exit;
+        require __DIR__ . '/../Views/common/usuaris/catalago.php';
         exit;
     }
-    
+
     public function formulari()
     {
         require __DIR__ . '/../Views/common/usuaris/formulari.php';
         exit;
     }
-    
+
     public function perfil()
     {
         require __DIR__ . '/../Views/common/usuaris/perfil.php';
         exit;
     }
-    
+
     public function ticket()
     {
         require __DIR__ . '/../Views/common/usuaris/ticket.php';
         exit;
     }
-    
+
     public function logOut()
     {
         session_destroy();
-        header('Location:' .'/dashboard');
+        header('Location:' . '/dashboard');
         exit;
     }
 
