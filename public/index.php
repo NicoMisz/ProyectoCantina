@@ -138,6 +138,28 @@ if (!empty($rol)) {
         case '/pedidos':
             (new CommonController())->pedidos();
             exit;
+
+        case '/afegir-article-carreto':
+            switch ($method) {
+                case 'POST':
+                    (new CommonController())->xmlAfegirArticle();
+                    exit;
+            }
+            exit;
+        case '/netejar-carreto':
+            switch ($method) {
+                case 'POST':
+                    (new CommonController())->xmlEliminarArticles();
+                    exit;
+            }
+            exit;
+        case '/carregar-carreto':
+            switch ($method) {
+                case 'POST':
+                    (new CommonController())->xmlCarregarCarreto();
+                    exit;
+            }
+            exit;
     }
 }
 

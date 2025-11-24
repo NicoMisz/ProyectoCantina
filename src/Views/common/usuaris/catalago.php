@@ -135,7 +135,7 @@
                                     </div>  
                                     <div class="col-5">
                                         <span>
-                                    + X -
+                                    - O +
                                         </span>
                                     </div>  
                                 </div>
@@ -168,5 +168,21 @@
     </main>
 
 </body>
+<script>
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "/afegir-article-carreto", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                console.log("Respuesta del servidor:", xhr.responseText);
+            } else {
+                console.error("Error en la petición:", xhr.status);
+            }
+        }
+    };
+    xhr.send("msg=Hola desde JavaScript");
+</script>
 
 </html>

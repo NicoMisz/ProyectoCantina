@@ -171,6 +171,92 @@ class CommonController
 
         header('Content-Type: application/json; charset=utf-8');
         $res = ["res" => 1, "msg" => "Usuari afegit correctament."];
-        return json_encode($res, JSON_PRETTY_PRINT);
+        echo json_encode($res, JSON_PRETTY_PRINT);
+        exit;
     }
+    public function xmlAfegirArticle()
+    {
+        $jsonstring = $_POST["data"];
+        $article = json_decode($jsonstring);
+        $data = (new Article())->obtenirArticle($article[0]);
+
+        // echo "<pre>";
+        // var_dump($data);
+        // var_dump($article);
+        // exit;
+
+        if (!array_key_exists("carreto", $_COOKIE)) {
+            // echo "Creació Cookie";
+            // $data = json_encode($data);
+            $carreto = array();
+            $carreto[$article[0]] = [
+                'id' => $data["id"],
+                'cantidad' => 1,
+                'precio' => $data["precio"]
+            ];
+            $cookie = json_encode($carreto);
+            setcookie("carreto", $cookie, time() + 2592000);
+            $res = ["res" => 1, "msg" => "Test."];
+        } else {
+            $carreto = json_decode($_COOKIE["carreto"], true);
+
+            if (array_key_exists($article[0], $carreto)) {
+                $carreto[$article[0]]["cantidad"] += $article[1];
+            } else {
+                $carreto[$article[0]] = [
+                    'id' => $data["id"],
+                    'cantidad' => $article[1],
+                    'precio' => $data["precio"]
+                ];
+            }
+
+            $res = ["res" => 0, "msg" => "Test."];
+
+            // $carreto[$article[0]] = $data;
+            // echo "<pre>";
+            // var_dump($carreto);
+            // exit;
+            $cookie = json_encode($carreto, JSON_PRETTY_PRINT);
+            setcookie("carreto", $cookie, time() - 10000000);
+            setcookie("carreto", $cookie, time() + 2592000);
+        }
+        // $msg = $_POST["msg"];
+        // echo $msg;
+        // exit;
+        echo json_encode($res, JSON_PRETTY_PRINT);
+        exit;
+    }
+
+    public function xmlEliminarArticles()
+    {
+        if (array_key_exists("carreto", $_COOKIE)) {
+            $data = $_COOKIE["carreto"];
+            $json = json_decode($data);
+            setcookie("carreto", null, time() - 10000000);
+            echo "ta te cookie";
+            $res = ["res" => 1, "msg" => "Cargar Carreto.", "json" => $data];
+
+        }
+    }
+    public function xmlCarregarCarreto()
+    {
+        if (array_key_exists("carreto", $_COOKIE)) {
+            $carreto = json_decode($_COOKIE["carreto"], true);
+            $res = [
+                "res" => 1,
+                "msg" => "Cargar Carreto.",
+                "carreto" => $carreto
+            ];
+        } else {
+            $res = [
+                "res" => 0,
+                "msg" => "No tienes Carreto."
+            ];
+        }
+        $res = json_encode($res);
+        echo $res;
+        exit;
+    }
+
+
 }

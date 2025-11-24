@@ -11,12 +11,19 @@ class HeaderManager {
         this.scrollThreshold = 100;
         this.isMenuOpen = false;
 
+        // Elementos del carrito
+        this.carreto = document.getElementById('carreto');
+        this.cartOverlay = document.getElementById('cartOverlay');
+        this.closeCartBtn = document.getElementById('closeCart');
+        this.isCartOpen = false;
+
         this.init();
     }
 
     init() {
         this.setupScrollListener();
         this.setupMenuListeners();
+        this.setupCartListeners();
         this.setupKeyboardListeners();
         this.markActiveLink();
         this.setupCartAnimation();
@@ -71,6 +78,11 @@ class HeaderManager {
     }
 
     openMenu() {
+        // Cerrar carrito si está abierto
+        if (this.isCartOpen) {
+            this.closeCart();
+        }
+
         this.isMenuOpen = true;
         this.hamburgerBtn.classList.add('active');
         this.navigation.classList.add('active');
@@ -86,10 +98,71 @@ class HeaderManager {
         this.hamburgerBtn.classList.remove('active');
         this.navigation.classList.remove('active');
         this.menuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+
+        // Solo restaurar scroll si el carrito tampoco está abierto
+        if (!this.isCartOpen) {
+            document.body.style.overflow = '';
+        }
 
         this.navigation.setAttribute('aria-hidden', 'true');
         this.hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    // ========================================
+    // CARRITO LATERAL
+    // ========================================
+    setupCartListeners() {
+        // Verificar que los elementos existen
+        if (!this.carreto || !this.cartOverlay || !this.closeCartBtn) {
+            console.warn('Elementos del carrito no encontrados');
+            return;
+        }
+
+        // Botón cerrar carrito
+        this.closeCartBtn.addEventListener('click', () => this.closeCart());
+
+        // Overlay del carrito
+        this.cartOverlay.addEventListener('click', () => this.closeCart());
+
+        // Botón abrir carrito
+        const cartIcon = document.querySelector('.cart-icon');
+        if (cartIcon) {
+            cartIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.openCart();
+            });
+        }
+    }
+
+    openCart() {
+        // Cerrar menú si está abierto
+        if (this.isMenuOpen) {
+            this.closeMenu();
+        }
+
+        this.isCartOpen = true;
+        this.carreto.classList.add('active');
+        this.cartOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        this.carreto.setAttribute('aria-hidden', 'false');
+    }
+
+    closeCart() {
+        this.isCartOpen = false;
+        this.carreto.classList.remove('active');
+        this.cartOverlay.classList.remove('active');
+
+        // Solo restaurar scroll si el menú tampoco está abierto
+        if (!this.isMenuOpen) {
+            document.body.style.overflow = '';
+        }
+
+        this.carreto.setAttribute('aria-hidden', 'true');
+    }
+
+    toggleCart() {
+        this.isCartOpen ? this.closeCart() : this.openCart();
     }
 
     // ========================================
@@ -97,8 +170,13 @@ class HeaderManager {
     // ========================================
     setupKeyboardListeners() {
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isMenuOpen) {
-                this.closeMenu();
+            if (e.key === 'Escape') {
+                if (this.isMenuOpen) {
+                    this.closeMenu();
+                }
+                if (this.isCartOpen) {
+                    this.closeCart();
+                }
             }
         });
     }
@@ -128,11 +206,12 @@ class HeaderManager {
         const cartIcon = document.querySelector('.cart-icon');
 
         if (cartIcon) {
-            cartIcon.addEventListener('click', (e) => {
-                cartIcon.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    cartIcon.style.transform = '';
-                }, 300);
+            cartIcon.addEventListener('mouseenter', () => {
+                cartIcon.style.transform = 'scale(1.1)';
+            });
+
+            cartIcon.addEventListener('mouseleave', () => {
+                cartIcon.style.transform = '';
             });
         }
     }
@@ -159,6 +238,14 @@ class HeaderManager {
 
     forceOpenMenu() {
         this.openMenu();
+    }
+
+    forceCloseCart() {
+        this.closeCart();
+    }
+
+    forceOpenCart() {
+        this.openCart();
     }
 }
 
@@ -192,12 +279,28 @@ window.openHeaderMenu = () => {
     }
 };
 
+window.openCart = () => {
+    if (headerManager) {
+        headerManager.forceOpenCart();
+    }
+};
+
+window.closeCart = () => {
+    if (headerManager) {
+        headerManager.forceCloseCart();
+    }
+};
+
 // ========================================
 // EJEMPLOS DE USO
 // ========================================
 /*
 // Actualizar contador del carrito:
 window.updateCartCount(5);
+
+// Abrir/cerrar carrito:
+window.openCart();
+window.closeCart();
 
 // Cerrar menú:
 window.closeHeaderMenu();
@@ -215,6 +318,7 @@ function addToCart(productId) {
     .then(response => response.json())
     .then(data => {
         window.updateCartCount(data.cartCount);
+        window.openCart(); // Abrir carrito automáticamente
     });
 }
 */
