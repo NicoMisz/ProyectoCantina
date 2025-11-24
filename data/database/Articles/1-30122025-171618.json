@@ -1,15 +1,15 @@
 {
     "id": 1,
     "nombre": "Tonkatsu Don",
-    "descripcion": "arroz con cerdo rebozado",
-    "precio": 8.85,
+    "descripcion": "arroz con cerdos rebozados 2.0",
+    "precio": 8.99,
     "horario": "Comida",
-    "cantidad": 10,
+    "cantidad": 15,
     "ingredientes": [
         "0-0000",
         "1-0001",
         "2-0002",
         "3-0003"
     ],
-    "imagen": "/assets/media/Articles/tonkatsudon.jpg"
+    "imagen": "\/assets\/media\/Articles\/24112025-143015.png"
 }

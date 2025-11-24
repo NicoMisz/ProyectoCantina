@@ -188,6 +188,13 @@ switch ($rol) {
                 }
                 exit;
 
+            case '/admin/afegir-producte':
+                $controller = new AdminController();
+                if ($method === 'POST') {
+                    $controller->afegirProducte();
+                }
+                exit;
+
             case '/admin/gestio-usuaris':
                 $controller = new AdminController();
                 if ($method === 'GET') {

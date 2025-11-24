@@ -52,12 +52,15 @@
 
                     }
 
-                    echo '<div class="article card col-12" style="min-height: 7rem;cursor:pointer;">
-                                <div class="card-body" style="">
-                                <svg style="display: block;margin:auto;width:5rem;"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
-                                </div>
-                            </div>
-                        ';
+
+                    //AfegirProductes
+                    echo '<div id="btnAfegirProducte" class="article card col-12" style="min-height: 7rem;cursor:pointer;">
+                        <div class="card-body" style="">
+                            <svg style="display: block;margin:auto;width:5rem;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/>
+                            </svg>
+                        </div>
+                    </div>';
 
                     ?>
                 </div>
@@ -82,14 +85,21 @@
 <script>
     var inputs;
     function alternarEdiciProductes() {
+        var submitBtn = document.getElementById('btnGuardarProducte');
+        
         if (inputs != null) {
             Array.from(inputs).forEach(function (input) {
                 input.disabled = !input.disabled;
             });
+
+            if (submitBtn) {
+                submitBtn.disabled = !submitBtn.disabled;
+            }
         }
     }
 
 
+    // Evento para editar producto existente
     var data = '<?php echo json_encode($data); ?>';
     data = JSON.parse(data);
     var articles = document.getElementsByClassName('article');
@@ -191,7 +201,7 @@
 
                 // Añadir campos ocultos a la columna izquierda
                 colIzquierda.appendChild(crearInput('number', 'form-control articulo-id d-none', 'articulo-id', articleData.id, false));
-                colIzquierda.appendChild(crearInput('text', 'form-control articulo-file d-none', 'articulo-id', file, false));
+                colIzquierda.appendChild(crearInput('text', 'form-control articulo-file d-none', 'articulo-file', file, false));
 
                 // Añadir todos los campos al col-6 izquierdo
                 colIzquierda.appendChild(divNombre);
@@ -233,6 +243,12 @@
 
                 divImagen.appendChild(imgPreview);
 
+                // Mostrar la imagen actual si existe
+                if (articleData.imagen) {
+                    imgPreview.src = articleData.imagen;
+                    imgPreview.style.display = 'block';
+                }
+
                 // Event listener para mostrar la imagen cuando se seleccione
                 inputImagen.addEventListener('change', function (e) {
                     var file = e.target.files[0];
@@ -270,6 +286,7 @@
                 submit.className = 'btn btn-primary';
                 submit.id = 'btnGuardarProducte';
                 submit.type = 'submit';
+                submit.disabled = true;
 
                 var cancela = document.createElement('button');
                 cancela.textContent = 'Cancela';
@@ -305,6 +322,187 @@
 
         });
     });
+
+
+    // Evento para añadir nuevo producto
+    document.getElementById('btnAfegirProducte').addEventListener('click', function() {
+        var dadesArticle = document.getElementById('dadesArticle');
+        dadesArticle.innerHTML = '';
+
+        var card = document.createElement('div');
+        card.className = 'card';
+
+        var cardBody = document.createElement('div');
+        cardBody.className = 'card-body';
+
+        var form = document.createElement('form');
+        form.setAttribute("action", "/admin/afegir-producte");
+        form.setAttribute("method", "POST");
+        form.setAttribute("enctype", "multipart/form-data");
+
+        function crearInput(inputType, inputClass, inputName, inputValue, inputEstat) {
+            var div = document.createElement('div');
+            var input;
+
+            if (inputType === 'textarea') {
+                input = document.createElement('textarea');
+                input.textContent = inputValue;
+            } else if (inputType == 'number') {
+                input = document.createElement('input');
+                input.type = inputType;
+                input.value = inputValue;
+                input.setAttribute("step", "0.01");
+            } else {
+                input = document.createElement('input');
+                input.type = inputType;
+                input.value = inputValue;
+            }
+
+            input.className = inputClass;
+            input.id = inputName;
+            input.name = inputName;
+            input.disabled = !inputEstat;
+            input.required = true;
+
+            div.className = "col-9";
+            div.appendChild(input);
+            return div;
+        }
+
+        function crearLabel(labelText, labelClass, labelName) {
+            var div = document.createElement('div')
+            var label = document.createElement('label');
+            label.className = labelClass;
+            label.name = labelName;
+            label.textContent = labelText;
+            div.className = "col-3";
+            div.appendChild(label)
+            return div;
+        }
+
+        // Crear el row principal
+        var rowPrincipal = document.createElement('div');
+        rowPrincipal.className = 'row';
+
+        // Crear la columna izquierda (col-6)
+        var colIzquierda = document.createElement('div');
+        colIzquierda.className = 'col-6';
+
+        var divNombre = document.createElement('div');
+        divNombre.className = 'row';
+        divNombre.id = 'titol-article';
+        divNombre.appendChild(crearInput('text', 'form-control articulo-nombre', 'articulo-nombre', '', true))
+
+        var divDescripcio = document.createElement('div');
+        divDescripcio.className = 'row';
+        divDescripcio.appendChild(crearLabel('Descripció', 'form-label articulo-descripcion', 'articulo-descripcion'))
+        divDescripcio.appendChild(crearInput('textarea', 'form-control articulo-descripcion', 'articulo-descripcion', '', true))
+
+        var divPrecio = document.createElement('div');
+        divPrecio.className = 'row';
+        divPrecio.appendChild(crearLabel('Preu', 'form-label articulo-precio', 'articulo-precio'))
+        divPrecio.appendChild(crearInput('number', 'form-control articulo-precio', 'articulo-precio', '', true))
+
+        var divHorario = document.createElement('div');
+        divHorario.className = 'row';
+        divHorario.appendChild(crearLabel('Horari', 'form-label articulo-horario', 'articulo-horario'))
+        divHorario.appendChild(crearInput('text', 'form-control articulo-horario', 'articulo-horario', '', true))
+
+        var divCantidad = document.createElement('div');
+        divCantidad.className = 'row';
+        divCantidad.appendChild(crearLabel('Ració', 'form-label articulo-cantidad', 'articulo-cantidad'))
+        divCantidad.appendChild(crearInput('number', 'form-control articulo-cantidad', 'articulo-cantidad', '', true))
+
+        // Añadir todos los campos al col-6 izquierdo
+        colIzquierda.appendChild(divNombre);
+        colIzquierda.appendChild(divDescripcio);
+        colIzquierda.appendChild(divPrecio);
+        colIzquierda.appendChild(divHorario);
+        colIzquierda.appendChild(divCantidad);
+
+        // Crear la columna derecha (col-6) - con input de imagen
+        var colDerecha = document.createElement('div');
+        colDerecha.className = 'col-6';
+
+        // Crear contenedor para la imagen
+        var divImagen = document.createElement('div');
+        divImagen.className = 'mb-3';
+
+        var labelImagen = document.createElement('label');
+        labelImagen.className = 'form-label';
+        labelImagen.textContent = 'Imatge del producte';
+        labelImagen.setAttribute('for', 'articulo-imagen');
+
+        var inputImagen = document.createElement('input');
+        inputImagen.type = 'file';
+        inputImagen.className = 'form-control';
+        inputImagen.id = 'articulo-imagen';
+        inputImagen.name = 'articulo-imagen';
+        inputImagen.accept = 'image/*';
+        inputImagen.disabled = false;
+        inputImagen.required = true;
+
+        divImagen.appendChild(labelImagen);
+        divImagen.appendChild(inputImagen);
+
+        // Crear elemento img para preview
+        var imgPreview = document.createElement('img');
+        imgPreview.id = 'preview-imagen';
+        imgPreview.className = 'img-fluid mt-3';
+        imgPreview.style.maxHeight = '300px';
+        imgPreview.style.display = 'none';
+
+        divImagen.appendChild(imgPreview);
+
+        // Event listener para mostrar la imagen cuando se seleccione
+        inputImagen.addEventListener('change', function (e) {
+            var file = e.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    imgPreview.src = event.target.result;
+                    imgPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        colDerecha.appendChild(divImagen);
+
+        // Crear la columna para los botones (col-12)
+        var colBotones = document.createElement('div');
+        colBotones.className = 'col-12';
+
+        var submit = document.createElement('button');
+        submit.textContent = 'Guardar Nuevo Producto';
+        submit.className = 'btn btn-primary';
+        submit.id = 'btnGuardarProducte';
+        submit.type = 'submit';
+
+        var cancela = document.createElement('button');
+        cancela.textContent = 'Cancelar';
+        cancela.className = 'btn btn-primary';
+        cancela.id = 'btnCancelarEdicio';
+        cancela.type = 'button';
+        cancela.addEventListener('click', function () {
+            location.reload();
+        });
+
+        // Añadir botones al col-12
+        colBotones.appendChild(submit);
+        colBotones.appendChild(cancela);
+
+        // Montar la estructura
+        rowPrincipal.appendChild(colIzquierda);
+        rowPrincipal.appendChild(colDerecha);
+        rowPrincipal.appendChild(colBotones);
+
+        form.appendChild(rowPrincipal);
+        cardBody.appendChild(form);
+        card.appendChild(cardBody);
+        dadesArticle.appendChild(card);
+    });
+
 </script>
 <style>
     #titol-article {
