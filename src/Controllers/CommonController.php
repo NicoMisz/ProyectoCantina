@@ -1,5 +1,7 @@
 <?php
+
 namespace Src\Controllers;
+
 require_once __DIR__ . '/../Model/Usuari.php';
 
 use DateTime;
@@ -124,6 +126,15 @@ class CommonController
         file_put_contents($path, json_encode(["id" => $id], JSON_PRETTY_PRINT), LOCK_EX);
         return $id;
     }
+    public function obtenirIdComanda()
+    {
+        $path = "../data/database/Id/comandaCurrentId.json";
+        $file = file_get_contents($path);
+        $currId = json_decode($file, true);
+        $id = $currId["id"] + 1;
+        file_put_contents($path, json_encode(["id" => $id], JSON_PRETTY_PRINT), LOCK_EX);
+        return $id;
+    }
 
 
     public function ajaxRegistrarUsuari()
@@ -235,7 +246,6 @@ class CommonController
             setcookie("carreto", null, time() - 10000000);
             echo "ta te cookie";
             $res = ["res" => 1, "msg" => "Cargar Carreto.", "json" => $data];
-
         }
     }
     public function xmlCarregarCarreto()
@@ -257,6 +267,35 @@ class CommonController
         echo $res;
         exit;
     }
+    public function xmlCrearTicket()
+    {
+        if (array_key_exists("carreto", $_COOKIE)) {
+            $carreto = json_decode($_COOKIE["carreto"], true);
 
-
+            $total = 0;
+            foreach ($carreto as $articulo) {
+                $subtotal = $articulo['cantidad'] * $articulo['precio'];
+                $total += $subtotal;
+            }
+            $this->xmlEliminarArticles();
+            $fechaCreacion = date('dmY-His');
+            $id = $this->obtenirIdComanda();
+            $comanda = [
+                'id' => $id,
+                'fecha' => $fechaCreacion,
+                'estado' => true,
+                'total' => round($total, 2),
+                'usuario' => [
+                    'id' => $_SESSION['user']['id'],
+                    'nombre' => $_SESSION['user']['email']
+                ],
+                'articulos' => $carreto
+            ];
+            $fitxer = $id . '-' . $fechaCreacion;
+            $path = '../data/database/Comandas/' . $fitxer . '.json';
+            file_put_contents($path, json_encode($comanda, JSON_PRETTY_PRINT), LOCK_EX);
+            echo "creaticket";
+            exit;
+        }
+    }
 }

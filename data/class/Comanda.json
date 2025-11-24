@@ -5,8 +5,7 @@
     "total": 0,
     "usuario": {
         "id": 0,
-        "nombre": null,
-        "apellidos": null
+        "nombre": null
     },
     "articulos": []
 }

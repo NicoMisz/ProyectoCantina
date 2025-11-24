@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "fecha": "2025-11-24 15:15:33",
+    "estado": true,
+    "total": 15.5,
+    "usuario": {
+        "id": 2,
+        "nombre": "nicommisz@gmail.com"
+    },
+    "articulos": [
+        1,
+        2
+    ]
+}
