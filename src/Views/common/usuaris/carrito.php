@@ -518,7 +518,7 @@
 
         </div>
     </div>
-    <main class="demo-content">
+    <main class="content">
 
 
         <a href="#" onclick="netejarCarreto()">BOTON LIMPIAR CARRITO</a>

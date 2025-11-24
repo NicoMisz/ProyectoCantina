@@ -1,8 +1,6 @@
 <?php
-// echo "<pre>
-// aaa";
-// var_dump($data);
-// exit;
+    $user = $_SESSION['user'] ?? null;
+    $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +21,7 @@
         <div class="header-content">
             <!-- Logo (centrado por defecto, se mueve a la izquierda al hacer scroll) -->
             <div class="logo-container">
-                <a href="/">
+                <a href="/dashboard">
                     <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
                 </a>
             </div>
@@ -36,7 +34,7 @@
                     <span class="icon-dark">🌙</span>
                 </button>
                 <!-- Carrito -->
-                <a href="/carrito" class="header-icon cart-icon" aria-label="Carrito de compras">
+                <a href="javascript:void(0)" class="header-icon cart-icon" aria-label="Carrito de compras">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="9" cy="21" r="1"></circle>
                         <circle cx="20" cy="21" r="1"></circle>
@@ -69,14 +67,21 @@
 
     <!-- Menú lateral -->
     <nav>
-
-
         <ul class="navigation" id="navigation">
             <li><a href="/catalogo">El Catálogo</a></li>
+            <li><a href="/pedidos">Mis Pedidos</a></li>
             <li><a href="/about-us">About Us</a></li>
             <li><a href="/formulari">Contacto</a></li>
-            <li><a href="/menu">Menú del Día</a></li>
-            <li><a href="/pedidos">Mis Pedidos</a></li>
+
+            <?php if ($isAdmin): ?>
+            <!-- Solo visible para administradores -->
+            <li class="admin-only">
+                <a href="/admin/gestio-productes">
+                    <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
+                    Gestió Productes
+                </a>
+            </li>
+            <?php endif; ?>
 
             <!-- Footer del menú -->
             <div class="menu-footer">
@@ -93,7 +98,7 @@
     </nav>
 
     <!-- Contenido de ejemplo (eliminar en producción) -->
-    <main class="demo-content">
+    <main class="content">
         <h1>Catalogo</h1>
 
         <div class="row">

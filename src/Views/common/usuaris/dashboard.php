@@ -1,5 +1,4 @@
 <?php
-    session_start();
     $user = $_SESSION['user'] ?? null;
     $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
 ?>
@@ -521,7 +520,7 @@
         </div>
     </div>
 
-    <main class="demo-content">
+    <main class="content">
         <h1>¡Bienvenido a Cantina Tony's!</h1>
     </main>
 
