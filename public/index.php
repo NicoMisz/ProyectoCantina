@@ -160,6 +160,13 @@ if (!empty($rol)) {
                     exit;
             }
             exit;
+        case '/crear-ticket':
+            switch ($method) {
+                case 'POST':
+                    (new CommonController())->xmlCrearTicket();
+                    exit;
+            }
+            exit;
     }
 }
 

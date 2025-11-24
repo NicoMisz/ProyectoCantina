@@ -526,7 +526,67 @@
         <a href="#" onclick="afegirArticle('1-30122025-171618',2)">AÑADIR EJEMPLO</a>
         <br>
         <a href="#" onclick="carregarCarreto()">Cargarcookies</a>
-
+        <div id="carretos">
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="card item-card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-2">
+                                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&h=200&fit=crop"
+                                        alt="Pizza" class="item-img">
+                                </div>
+                                <div class="col-8">
+                                    <div class="item-nombre">Pizza Margarita</div>
+                                    <div class="item-descripcion">Tomate, mozzarella, albahaca fresca</div>
+                                </div>
+                                <div class="col-2 precio-info">
+                                    <div class="cantidad-precio">2 × 8.99€</div>
+                                    <div class="total-item">17.98€</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card item-card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-2">
+                                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&h=200&fit=crop"
+                                        alt="Pizza" class="item-img">
+                                </div>
+                                <div class="col-8">
+                                    <div class="item-nombre">Pizza Margarita</div>
+                                    <div class="item-descripcion">Tomate, mozzarella, albahaca fresca</div>
+                                </div>
+                                <div class="col-2 precio-info">
+                                    <div class="cantidad-precio">2 × 8.99€</div>
+                                    <div class="total-item">17.98€</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card resumen-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Subtotal:</h5>
+                                    <h5>IVA (10%):</h5>
+                                    <h4 class="mt-3">TOTAL:</h4>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <h5>52.98€</h5>
+                                    <h5>5.30€</h5>
+                                    <h4 class="mt-3">58.28€</h4>
+                                </div>
+                            </div>
+                            <button class="btn btn-comprar btn-success w-100 mt-3">
+                                Proceder al Pago
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
 </body>
@@ -535,7 +595,7 @@
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/netejar-carreto", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     console.log("Respuesta del servidor:", xhr.responseText);
@@ -547,11 +607,12 @@
         };
         xhr.send("msg=Hola desde JavaScript");
     }
+
     function afegirArticle(id, quantitat) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/afegir-article-carreto", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
 
@@ -574,7 +635,7 @@
         xhr.open("POST", "/carregar-carreto", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     let res = JSON.parse(xhr.responseText);
@@ -588,12 +649,31 @@
         xhr.send();
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        carregarCarreto(function (carretoRecibido) {
+    document.addEventListener('DOMContentLoaded', function() {
+        carregarCarreto(function(carretoRecibido) {
             carreto = carretoRecibido;
             console.log("Carreto final:", carreto);
         });
     });
+
+    function crearTicket() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "/crear-ticket", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    let res = JSON.parse(xhr.responseText);
+                    callback(res.res === 1 ? res.carreto : null);
+                } else {
+                    callback(null);
+                }
+            }
+        };
+
+        xhr.send();
+    }
 
     // window.onload = carregarCarreto();
 </script>
