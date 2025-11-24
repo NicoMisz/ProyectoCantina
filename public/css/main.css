@@ -375,6 +375,12 @@ body {
   align-items: center;
 }
 
+.logo-admin {
+  height: 2.5rem;
+  width: auto;
+  vertical-align: middle;
+}
+
 .logo-image {
   height: 4.5rem;
   width: auto;

@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    $user = $_SESSION['user'] ?? null;
+    $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -67,6 +74,16 @@
             <li><a href="/pedidos">Mis Pedidos</a></li>
             <li><a href="/about-us">About Us</a></li>
             <li><a href="/formulari">Contacto</a></li>
+
+            <?php if ($isAdmin): ?>
+            <!-- Solo visible para administradores -->
+            <li class="admin-only">
+                <a href="/admin/gestio-productes">
+                    <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
+                    Gestió Productes
+                </a>
+            </li>
+            <?php endif; ?>
 
             <!-- Footer del menú -->
             <div class="menu-footer">
