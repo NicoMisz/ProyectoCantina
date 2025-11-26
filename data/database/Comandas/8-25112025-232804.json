@@ -1,0 +1,17 @@
+{
+    "id": 8,
+    "fecha": "25112025-232804",
+    "estado": true,
+    "total": 44.25,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "2-30122025-171618": {
+            "id": 1,
+            "cantidad": 5,
+            "precio": 8.85
+        }
+    }
+}

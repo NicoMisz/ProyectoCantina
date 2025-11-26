@@ -131,8 +131,12 @@ if (!empty($rol)) {
             (new CommonController())->perfil();
             exit;
 
-        case '/ticket':
-            (new CommonController())->ticket();
+        case '/tickets':
+            switch ($method) {
+                case 'GET':
+                    (new CommonController())->tickets();
+                    exit;
+            }
             exit;
 
         case '/pedidos':

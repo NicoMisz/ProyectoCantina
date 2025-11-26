@@ -1,0 +1,24 @@
+{
+    "id": 10,
+    "fecha": "25112025-235817",
+    "estado": true,
+    "total": 196.38,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "2-30122025-171618": {
+            "id": 1,
+            "nombre": "Pollo Don",
+            "cantidad": 10,
+            "precio": 8.85
+        },
+        "1-30122025-171618": {
+            "id": 1,
+            "nombre": "Tonkatsu Don",
+            "cantidad": 12,
+            "precio": 8.99
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "id": 9,
+    "fecha": "25112025-235532",
+    "estado": true,
+    "total": 125.02,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "2-30122025-171618": {
+            "id": 1,
+            "nombre": "Pollo Don",
+            "cantidad": 6,
+            "precio": 8.85
+        },
+        "1-30122025-171618": {
+            "id": 1,
+            "cantidad": 8,
+            "precio": 8.99
+        }
+    }
+}

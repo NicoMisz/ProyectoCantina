@@ -1,22 +1,22 @@
 {
-    "id": 2,
-    "fecha": "24112025-152840",
+    "id": 3,
+    "fecha": "25112025-231441",
     "estado": true,
-    "total": 185.85,
+    "total": 186.97,
     "usuario": {
-        "id": 2,
-        "nombre": "nicommisz@gmail.com"
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
     },
     "articulos": {
         "2-30122025-171618": {
             "id": 1,
-            "cantidad": 19,
+            "cantidad": 13,
             "precio": 8.85
         },
         "1-30122025-171618": {
             "id": 1,
-            "cantidad": 2,
-            "precio": 8.85
+            "cantidad": 8,
+            "precio": 8.99
         }
     }
 }

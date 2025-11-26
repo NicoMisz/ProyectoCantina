@@ -43,6 +43,10 @@ class CommonController
 
     public function carrito()
     {
+        if (array_key_exists("carreto", $_COOKIE)) {
+            $carreto = json_decode($_COOKIE["carreto"], true);
+
+        }
         require __DIR__ . '/../Views/common/usuaris/carrito.php';
         exit;
     }
@@ -69,8 +73,33 @@ class CommonController
         exit;
     }
 
-    public function ticket()
+    public function tickets()
     {
+        $pathUsuarioTickets = '../data/database/Comandas/usuarioComandas.json';
+        $path = '../data/database/Comandas/';
+        $json = file_get_contents($pathUsuarioTickets);
+        $ticketsData = json_decode($json, true);
+        $userId = $_SESSION['user']['id'];
+        if (!isset($ticketsData[$userId])) {
+            // Usuario sin tickets
+            $dato = [];
+        } else {
+            $ticketsId = $ticketsData[$userId]; // array de tickets
+            $dato = [];
+            foreach ($ticketsId as $ticket) {
+                // aquí sí puedes usar el nombre del ticket como índice
+                $dato[$ticket] = json_decode(file_get_contents($path . $ticket . '.json'), true);
+            }
+        }
+
+        // var_dump($ticketsId);
+        // echo "<pre>";
+        // var_dump($dato);
+        // // $fitxer = $id . '-' . $fechaCreacion;
+
+        // // $tickets = null;
+        // exit;
+
         require __DIR__ . '/../Views/common/usuaris/ticket.php';
         exit;
     }
@@ -98,7 +127,7 @@ class CommonController
             $eq = hash_equals($usuari['password'], hash('sha512', $password . $usuari['fechaCreacion']));
             if ($eq) {
                 $_SESSION['user'] = [
-                    'id' => $usuari['id'],
+                    'id' => $usuari['id'] . "-" . $usuari["fechaCreacion"],
                     'email' => $usuari['email'],
                     'fechaCreacion' => $usuari['fechaCreacion'],
                     'rol' => $usuari['rol'],
@@ -193,7 +222,7 @@ class CommonController
 
         // echo "<pre>";
         // var_dump($data);
-        // var_dump($article);
+        // // var_dump($article);
         // exit;
 
         if (!array_key_exists("carreto", $_COOKIE)) {
@@ -202,7 +231,8 @@ class CommonController
             $carreto = array();
             $carreto[$article[0]] = [
                 'id' => $data["id"],
-                'cantidad' => 1,
+                'nombre' => $data["nombre"],
+                'cantidad' => $article[1] ?? 1,
                 'precio' => $data["precio"]
             ];
             $cookie = json_encode($carreto);
@@ -216,6 +246,7 @@ class CommonController
             } else {
                 $carreto[$article[0]] = [
                     'id' => $data["id"],
+                    'nombre' => $data["nombre"],
                     'cantidad' => $article[1],
                     'precio' => $data["precio"]
                 ];
@@ -294,8 +325,28 @@ class CommonController
             $fitxer = $id . '-' . $fechaCreacion;
             $path = '../data/database/Comandas/' . $fitxer . '.json';
             file_put_contents($path, json_encode($comanda, JSON_PRETTY_PRINT), LOCK_EX);
-            echo "creaticket";
+            $pathTickets = '../data/database/Comandas/usuarioComandas.json';
+            $json = file_get_contents($pathTickets);
+            $ticketsData = json_decode($json, true);
+            // Si el JSON estaba vacío o corrupto, usar array
+            if (!is_array($ticketsData)) {
+                $ticketsData = [];
+            }
+            $userId = $_SESSION['user']['id'];
+            // Crear array del usuario si no existe
+            if (!isset($ticketsData[$userId])) {
+                $ticketsData[$userId] = [];
+            }
+            // Añadir ticket
+            $ticketsData[$userId][] = $fitxer;
+            // Guardar sin borrar otras claves
+            file_put_contents($pathTickets, json_encode($ticketsData, JSON_PRETTY_PRINT), LOCK_EX);
+            // echo "creaticket";
+            header('Location:' . '/visualitzar-tickets' . $fitxer);
             exit;
         }
     }
+
+
+
 }
