@@ -281,6 +281,9 @@ class CommonController
     }
     public function xmlCarregarCarreto()
     {
+        //Debug
+        //echo "Explosionado";
+        //exit;
         if (array_key_exists("carreto", $_COOKIE)) {
             $carreto = json_decode($_COOKIE["carreto"], true);
             $res = [
