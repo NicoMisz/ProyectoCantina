@@ -164,7 +164,7 @@
         <!-- SECCIÓN DEL MENÚ DEL DÍA -->
         <section class="menu-dia-section">
             <div class="section-header">
-                <h2 class="section-title">🍽️ Menú del Día</h2>
+                <h2 class="section-title">Menú del Día</h2>
                 <p class="section-subtitle">Descubre nuestro menú especial de hoy</p>
             </div>
             
@@ -215,7 +215,7 @@
         <!-- SECCIÓN DE OFERTAS DEL DÍA -->
         <section class="ofertas-section">
             <div class="section-header">
-                <h2 class="section-title">🔥 Ofertas del Día</h2>
+                <h2 class="section-title">Ofertas del Día</h2>
                 <p class="section-subtitle">Aprovecha estas ofertas especiales solo por hoy</p>
             </div>
 

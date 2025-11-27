@@ -100,7 +100,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
     <main class="content">
         <!-- Header del Catálogo -->
         <div class="catalogo-header">
-            <h1 class="catalogo-title">🍱 Nuestro Catálogo</h1>
+            <h1 class="catalogo-title">Nuestro Catálogo</h1>
             <p class="catalogo-subtitle">Descubre todos nuestros deliciosos PROGRAMADOS</p>
         </div>
 
