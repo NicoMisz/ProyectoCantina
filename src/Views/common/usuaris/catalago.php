@@ -1,6 +1,6 @@
 <?php
-    $user = $_SESSION['user'] ?? null;
-    $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
+$user = $_SESSION['user'] ?? null;
+$isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
 ?>
 
 <!DOCTYPE html>
@@ -74,13 +74,13 @@
             <li><a href="/formulari">Contacto</a></li>
 
             <?php if ($isAdmin): ?>
-            <!-- Solo visible para administradores -->
-            <li class="admin-only">
-                <a href="/admin/gestio-productes">
-                    <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
-                    Gestió Productes
-                </a>
-            </li>
+                <!-- Solo visible para administradores -->
+                <li class="admin-only">
+                    <a href="/admin/gestio-productes">
+                        <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
+                        Gestió Productes
+                    </a>
+                </li>
             <?php endif; ?>
 
             <!-- Footer del menú -->
@@ -100,77 +100,172 @@
     <!-- Contenido de ejemplo (eliminar en producción) -->
     <main class="content">
         <h1>Catalogo</h1>
-
         <div class="row">
             <?php
-            // echo "<pre>";
-            // var_dump($data);
-            // exit;
-            
             foreach ($data as $key => $value) {
-                // echo $key;
+                $articleId = $key;// Asegúrate de que tienes el ID en tus datos
                 $html = '
-                <div data-precio="' . $value["precio"] . '" data-file="2-30122025-171618" class="article col-4" style="padding:10px">
-                <div class="card" style="min-height: 7rem;">
-                    <div class="card-body" style="">
-                        <div class="row" style="min-height:250px;">
-                            <div class="col-12" style="min-height:100px;display: flex;justify-content: center;">
-                                <img src="' .
-                    $value["imagen"]
-                    . '"
-                                 style="width: 6rem;height: 6rem;object-fit: cover;">
-                            </div>  
-                            <div class="col-12" style="min-height:30px;">
-                                <span>' .
-                    $value["nombre"]
-                    . '
-                                </span>
-                            </div>  
-                            <div class="col-12" style="min-height:50px;">
-                                <span>' .
-                    $value["descripcion"]
-                    . '</span>
-                            </div>  
-                            <div class="col-12" style="min-height:50px;">
-                                <div class="row">
-                                    <div class="col-7">
-                                        <span>
-                                        cantidad
-                                        </span>
-                                    </div>  
-                                    <div class="col-5">
-                                        <span>
-                                    - O +
-                                        </span>
-                                    </div>  
-                                </div>
+        <div data-precio="' . $value["precio"] . '" data-file="' . $articleId . '" class="article col-4" style="padding:10px">
+            <div class="card" style="min-height: 7rem;">
+                <div class="card-body">
+                    <div class="row" style="min-height:250px;">
+                        <div class="col-12" style="min-height:100px;display: flex;justify-content: center;">
+                            <img src="' . $value["imagen"] . '" style="width: 6rem;height: 6rem;object-fit: cover;">
+                        </div>  
+                        <div class="col-12" style="min-height:30px;">
+                            <span><strong>' . $value["nombre"] . '</strong></span>
+                        </div>  
+                        <div class="col-12" style="min-height:50px;">
+                            <span>' . $value["descripcion"] . '</span>
+                        </div>  
+                        <div class="col-12" style="min-height:50px;">
+                            <div class="row align-items-center">
+                                <div class="col-7">
+                                    <span>Cantidad</span>
+                                </div>  
+                                <div class="col-5 d-flex align-items-center justify-content-between">
+                                    <button class="btn btn-sm btn-outline-secondary btn-minus" data-article="' . $articleId . '">-</button>
+                                    <span class="cantidad mx-2">0</span>
+                                    <button class="btn btn-sm btn-outline-secondary btn-plus" data-article="' . $articleId . '">+</button>
+                                </div>  
                             </div>
-                            <div class="col-12" style="min-height:50px;">
-                                <div class="row" style="cursor:pointer;border-radius:1rem;border:black solid 3px;height 100%;">
-                                    <div class="col-8">
-                                        <span>
-                                        afegir al carreto
-                                        </span>
-                                    </div>  
-                                    <div class="col-4">
-                                        <span class="total">0</span>€
-                                    </div>  
-                                </div>
+                        </div>
+                        <div class="col-12" style="min-height:50px;">
+                            <div class="row align-items-center btn-add-cart" onclick="añadirAlCarrito(\'' . $articleId . '\')" style="cursor:pointer;border-radius:1rem;border:black solid 3px;height:100%;padding:10px;">
+                                <div class="col-8">
+                                    <span>Afegir al carret</span>
+                                </div>  
+                                <div class="col-4 text-end">
+                                    <span class="total">0.00</span>€
+                                </div>  
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
-                ';
+            </div>
+        </div>';
                 echo $html;
-
             }
-
-
-
             ?>
         </div>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Manejadores para botones + y -
+            document.querySelectorAll('.btn-plus').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const articleId = this.getAttribute('data-article');
+                    const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
+                    const cantidadSpan = articleDiv.querySelector('.cantidad');
+                    const totalSpan = articleDiv.querySelector('.total');
+                    const precio = parseFloat(articleDiv.getAttribute('data-precio'));
+
+                    let cantidad = parseInt(cantidadSpan.textContent);
+                    cantidad++;
+                    cantidadSpan.textContent = cantidad;
+
+                    const total = (precio * cantidad).toFixed(2);
+                    totalSpan.textContent = total;
+                });
+            });
+
+            document.querySelectorAll('.btn-minus').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const articleId = this.getAttribute('data-article');
+                    const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
+                    const cantidadSpan = articleDiv.querySelector('.cantidad');
+                    const totalSpan = articleDiv.querySelector('.total');
+                    const precio = parseFloat(articleDiv.getAttribute('data-precio'));
+
+                    let cantidad = parseInt(cantidadSpan.textContent);
+                    if (cantidad > 0) {
+                        cantidad--;
+                        cantidadSpan.textContent = cantidad;
+
+                        const total = (precio * cantidad).toFixed(2);
+                        totalSpan.textContent = total;
+                    }
+                });
+            });
+        });
+        function netejarCarreto() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/netejar-carreto", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log("Respuesta del servidor:", xhr.responseText);
+                        carregarCarreto();
+                    } else {
+                        console.error("Error en la petición:", xhr.status);
+                    }
+                }
+            };
+            xhr.send("msg=Hola desde JavaScript");
+        }
+        // Función para añadir al carrito
+        function añadirAlCarrito(articleId) {
+            const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
+            const cantidad = parseInt(articleDiv.querySelector('.cantidad').textContent);
+
+            if (cantidad > 0) {
+                afegirArticle(articleId, cantidad);
+                // Opcional: resetear cantidad después de añadir
+                // articleDiv.querySelector('.cantidad').textContent = '0';
+                // articleDiv.querySelector('.total').textContent = '0.00';
+            } else {
+                alert('Selecciona una cantidad mayor a 0');
+            }
+        }
+        function afegirArticle(id, quantitat) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/afegir-article-carreto", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+
+                        console.log("Respuesta del servidor:", xhr.responseText);
+                        carregarCarreto();
+                    } else {
+                        console.error("Error en la petición:", xhr.status);
+                    }
+                }
+            };
+            let data = [id, quantitat]
+            json = JSON.stringify(data)
+            xhr.send("data=" + json);
+        }
+        function carregarCarreto(callback) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/carregar-carreto", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        let res = JSON.parse(xhr.responseText);
+                        callback(res.res === 1 ? res.carreto : null);
+                    } else {
+                        callback(null);
+                    }
+                }
+            };
+
+            xhr.send();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            carregarCarreto(function (carretoRecibido) {
+                carreto = carretoRecibido;
+                console.log("Carreto final:", carreto);
+            });
+        });
+    </script>
 
 </body>
 <script>

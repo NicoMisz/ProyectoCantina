@@ -1,0 +1,28 @@
+{
+    "id": 12,
+    "fecha": "27112025-000833",
+    "estado": true,
+    "total": 71.36,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "2-30122025-171618": {
+            "id": 2,
+            "imagen": "\/assets\/media\/Articles\/24112025-145540.jpeg",
+            "nombre": "Pollo Don",
+            "descripcion": "arroz con cerdo rebozado",
+            "cantidad": 4,
+            "precio": 8.85
+        },
+        "1-30122025-171618": {
+            "id": 1,
+            "imagen": "\/assets\/media\/Articles\/24112025-143015.png",
+            "nombre": "Tonkatsu Don",
+            "descripcion": "arroz con cerdos rebozados 2.0",
+            "cantidad": 4,
+            "precio": 8.99
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "id": 13,
+    "fecha": "27112025-001644",
+    "estado": true,
+    "total": 17.7,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "2-30122025-171618": {
+            "id": 2,
+            "imagen": "\/assets\/media\/Articles\/24112025-145540.jpeg",
+            "nombre": "Pollo Don",
+            "descripcion": "arroz con cerdo rebozado",
+            "cantidad": 2,
+            "precio": 8.85
+        }
+    }
+}

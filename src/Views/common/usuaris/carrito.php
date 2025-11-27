@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/css/main.css">
     <script src="/assets/js/header.js"></script>
     <script src="/assets/js/themeChange.js"></script>
+    <!-- <script src="/assets/js/carrito.js"></script> -->
+    <script src="/assets/js/carritoDEV.js"></script>
 </head>
 <style>
     /* ============================================
@@ -339,6 +341,7 @@
 
         <div class="cart-content">
             <div class="cart-items">
+
                 <div class="item-card">
                     <div class="row" style="align-items: center;">
 
@@ -365,137 +368,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="item-card">
-                    <div class="row" style="align-items: center;">
-
-                        <div class="col-8">
-                            <div class="item-nombre">Hamburguesa Deluxe</div>
-                            <div class="item-descripcion">Carne angus, queso cheddar, bacon</div>
-                        </div>
-                        <div class="col-4 precio-info">
-                            <div class="cantidad-precio">1 × 12.50€</div>
-                            <div class="total-item">12.50€</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-card">
-                    <div class="row" style="align-items: center;">
-
-                        <div class="col-8">
-                            <div class="item-nombre">Hamburguesa Deluxe</div>
-                            <div class="item-descripcion">Carne angus, queso cheddar, bacon</div>
-                        </div>
-                        <div class="col-4 precio-info">
-                            <div class="cantidad-precio">1 × 12.50€</div>
-                            <div class="total-item">12.50€</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-card">
-                    <div class="row" style="align-items: center;">
-
-                        <div class="col-8">
-                            <div class="item-nombre">Hamburguesa Deluxe</div>
-                            <div class="item-descripcion">Carne angus, queso cheddar, bacon</div>
-                        </div>
-                        <div class="col-4 precio-info">
-                            <div class="cantidad-precio">1 × 12.50€</div>
-                            <div class="total-item">12.50€</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-card">
-                    <div class="row" style="align-items: center;">
-
-                        <div class="col-8">
-                            <div class="item-nombre">Hamburguesa Deluxe</div>
-                            <div class="item-descripcion">Carne angus, queso cheddar, bacon</div>
-                        </div>
-                        <div class="col-4 precio-info">
-                            <div class="cantidad-precio">1 × 12.50€</div>
-                            <div class="total-item">12.50€</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-card">
-                    <div class="row" style="align-items: center;">
-
-                        <div class="col-8">
-                            <div class="item-nombre">Hamburguesa Deluxe</div>
-                            <div class="item-descripcion">Carne angus, queso cheddar, bacon</div>
-                        </div>
-                        <div class="col-4 precio-info">
-                            <div class="cantidad-precio">1 × 12.50€</div>
-                            <div class="total-item">12.50€</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-card">
-                    <div class="row" style="align-items: center;">
-
-                        <div class="col-8">
-                            <div class="item-nombre">Hamburguesa Deluxe</div>
-                            <div class="item-descripcion">Carne angus, queso cheddar, bacon</div>
-                        </div>
-                        <div class="col-4 precio-info">
-                            <div class="cantidad-precio">1 × 12.50€</div>
-                            <div class="total-item">12.50€</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-card">
-                    <div class="row" style="align-items: center;">
-
-                        <div class="col-8">
-                            <div class="item-nombre">Hamburguesa Deluxe</div>
-                            <div class="item-descripcion">Carne angus, queso cheddar, bacon</div>
-                        </div>
-                        <div class="col-4 precio-info">
-                            <div class="cantidad-precio">1 × 12.50€</div>
-                            <div class="total-item">12.50€</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-card">
-                    <div class="row" style="align-items: center;">
-
-                        <div class="col-8">
-                            <div class="item-nombre">Hamburguesa Deluxe</div>
-                            <div class="item-descripcion">Carne angus, queso cheddar, bacon</div>
-                        </div>
-                        <div class="col-4 precio-info">
-                            <div class="cantidad-precio">1 × 12.50€</div>
-                            <div class="total-item">12.50€</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-card">
-                    <div class="row" style="align-items: center;">
-
-                        <div class="col-8">
-                            <div class="item-nombre">Hamburguesa Deluxe</div>
-                            <div class="item-descripcion">Carne angus, queso cheddar, bacon</div>
-                        </div>
-                        <div class="col-4 precio-info">
-                            <div class="cantidad-precio">1 × 12.50€</div>
-                            <div class="total-item">12.50€</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-card">
-                    <div class="row" style="align-items: center;">
-
-                        <div class="col-8">
-                            <div class="item-nombre">Hamburguesa Deluxe</div>
-                            <div class="item-descripcion">Carne angus, queso cheddar, bacon</div>
-                        </div>
-                        <div class="col-4 precio-info">
-                            <div class="cantidad-precio">1 × 12.50€</div>
-                            <div class="total-item">12.50€</div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <!-- Resumen Total -->
@@ -534,7 +406,7 @@
         // var_dump($carreto);
         // exit;  <-- QUITA ESTO
         
-        if (isset($carreto) || 1 == 1) {
+        if (isset($carreto)) {
             $total = 0;
 
             echo '
@@ -550,13 +422,13 @@
                 $totalItem = $item["cantidad"] * $item["precio"];
                 $total += $totalItem;
                 // Aquí deberías obtener el nombre y descripción del producto desde la BD
-                $nombreProducto = "Hamburguesa Deluxe"; // getProductoById($item["id"])
-                $descripcionProducto = "Carne angus, queso cheddar, bacon";
+                $nombreProducto = $item["nombre"];
+                $descripcionProducto = $item["descripcion"];
 
                 echo '<div class="item-card">
                 <div class="row" style="align-items: center;">
                 <div class="col-2">
-                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&amp;h=200&amp;fit=crop" alt="Pizza" class="item-img">
+                        <img src="' . $item["imagen"] . '" alt="Pizza" class="item-img">
                     </div>
                     <div class="col-8">
                         <div class="item-nombre">' . htmlspecialchars($nombreProducto) . '</div>
@@ -569,6 +441,8 @@
                 </div>
             </div>';
             }
+            echo "<pre>";
+            var_dump($carreto);
 
             echo '</div>';
 
@@ -591,22 +465,23 @@
             <span>TOTAL:</span>
             <span>' . number_format($totalFinal, 2, ',', '.') . '€</span>
         </div>
-        <button class="btn-comprar">
+        <a class="btn-comprar" href="#" onclick="crearTicket();">
             Proceder al Pago
-        </button>
+        </a>
     </div>
     </div>
     </div>';
 
         } else {
-            echo '<div id="carreto">
-        <div class="cart-header">
+            echo '
+            <div class="cart-header">
             <h4 style="margin: 0;">🛒 Mi Carrito</h4>
             <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
         </div>
         <div class="cart-content">
-            <p>El carrito está vacío</p>
-        </div>
+            <div>
+            <span>Carreto Buit</span>
+            </div>
     </div>';
         }
         ?>
@@ -615,7 +490,10 @@
     </main>
 
 </body>
-<script>
+<!-- <script>
+
+    let carreto = null;
+
     function netejarCarreto() {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/netejar-carreto", true);
@@ -624,7 +502,11 @@
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     console.log("Respuesta del servidor:", xhr.responseText);
-                    carregarCarreto();
+                    // CORREGIDO: Añadir callback
+                    carregarCarreto(function (carretoRecibido) {
+                        carreto = carretoRecibido;
+                        console.log("Carreto actualizado:", carreto);
+                    });
                 } else {
                     console.error("Error en la petición:", xhr.status);
                 }
@@ -640,21 +522,22 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-
                     console.log("Respuesta del servidor:", xhr.responseText);
-                    carregarCarreto();
+                    // CORREGIDO: Añadir callback
+                    carregarCarreto(function (carretoRecibido) {
+                        carreto = carretoRecibido;
+                        console.log("Carreto actualizado:", carreto);
+                    });
                 } else {
                     console.error("Error en la petición:", xhr.status);
                 }
             }
         };
-        let data = [id, quantitat]
-        json = JSON.stringify(data)
+        let data = [id, quantitat];
+        json = JSON.stringify(data);
         xhr.send("data=" + json);
     }
-</script>
-<script>
-    // let carreto = null;
+
     function carregarCarreto(callback) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/carregar-carreto", true);
@@ -664,9 +547,19 @@
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     let res = JSON.parse(xhr.responseText);
-                    callback(res.res === 1 ? res.carreto : null);
+                    let carretoData = res.res === 1 ? res.carreto : null;
+
+                    // CORREGIDO: Actualizar con el carreto correcto
+                    actualitzarLlistaCarreto(carretoData);
+
+                    // Llamar al callback con los datos
+                    if (callback) {
+                        callback(carretoData);
+                    }
                 } else {
-                    callback(null);
+                    if (callback) {
+                        callback(null);
+                    }
                 }
             }
         };
@@ -681,7 +574,133 @@
         });
     });
 
-    function crearTicket() {
+    function actualitzarLlistaCarreto(carreto) {
+        const carretoElement = document.getElementById('carreto');
+
+        if (!carretoElement) {
+            console.error('No se encontró el elemento con id "carreto"');
+            return;
+        }
+
+        // Verificar si el carreto es null, undefined o está vacío
+        if (!carreto || Object.keys(carreto).length === 0) {
+            carretoElement.innerHTML = `
+<div class="cart-header">
+    <h4 style="margin: 0;">🛒 Mi Carrito</h4>
+    <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
+</div>
+<div class="cart-content">
+    <div class="cart-items">
+        <div style="text-align: center; padding: 40px 20px; color: #999;">
+            <p>Tu carrito está vacío</p>
+        </div>
+    </div>
+    <div class="cart-summary">
+        <div class="summary-row">
+            <span>Subtotal:</span>
+            <span>0.00€</span>
+        </div>
+        <div class="summary-row">
+            <span>IVA (10%):</span>
+            <span>0.00€</span>
+        </div>
+        <div class="summary-row summary-total">
+            <span>TOTAL:</span>
+            <span>0.00€</span>
+        </div>
+        <button class="btn-comprar" disabled style="opacity: 0.5; cursor: not-allowed;">
+            Proceder al Pago
+        </button>
+    </div>
+</div>
+
+`;
+
+            const closeBtn = document.getElementById('closeCart');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    carretoElement.style.display = 'none';
+                });
+            }
+
+            return;
+        }
+
+        const items = Object.values(carreto);
+
+        let subtotal = 0;
+        items.forEach(item => {
+            const precio = parseFloat(item.precio) || 0;
+            const cantidad = parseInt(item.cantidad) || 1;
+            subtotal += precio * cantidad;
+        });
+
+        const iva = subtotal * 0.10;
+        const total = subtotal + iva;
+
+        const itemsHTML = items.map(item => {
+            const precio = parseFloat(item.precio) || 0;
+            const cantidad = parseInt(item.cantidad) || 1;
+            const totalItem = precio * cantidad;
+            const descripcion = item.descripcion || '';
+
+            return `
+<div class="item-card">
+    <div class="row" style="align-items: center;">
+        <div class="col-8">
+            <div class="item-nombre">${item.nombre}</div>
+            <div class="item-descripcion">${descripcion}</div>
+        </div>
+        <div class="col-4 precio-info">
+            <div class="cantidad-precio">${cantidad} × ${precio.toFixed(2)}€</div>
+            <div class="total-item">${totalItem.toFixed(2)}€</div>
+        </div>
+    </div>
+</div>
+`;
+        }).join('');
+
+        const contenidoHTML = `
+<div class="cart-header">
+    <h4 style="margin: 0;">🛒 Mi Carrito</h4>
+    <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
+</div>
+<div class="cart-content">
+    <div class="cart-items">
+        ${itemsHTML}
+    </div>
+    <div class="cart-summary">
+        <div class="summary-row">
+            <span>Subtotal:</span>
+            <span>${subtotal.toFixed(2)}€</span>
+        </div>
+        <div class="summary-row">
+            <span>IVA (10%):</span>
+            <span>${iva.toFixed(2)}€</span>
+        </div>
+        <div class="summary-row summary-total">
+            <span>TOTAL:</span>
+            <span>${total.toFixed(2)}€</span>
+        </div>
+        <button class="btn-comprar">
+            Proceder al Pago
+        </button>
+    </div>
+</div>
+`;
+
+        carretoElement.innerHTML = contenidoHTML;
+
+        const closeBtn = document.getElementById('closeCart');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+                carretoElement.style.display = 'none';
+            });
+        }
+    }
+
+    // CORREGIDO: Añadir parámetro callback
+    function crearTicket(callback) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/crear-ticket", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -690,17 +709,23 @@
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     let res = JSON.parse(xhr.responseText);
-                    callback(res.res === 1 ? res.carreto : null);
+                    if (callback) {
+                        callback(res.res === 1 ? res.ticket : null);
+                    }
                 } else {
-                    callback(null);
+                    if (callback) {
+                        callback(null);
+                    }
                 }
             }
         };
 
         xhr.send();
     }
-
-    // window.onload = carregarCarreto();
 </script>
+<script>
+    // window.onload = carregarCarreto();
+
+</script> -->
 
 </html>

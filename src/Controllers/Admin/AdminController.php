@@ -18,6 +18,11 @@ class AdminController
         require __DIR__ . '/../../Views/common/usuaris/cambiarPassword.php';
         exit;
     }
+    public function gestioComandes()
+    {
+        require __DIR__ . '/../../Views/common/usuaris/cambiarPassword.php';
+        exit;
+    }
 
     public function ajaxCambiarPassword()
     {
@@ -74,10 +79,10 @@ class AdminController
 
         // Leer el artículo existente para mantener datos no modificados
         $articuloExistente = json_decode(file_get_contents($rutaJSON), true);
-        
+
         // Mantener la imagen anterior por defecto
         $rutaImagen = $articuloExistente['imagen'] ?? "";
-        
+
         // Mantener los ingredientes existentes
         $ingredientes = $articuloExistente['ingredientes'] ?? [];
 
@@ -86,22 +91,22 @@ class AdminController
             $archivoTemporal = $_FILES['articulo-imagen']['tmp_name'];
             $nombreOriginal = $_FILES['articulo-imagen']['name'];
             $extension = pathinfo($nombreOriginal, PATHINFO_EXTENSION);
-            
+
             // Validar que sea una imagen
             $tiposPermitidos = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
             if (!in_array(strtolower($extension), $tiposPermitidos)) {
                 die('Tipo de archivo no permitido');
             }
-            
+
             $nombreArchivo = date('dmY-His') . '.' . $extension;
             $rutaDestino = __DIR__ . "/../../../public/assets/media/Articles/" . $nombreArchivo;
-            
+
             if (move_uploaded_file($archivoTemporal, $rutaDestino)) {
                 // Eliminar la imagen anterior si existe y no es placeholder
                 if (!empty($articuloExistente['imagen']) && file_exists(__DIR__ . "/../../../public" . $articuloExistente['imagen'])) {
                     @unlink(__DIR__ . "/../../../public" . $articuloExistente['imagen']);
                 }
-                
+
                 $rutaImagen = "/assets/media/Articles/" . $nombreArchivo;
                 echo "Archivo subido correctamente: " . $nombreArchivo . "<br>";
             } else {
@@ -149,7 +154,7 @@ class AdminController
         // Obtener el ID más alto de los archivos existentes
         $dirArticulos = __DIR__ . "/../../../data/database/Articles/";
         $archivos = glob($dirArticulos . "*.json");
-        
+
         $maxId = 0;
         foreach ($archivos as $archivo) {
             $nombreArchivo = basename($archivo, '.json');
@@ -161,10 +166,10 @@ class AdminController
                 }
             }
         }
-        
+
         // El nuevo ID será el máximo + 1
         $articuloId = $maxId + 1;
-        
+
         // Generar nombre de archivo: ID-ddmmYYYY-HHiiss
         $articuloFile = $articuloId . '-' . date('dmY-His');
 
@@ -175,16 +180,16 @@ class AdminController
             $archivoTemporal = $_FILES['articulo-imagen']['tmp_name'];
             $nombreOriginal = $_FILES['articulo-imagen']['name'];
             $extension = pathinfo($nombreOriginal, PATHINFO_EXTENSION);
-            
+
             // Validar que sea una imagen
             $tiposPermitidos = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
             if (!in_array(strtolower($extension), $tiposPermitidos)) {
                 die('Tipo de archivo no permitido');
             }
-            
+
             $nombreArchivo = date('dmY-His') . '.' . $extension;
             $rutaDestino = __DIR__ . "/../../../public/assets/media/Articles/" . $nombreArchivo;
-            
+
             if (move_uploaded_file($archivoTemporal, $rutaDestino)) {
                 $rutaImagen = "/assets/media/Articles/" . $nombreArchivo;
                 echo "Archivo subido correctamente: " . $nombreArchivo . "<br>";

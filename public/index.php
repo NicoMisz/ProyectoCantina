@@ -212,6 +212,12 @@ switch ($rol) {
                     $controller->gestioUsuaris();
                 }
                 exit;
+            case '/admin/gestio-comandes':
+                $controller = new AdminController();
+                if ($method === 'GET') {
+                    $controller->gestioComandes();
+                }
+                exit;
 
             case '/admin/cambiar-password':
                 switch ($method) {

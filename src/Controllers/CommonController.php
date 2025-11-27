@@ -53,10 +53,50 @@ class CommonController
 
     public function catalogo()
     {
-        $data = (new Article())->obtenirArticles();
+        $articulos = (new Article())->obtenirArticles();
+        // Obtener la hora actual (0-23)
+        $horaActual = (int) date('H');
+        // Determinar el horario según la hora
+        switch (true) {
+            case ($horaActual >= 0 && $horaActual < 8):
+                $horarioActual = null;
+                $horarioActual = 'Comida';
+                break;
+            case ($horaActual >= 8 && $horaActual < 13):
+                $horarioActual = 'Desayuno';
+                break;
+            case ($horaActual >= 13 && $horaActual < 16):
+                $horarioActual = 'Comida';
+                break;
+            case ($horaActual >= 16 && $horaActual < 19):
+                $horarioActual = 'Merienda';
+                break;
+            case ($horaActual >= 19 && $horaActual < 24):
+                $horarioActual = 'Cena';
+                break;
+            default:
+                $horarioActual = null;
+                break;
+        }
+        // Filtrar artículos según el horario actual
+        $data = [];
+
+        if ($horarioActual !== null) {
+            foreach ($articulos as $key => $articulo) {
+                if (isset($articulo['horario']) && $articulo['horario'] === $horarioActual) {
+                    $data[$key] = $articulo;
+                }
+            }
+        }
+
+        // Debug (puedes comentar estas líneas después)
         // echo "<pre>";
+        // echo "Hora actual: " . $horaActual . "h\n";
+        // echo "Horario: " . ($horarioActual ?? 'Cerrado') . "\n";
+        // echo "Artículos disponibles:\n";
         // var_dump($data);
         // exit;
+
         require __DIR__ . '/../Views/common/usuaris/catalago.php';
         exit;
     }
@@ -154,6 +194,8 @@ class CommonController
         $id = $currId["id"] + 1;
         file_put_contents($path, json_encode(["id" => $id], JSON_PRETTY_PRINT), LOCK_EX);
         return $id;
+        exit;
+
     }
     public function obtenirIdComanda()
     {
@@ -163,6 +205,8 @@ class CommonController
         $id = $currId["id"] + 1;
         file_put_contents($path, json_encode(["id" => $id], JSON_PRETTY_PRINT), LOCK_EX);
         return $id;
+        exit;
+
     }
 
 
@@ -199,6 +243,8 @@ class CommonController
             $res = ["res" => 0, "msg" => "Contraseña diferente"];
             return $res;
         }
+        exit;
+
     }
 
     public function afegirCorreu($correu, $fitxer)
@@ -231,7 +277,9 @@ class CommonController
             $carreto = array();
             $carreto[$article[0]] = [
                 'id' => $data["id"],
+                'imagen' => $data["imagen"],
                 'nombre' => $data["nombre"],
+                'descripcion' => $data["descripcion"],
                 'cantidad' => $article[1] ?? 1,
                 'precio' => $data["precio"]
             ];
@@ -246,7 +294,9 @@ class CommonController
             } else {
                 $carreto[$article[0]] = [
                     'id' => $data["id"],
+                    'imagen' => $data["imagen"],
                     'nombre' => $data["nombre"],
+                    'descripcion' => $data["descripcion"],
                     'cantidad' => $article[1],
                     'precio' => $data["precio"]
                 ];
@@ -274,10 +324,25 @@ class CommonController
         if (array_key_exists("carreto", $_COOKIE)) {
             $data = $_COOKIE["carreto"];
             $json = json_decode($data);
-            setcookie("carreto", null, time() - 10000000);
-            echo "ta te cookie";
+
+            setcookie("carreto", "", time() - 10000000, "/");
+
             $res = ["res" => 1, "msg" => "Cargar Carreto.", "json" => $data];
         }
+        exit;
+    }
+    public function eliminarArticles()
+    {
+        if (array_key_exists("carreto", $_COOKIE)) {
+            $data = $_COOKIE["carreto"];
+            $json = json_decode($data);
+
+            setcookie("carreto", "", time() - 10000000, "/");
+
+            $res = ["res" => 1, "msg" => "Cargar Carreto.", "json" => $data];
+        }
+        return $res;
+        exit;
     }
     public function xmlCarregarCarreto()
     {
@@ -303,17 +368,31 @@ class CommonController
     }
     public function xmlCrearTicket()
     {
+        header('Content-Type: application/json');
+
         if (array_key_exists("carreto", $_COOKIE)) {
             $carreto = json_decode($_COOKIE["carreto"], true);
+
+            if (empty($carreto)) {
+                echo json_encode([
+                    "res" => 0,
+                    "msg" => "El carrito está vacío."
+                ]);
+                exit;
+            }
 
             $total = 0;
             foreach ($carreto as $articulo) {
                 $subtotal = $articulo['cantidad'] * $articulo['precio'];
                 $total += $subtotal;
             }
-            $this->xmlEliminarArticles();
+
+            // Ahora sí puedes llamarlo (ya no tiene exit)
+            $this->eliminarArticles();
+
             $fechaCreacion = date('dmY-His');
             $id = $this->obtenirIdComanda();
+
             $comanda = [
                 'id' => $id,
                 'fecha' => $fechaCreacion,
@@ -325,29 +404,40 @@ class CommonController
                 ],
                 'articulos' => $carreto
             ];
+
             $fitxer = $id . '-' . $fechaCreacion;
             $path = '../data/database/Comandas/' . $fitxer . '.json';
             file_put_contents($path, json_encode($comanda, JSON_PRETTY_PRINT), LOCK_EX);
+
             $pathTickets = '../data/database/Comandas/usuarioComandas.json';
             $json = file_get_contents($pathTickets);
             $ticketsData = json_decode($json, true);
-            // Si el JSON estaba vacío o corrupto, usar array
+
             if (!is_array($ticketsData)) {
                 $ticketsData = [];
             }
+
             $userId = $_SESSION['user']['id'];
-            // Crear array del usuario si no existe
+
             if (!isset($ticketsData[$userId])) {
                 $ticketsData[$userId] = [];
             }
-            // Añadir ticket
+
             $ticketsData[$userId][] = $fitxer;
-            // Guardar sin borrar otras claves
             file_put_contents($pathTickets, json_encode($ticketsData, JSON_PRETTY_PRINT), LOCK_EX);
-            // echo "creaticket";
-            header('Location:' . '/visualitzar-tickets' . $fitxer);
+
+            echo json_encode([
+                "res" => 1,
+                "redirect" => "/tickets",
+            ]);
             exit;
         }
+
+        echo json_encode([
+            "res" => 0,
+            "msg" => "No tienes productos en el carrito."
+        ]);
+        exit;
     }
 
 
