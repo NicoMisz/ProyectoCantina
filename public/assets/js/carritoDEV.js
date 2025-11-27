@@ -150,9 +150,9 @@ function actualitzarLlistaCarreto(carreto) {
                     <span>TOTAL:</span>
                     <span>0.00€</span>
                 </div>
-                <button class="btn-comprar" disabled style="opacity: 0.5; cursor: not-allowed;">
+                <a class="btn-comprar" href="/carreto" style="opacity: 0.5; cursor: not-allowed;">
                     Proceder al Pago
-                </button>
+                </a>
             </div>
         </div>
     `;
@@ -223,9 +223,9 @@ function actualitzarLlistaCarreto(carreto) {
                 <span>TOTAL:</span>
                 <span>${total.toFixed(2)}€</span>
             </div>
-            <button class="btn-comprar">
+            <a href="/carrito" class="btn-comprar">
                 Proceder al Pago
-            </button>
+            </a>
         </div>
     </div>
 `;
