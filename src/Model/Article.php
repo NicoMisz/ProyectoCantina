@@ -8,7 +8,9 @@ class Article
     private const RUTA_ARTICLESINGREDIETS = __DIR__ . '/../../data/database/Articles/articulosIngredientes.json';
     private const RUTA_INGREDIETS = __DIR__ . '/../../data/database/Ingredientes/';
     private const RUTA_ARTICLES = __DIR__ . '/../../data/database/Articles/';
-    public function __construct() {}
+    public function __construct()
+    {
+    }
     public function obtenirArticles()
     {
         $articles = array();
@@ -44,8 +46,6 @@ class Article
     {
         $article = null;
         if ($handle = opendir(self::RUTA_ARTICLES)) {
-            echo $nom;
-            echo "<br>";
             while (false !== ($file = readdir($handle))) {
                 if ($file !== '.' && $file !== '..' && $file !== 'articulosIngredientes.json') {
                     if ($file === $nom . ".json") {

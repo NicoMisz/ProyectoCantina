@@ -60,15 +60,14 @@ class CommonController
         switch (true) {
             case ($horaActual >= 0 && $horaActual < 8):
                 $horarioActual = null;
-                $horarioActual = 'Comida';
                 break;
             case ($horaActual >= 8 && $horaActual < 13):
                 $horarioActual = 'Desayuno';
                 break;
-            case ($horaActual >= 13 && $horaActual < 16):
+            case ($horaActual >= 13 && $horaActual < 15):
                 $horarioActual = 'Comida';
                 break;
-            case ($horaActual >= 16 && $horaActual < 19):
+            case ($horaActual >= 15 && $horaActual < 19):
                 $horarioActual = 'Merienda';
                 break;
             case ($horaActual >= 19 && $horaActual < 24):
@@ -80,6 +79,7 @@ class CommonController
         }
         // Filtrar artículos según el horario actual
         $data = [];
+        $horarioActual = 'Comida';
 
         if ($horarioActual !== null) {
             foreach ($articulos as $key => $articulo) {
@@ -104,6 +104,31 @@ class CommonController
     public function formulari()
     {
         require __DIR__ . '/../Views/common/usuaris/formulari.php';
+        exit;
+    }
+
+    public function menu()
+    {
+        $articleClass = new Article();
+        $data = array();
+        $data["Entrante"] = array();
+        $data["Principal"] = array();
+        $data["Postre"] = array();
+        $data["Bebida"] = array();
+        array_push($data["Entrante"], $articleClass->obtenirArticle("1-30122025-171618"));
+        array_push($data["Entrante"], $articleClass->obtenirArticle("2-30122025-171618"));
+        array_push($data["Entrante"], $articleClass->obtenirArticle("3-24112025-145923"));
+
+        array_push($data["Principal"], $articleClass->obtenirArticle("1-30122025-171618"));
+        array_push($data["Principal"], $articleClass->obtenirArticle("2-30122025-171618"));
+        array_push($data["Principal"], $articleClass->obtenirArticle("3-24112025-145923"));
+
+        array_push($data["Postre"], $articleClass->obtenirArticle("3-24112025-145923"));
+        array_push($data["Bebida"], $articleClass->obtenirArticle("3-24112025-145923"));
+        // echo "<pre>";
+        // var_dump($data);
+        // exit;
+        require __DIR__ . '/../Views/common/usuaris/menu.php';
         exit;
     }
 
@@ -268,7 +293,7 @@ class CommonController
 
         // echo "<pre>";
         // var_dump($data);
-        // // var_dump($article);
+        // var_dump($article);
         // exit;
 
         if (!array_key_exists("carreto", $_COOKIE)) {
@@ -281,7 +306,7 @@ class CommonController
                 'nombre' => $data["nombre"],
                 'descripcion' => $data["descripcion"],
                 'cantidad' => $article[1] ?? 1,
-                'precio' => $data["precio"]
+                'precio' => $article[2] ?? $data["precio"]
             ];
             $cookie = json_encode($carreto);
             setcookie("carreto", $cookie, time() + 2592000);

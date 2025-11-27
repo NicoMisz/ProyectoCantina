@@ -1,0 +1,36 @@
+{
+    "id": 15,
+    "fecha": "27112025-140537",
+    "estado": true,
+    "total": 35.7,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "2-30122025-171618": {
+            "id": 2,
+            "imagen": "\/assets\/media\/Articles\/24112025-145540.jpeg",
+            "nombre": "Pollo Don",
+            "descripcion": "arroz con cerdo rebozado",
+            "cantidad": 2,
+            "precio": 8.85
+        },
+        "": {
+            "id": null,
+            "imagen": null,
+            "nombre": null,
+            "descripcion": null,
+            "cantidad": null,
+            "precio": null
+        },
+        "3-24112025-145923": {
+            "id": 3,
+            "imagen": "\/assets\/media\/Articles\/24112025-145923.jpg",
+            "nombre": "Gyozas",
+            "descripcion": "Gyozas de carne caseras",
+            "cantidad": 4,
+            "precio": 4.5
+        }
+    }
+}

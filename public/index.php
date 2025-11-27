@@ -171,6 +171,13 @@ if (!empty($rol)) {
                     exit;
             }
             exit;
+        case '/menu':
+            switch ($method) {
+                case 'GET':
+                    (new CommonController())->menu();
+                    exit;
+            }
+            exit;
     }
 }
 
