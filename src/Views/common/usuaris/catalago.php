@@ -13,6 +13,8 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
     <link rel="stylesheet" href="/css/main.css">
     <script src="/assets/js/header.js"></script>
     <script src="/assets/js/themeChange.js"></script>
+    <!-- <script src="/assets/js/carrito.js"></script> -->
+    <script src="/assets/js/carritoDEV.js"></script>
 </head>
 
 <body>
