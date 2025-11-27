@@ -9,7 +9,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cantina Tony's</title>
+    <title>Catálogo - Cantina Tony's</title>
     <link rel="stylesheet" href="/css/main.css">
     <script src="/assets/js/header.js"></script>
     <script src="/assets/js/themeChange.js"></script>
@@ -57,7 +57,6 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
                 </button>
-
             </div>
         </div>
     </header>
@@ -70,20 +69,18 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
         <ul class="navigation" id="navigation">
             <li><a href="/catalogo">El Catálogo</a></li>
             <li><a href="/pedidos">Mis Pedidos</a></li>
-            <li><a href="/about-us">About Us</a></li>
+            <li><a href="/about-us">ℹAbout Us</a></li>
             <li><a href="/formulari">Contacto</a></li>
 
             <?php if ($isAdmin): ?>
-                <!-- Solo visible para administradores -->
                 <li class="admin-only">
                     <a href="/admin/gestio-productes">
-                        <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
+                        <img src="/assets/media/admin.png" alt="Admin" class="logo-admin">
                         Gestió Productes
                     </a>
                 </li>
             <?php endif; ?>
 
-            <!-- Footer del menú -->
             <div class="menu-footer">
                 <div class="menu-footer-content">
                     <div class="menu-social">
@@ -97,54 +94,70 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
         </ul>
     </nav>
 
-    <!-- Contenido de ejemplo (eliminar en producción) -->
+    <!-- Contenido Principal -->
     <main class="content">
-        <h1>Catalogo</h1>
-        <div class="row">
+        <!-- Header del Catálogo -->
+        <div class="catalogo-header">
+            <h1 class="catalogo-title">🍱 Nuestro Catálogo</h1>
+            <p class="catalogo-subtitle">Descubre todos nuestros deliciosos PROGRAMADOS</p>
+        </div>
+
+        <!-- Grid de Productos -->
+        <div class="row catalogo-grid">
             <?php
             foreach ($data as $key => $value) {
-                $articleId = $key;// Asegúrate de que tienes el ID en tus datos
-                $html = '
-        <div data-precio="' . $value["precio"] . '" data-file="' . $articleId . '" class="article col-4" style="padding:10px">
-            <div class="card" style="min-height: 7rem;">
-                <div class="card-body">
-                    <div class="row" style="min-height:250px;">
-                        <div class="col-12" style="min-height:100px;display: flex;justify-content: center;">
-                            <img src="' . $value["imagen"] . '" style="width: 6rem;height: 6rem;object-fit: cover;">
-                        </div>  
-                        <div class="col-12" style="min-height:30px;">
-                            <span><strong>' . $value["nombre"] . '</strong></span>
-                        </div>  
-                        <div class="col-12" style="min-height:50px;">
-                            <span>' . $value["descripcion"] . '</span>
-                        </div>  
-                        <div class="col-12" style="min-height:50px;">
-                            <div class="row align-items-center">
-                                <div class="col-7">
-                                    <span>Cantidad</span>
-                                </div>  
-                                <div class="col-5 d-flex align-items-center justify-content-between">
-                                    <button class="btn btn-sm btn-outline-secondary btn-minus" data-article="' . $articleId . '">-</button>
-                                    <span class="cantidad mx-2">0</span>
-                                    <button class="btn btn-sm btn-outline-secondary btn-plus" data-article="' . $articleId . '">+</button>
-                                </div>  
-                            </div>
+                $articleId = $key;
+                ?>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="producto-card" data-precio="<?php echo $value["precio"]; ?>" data-file="<?php echo $articleId; ?>">
+                        <!-- Imagen del Producto -->
+                        <div class="producto-image">
+                            <img src="<?php echo $value["imagen"]; ?>" alt="<?php echo $value["nombre"]; ?>">
                         </div>
-                        <div class="col-12" style="min-height:50px;">
-                            <div class="row align-items-center btn-add-cart" onclick="añadirAlCarrito(\'' . $articleId . '\')" style="cursor:pointer;border-radius:1rem;border:black solid 3px;height:100%;padding:10px;">
-                                <div class="col-8">
-                                    <span>Afegir al carret</span>
-                                </div>  
-                                <div class="col-4 text-end">
-                                    <span class="total">0.00</span>€
-                                </div>  
+
+                        <!-- Contenido del Producto -->
+                        <div class="producto-content">
+                            <h3 class="producto-title"><?php echo $value["nombre"]; ?></h3>
+                            <p class="producto-description"><?php echo $value["descripcion"]; ?></p>
+                            
+                            <!-- Precio -->
+                            <div class="producto-precio">
+                                <span class="precio-valor"><?php echo number_format($value["precio"], 2); ?>€</span>
                             </div>
+
+                            <!-- Control de Cantidad -->
+                            <div class="producto-cantidad">
+                                <label class="cantidad-label">Cantidad:</label>
+                                <div class="cantidad-controls">
+                                    <button class="btn-cantidad btn-minus" data-article="<?php echo $articleId; ?>">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
+                                    </button>
+                                    <span class="cantidad-display">0</span>
+                                    <button class="btn-cantidad btn-plus" data-article="<?php echo $articleId; ?>">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Botón Añadir al Carrito -->
+                            <button class="btn-add-carrito" onclick="añadirAlCarrito('<?php echo $articleId; ?>')">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span>Añadir</span>
+                                <span class="producto-total">0.00€</span>
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>';
-                echo $html;
+                <?php
             }
             ?>
         </div>
@@ -157,17 +170,21 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                 btn.addEventListener('click', function (e) {
                     e.stopPropagation();
                     const articleId = this.getAttribute('data-article');
-                    const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
-                    const cantidadSpan = articleDiv.querySelector('.cantidad');
-                    const totalSpan = articleDiv.querySelector('.total');
-                    const precio = parseFloat(articleDiv.getAttribute('data-precio'));
+                    const productCard = document.querySelector(`[data-file="${articleId}"]`);
+                    const cantidadSpan = productCard.querySelector('.cantidad-display');
+                    const totalSpan = productCard.querySelector('.producto-total');
+                    const precio = parseFloat(productCard.getAttribute('data-precio'));
 
                     let cantidad = parseInt(cantidadSpan.textContent);
                     cantidad++;
                     cantidadSpan.textContent = cantidad;
 
                     const total = (precio * cantidad).toFixed(2);
-                    totalSpan.textContent = total;
+                    totalSpan.textContent = total + '€';
+
+                    // Añadir animación
+                    cantidadSpan.classList.add('cantidad-pulse');
+                    setTimeout(() => cantidadSpan.classList.remove('cantidad-pulse'), 300);
                 });
             });
 
@@ -175,10 +192,10 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                 btn.addEventListener('click', function (e) {
                     e.stopPropagation();
                     const articleId = this.getAttribute('data-article');
-                    const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
-                    const cantidadSpan = articleDiv.querySelector('.cantidad');
-                    const totalSpan = articleDiv.querySelector('.total');
-                    const precio = parseFloat(articleDiv.getAttribute('data-precio'));
+                    const productCard = document.querySelector(`[data-file="${articleId}"]`);
+                    const cantidadSpan = productCard.querySelector('.cantidad-display');
+                    const totalSpan = productCard.querySelector('.producto-total');
+                    const precio = parseFloat(productCard.getAttribute('data-precio'));
 
                     let cantidad = parseInt(cantidadSpan.textContent);
                     if (cantidad > 0) {
@@ -186,11 +203,16 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                         cantidadSpan.textContent = cantidad;
 
                         const total = (precio * cantidad).toFixed(2);
-                        totalSpan.textContent = total;
+                        totalSpan.textContent = total + '€';
+
+                        // Añadir animación
+                        cantidadSpan.classList.add('cantidad-pulse');
+                        setTimeout(() => cantidadSpan.classList.remove('cantidad-pulse'), 300);
                     }
                 });
             });
         });
+
         function netejarCarreto() {
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "/netejar-carreto", true);
@@ -207,20 +229,28 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
             };
             xhr.send("msg=Hola desde JavaScript");
         }
+
         // Función para añadir al carrito
         function añadirAlCarrito(articleId) {
-            const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
-            const cantidad = parseInt(articleDiv.querySelector('.cantidad').textContent);
+            const productCard = document.querySelector(`[data-file="${articleId}"]`);
+            const cantidad = parseInt(productCard.querySelector('.cantidad-display').textContent);
 
             if (cantidad > 0) {
                 afegirArticle(articleId, cantidad);
+                
+                // Mostrar feedback visual
+                const btn = productCard.querySelector('.btn-add-carrito');
+                btn.classList.add('btn-success-animation');
+                setTimeout(() => btn.classList.remove('btn-success-animation'), 600);
+                
                 // Opcional: resetear cantidad después de añadir
-                // articleDiv.querySelector('.cantidad').textContent = '0';
-                // articleDiv.querySelector('.total').textContent = '0.00';
+                // productCard.querySelector('.cantidad-display').textContent = '0';
+                // productCard.querySelector('.producto-total').textContent = '0.00€';
             } else {
                 alert('Selecciona una cantidad mayor a 0');
             }
         }
+
         function afegirArticle(id, quantitat) {
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "/afegir-article-carreto", true);
@@ -228,7 +258,6 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-
                         console.log("Respuesta del servidor:", xhr.responseText);
                         carregarCarreto();
                     } else {
@@ -236,10 +265,11 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     }
                 }
             };
-            let data = [id, quantitat]
-            json = JSON.stringify(data)
+            let data = [id, quantitat];
+            json = JSON.stringify(data);
             xhr.send("data=" + json);
         }
+
         function carregarCarreto(callback) {
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "/carregar-carreto", true);
@@ -249,9 +279,9 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         let res = JSON.parse(xhr.responseText);
-                        callback(res.res === 1 ? res.carreto : null);
+                        if (callback) callback(res.res === 1 ? res.carreto : null);
                     } else {
-                        callback(null);
+                        if (callback) callback(null);
                     }
                 }
             };
@@ -261,28 +291,10 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
 
         document.addEventListener('DOMContentLoaded', function () {
             carregarCarreto(function (carretoRecibido) {
-                carreto = carretoRecibido;
+                let carreto = carretoRecibido;
                 console.log("Carreto final:", carreto);
             });
         });
     </script>
-
 </body>
-<script>
-    let xhr = new XMLHttpRequest();
-
-    xhr.open("POST", "/afegir-article-carreto", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                console.log("Respuesta del servidor:", xhr.responseText);
-            } else {
-                console.error("Error en la petición:", xhr.status);
-            }
-        }
-    };
-    xhr.send("msg=Hola desde JavaScript");
-</script>
-
 </html>
