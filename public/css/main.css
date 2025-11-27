@@ -860,6 +860,7 @@ body {
 }
 
 .content {
+  background-color: var(--surface-primary);
   padding: 8rem 2rem 4rem 2rem;
   width: 90%;
   max-width: 1600px;
@@ -2133,7 +2134,6 @@ body {
 /* ============================================
    CATÁLOGO STYLES
    ============================================ */
-
 /* Header del Catálogo */
 .catalogo-header {
   text-align: center;
