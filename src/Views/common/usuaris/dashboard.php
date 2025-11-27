@@ -72,7 +72,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
     <nav>
         <ul class="navigation" id="navigation">
             <li><a href="/catalogo">El Catálogo</a></li>
-            <li><a href="/pedidos">Mis Pedidos</a></li>
+            <li><a href="/tickets">Mis Pedidos</a></li>
             <li><a href="/about-us">About Us</a></li>
             <li><a href="/formulari">Contacto</a></li>
 

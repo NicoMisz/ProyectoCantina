@@ -80,7 +80,7 @@
     <nav>
         <ul class="navigation" id="navigation">
             <li><a href="/catalogo">El Catálogo</a></li>
-            <li><a href="/pedidos">Mis Pedidos</a></li>
+            <li><a href="/tickets">Mis Pedidos</a></li>
             <li><a href="/about-us">About Us</a></li>
             <li><a href="/formulari">Contacto</a></li>
 
@@ -126,9 +126,6 @@
         <!-- <div id="carretos"> -->
         <?php
 
-        // echo "<pre>";
-        // var_dump($carreto);
-        // exit;  <-- QUITA ESTO
         
         if (isset($carreto)) {
             $total = 0;
@@ -165,8 +162,6 @@
                 </div>
             </div>';
             }
-            echo "<pre>";
-            var_dump($carreto);
 
             echo '</div>';
 

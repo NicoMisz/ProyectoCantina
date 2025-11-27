@@ -2623,8 +2623,10 @@ body {
   font-weight: 700;
 }
 
-/* Botón comprar */
+/* Botón comprar (ahora funciona con <a>) */
 .btn-comprar {
+  display: block;
+  /* Importante: hace que el enlace se comporte como bloque */
   background: linear-gradient(135deg, var(--color-success) 0%, #1e7e34 100%);
   color: white;
   border: none;
@@ -2637,6 +2639,12 @@ body {
   cursor: pointer;
   margin-top: 1rem;
   box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+  text-decoration: none;
+  /* Elimina el subrayado del enlace */
+  text-align: center;
+  /* Centra el texto */
+  box-sizing: border-box;
+  /* Asegura que el padding no afecte el ancho total */
 }
 
 .btn-comprar:hover {
@@ -2647,6 +2655,12 @@ body {
 .btn-comprar:active {
   transform: translateY(0);
   box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
+}
+
+/* Opcional: estilos para cuando el enlace tiene foco (accesibilidad) */
+.btn-comprar:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
 }
 
 /* Responsive */
