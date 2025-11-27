@@ -20,7 +20,7 @@ function netejarCarreto() {
     xhr.send("msg=Hola desde JavaScript");
 }
 
-function afegirArticle(id, quantitat) {
+function afegirArticle(id, quantitat, preu = null) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/afegir-article-carreto", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -38,6 +38,11 @@ function afegirArticle(id, quantitat) {
         }
     };
     let data = [id, quantitat];
+    // console.log("aaa"   )
+    // console.log(preu)
+    if (preu != null) {
+        data.push(preu)
+    }
     let json = JSON.stringify(data);
     xhr.send("data=" + json);
 }
@@ -123,7 +128,7 @@ function actualitzarLlistaCarreto(carreto) {
     if (!carreto || Object.keys(carreto).length === 0) {
         carretoElement.innerHTML = `
         <div class="cart-header">
-            <h4 style="margin: 0;">🛒 Mi Carrito</h4>
+            <h4 style="margin: 0;">Mi Carrito</h4>
             <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
         </div>
         <div class="cart-content">
@@ -198,7 +203,7 @@ function actualitzarLlistaCarreto(carreto) {
 
     const contenidoHTML = `
     <div class="cart-header">
-        <h4 style="margin: 0;">🛒 Mi Carrito</h4>
+        <h4 style="margin: 0;">Mi Carrito</h4>
         <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
     </div>
     <div class="cart-content">
