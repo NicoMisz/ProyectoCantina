@@ -1,6 +1,6 @@
 <?php
-    $user = $_SESSION['user'] ?? null;
-    $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
+$user = $_SESSION['user'] ?? null;
+$isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
 ?>
 
 
@@ -13,7 +13,7 @@
     <title>Cantina Tony's</title>
     <link rel="stylesheet" href="/css/main.css">
     <script src="/assets/js/header.js"></script>
-    <script src="/assets/js/themeChange.js"></script>
+    <script src="/assets/js/themeChange.js" defer></script>
     <!-- <script src="/assets/js/carrito.js"></script> -->
     <script src="/assets/js/carritoDEV.js"></script>
 </head>
@@ -77,13 +77,13 @@
             <li><a href="/formulari">Contacto</a></li>
 
             <?php if ($isAdmin): ?>
-            <!-- Solo visible para administradores -->
-            <li class="admin-only">
-                <a href="/admin/gestio-productes">
-                    <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
-                    Gestió Productes
-                </a>
-            </li>
+                <!-- Solo visible para administradores -->
+                <li class="admin-only">
+                    <a href="/admin/gestio-productes">
+                        <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
+                        Gestió Productes
+                    </a>
+                </li>
             <?php endif; ?>
 
             <!-- Footer del menú -->
@@ -139,16 +139,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Controles del carrusel -->
                 <button class="carousel-btn carousel-btn-prev" id="prevBtn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 18l-6-6 6-6"/>
+                        <path d="M15 18l-6-6 6-6" />
                     </svg>
                 </button>
                 <button class="carousel-btn carousel-btn-next" id="nextBtn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 18l6-6-6-6"/>
+                        <path d="M9 18l6-6-6-6" />
                     </svg>
                 </button>
 
@@ -167,7 +167,7 @@
                 <h2 class="section-title">Menú del Día</h2>
                 <p class="section-subtitle">Descubre nuestro menú especial de hoy</p>
             </div>
-            
+
             <div class="menu-dia-card">
                 <div class="row">
                     <div class="col-12 col-md-6">
@@ -182,10 +182,10 @@
                         <div class="menu-dia-content">
                             <h3>Menú Completo</h3>
                             <p class="menu-dia-description">
-                                Disfruta de nuestro menú del día que incluye entrada, plato principal, postre y bebida. 
+                                Disfruta de nuestro menú del día que incluye entrada, plato principal, postre y bebida.
                                 Una experiencia gastronómica completa a un precio increíble.
                             </p>
-                            
+
                             <div class="menu-dia-items">
                                 <div class="menu-item">
                                     <span class="item-icon"></span>
@@ -315,7 +315,7 @@
                 <a href="/catalogo" class="btn-ver-mas">
                     Ver Todo el Catálogo
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                        <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                 </a>
             </div>
@@ -328,7 +328,7 @@
                 <!-- Sección: Sobre Nosotros -->
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="assets/media/E.png" alt="" class="logo-img">
+                        <img src="/assets/media/E.png" alt="" class="logo-image">
                     </div>
                     <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad educativa.</p>
                     <div class="social-links">
@@ -411,7 +411,7 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const indicators = document.querySelectorAll('.indicator');
-        
+
         let currentSlide = 0;
         const totalSlides = slides.length;
 

@@ -27,7 +27,7 @@
         }
 
         .logo-image {
-            height: 3rem;
+            height: 6rem;
         }
     }
 }
@@ -389,19 +389,19 @@
 // ========================================
 @media (min-width: 768px) {
     .header {
-        padding: 2rem 3rem;
+        padding: 5rem 3rem;
 
         &.scrolled {
-            padding: 1rem 3rem;
+            padding: 2rem 3rem;
         }
     }
 
     .logo-image {
-        height: 5rem;
+        height: 12rem;
     }
 
     .header.scrolled .logo-image {
-        height: 3.5rem;
+        height: 6rem;
     }
 
     .navigation {
@@ -419,11 +419,4 @@
         left: 2rem;
         transform: none;
     }
-}
-
-// Demo content (eliminar en producción)
-.demo-content {
-    padding: 8rem 2rem 4rem 2rem;
-    max-width: 800px;
-    margin: 0 auto;
 }

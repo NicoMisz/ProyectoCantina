@@ -815,19 +815,19 @@ body {
 
 @media (min-width: 768px) {
   .header {
-    padding: 5rem 3rem;
-  }
-
-  .header.scrolled {
     padding: 2rem 3rem;
   }
 
+  .header.scrolled {
+    padding: 1rem 3rem;
+  }
+
   .logo-image {
-    height: 12rem;
+    height: 5rem;
   }
 
   .header.scrolled .logo-image {
-    height: 6rem;
+    height: 3.5rem;
   }
 
   .navigation {
@@ -861,7 +861,7 @@ body {
 
 .content {
   background-color: var(--surface-primary);
-  padding: 16rem 2rem 4rem 2rem;
+  padding: 8rem 2rem 4rem 2rem;
   width: 90%;
   max-width: 1600px;
   margin-right: auto;
@@ -1465,7 +1465,7 @@ body {
   justify-content: center;
   padding: 2rem;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
 }
 
 /* Contenedor principal */

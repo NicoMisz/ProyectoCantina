@@ -1,16 +1,4 @@
 // base/_reset.scss
-/* 
-    Document   : reset
-    Created on : 04/10/2013, 11:55:06
-    Author     : alfredo
-    Description:
-        Purpose of the stylesheet follows.
-*/
-
-
-
-/* v1.0 | 20080212 */
-
 html,
 body,
 div,
@@ -104,21 +92,11 @@ q:after {
     content: none;
 }
 
-/* No olvides definir estilos para focus */
+
 :focus {
     outline: 0;
 }
 
-/* No olvides resaltar de alguna manera el texto insertado/borrado */
-ins {
-    text-decoration: none;
-}
-
-del {
-    text-decoration: line-through;
-}
-
-/* En el código HTML es necesario añadir cellspacing="0" */
 table {
     border-collapse: collapse;
     border-spacing: 0;
