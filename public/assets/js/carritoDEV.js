@@ -47,7 +47,6 @@ function afegirArticle(id, quantitat, preu = null) {
                 console.log("Respuesta del servidor:", xhr.responseText);
                 carregarCarreto(function (carretoRecibido) {
                     carreto = carretoRecibido;
-                    // console.log("Carreto actualizado:", carreto);
                     actualitzarBadgeCarreto(carreto);
                 });
             } else {
@@ -56,8 +55,6 @@ function afegirArticle(id, quantitat, preu = null) {
         }
     };
     let data = [id, quantitat];
-    // console.log("aaa"   )
-    // console.log(preu)
     if (preu != null) {
         data.push(preu)
     }
@@ -116,7 +113,6 @@ function crearTicket(callback) {
                     // Error del servidor (res === 0)
                     console.error(res.msg || "Error desconocido");
                     alert(res.msg || "Error al crear el ticket");
-
                     if (callback) {
                         callback(null);
                     }
@@ -142,7 +138,7 @@ function actualitzarLlistaCarreto(carreto) {
         return;
     }
 
-    // Verificar si el carreto es null, undefined o está vacío
+    // Verificar si el carreto es null
     if (!carreto || Object.keys(carreto).length === 0) {
         carretoElement.innerHTML = `
         <div class="cart-header">
@@ -185,7 +181,7 @@ function actualitzarLlistaCarreto(carreto) {
     }
 
     const items = Object.values(carreto);
-
+    console.log(items)
     let subtotal = 0;
     items.forEach(item => {
         const precio = parseFloat(item.precio) || 0;
@@ -204,6 +200,7 @@ function actualitzarLlistaCarreto(carreto) {
 
         return `
         <div class="item-card">
+            <a href>x</a>
             <div class="row" style="align-items: center;">
                 <div class="col-8">
                     <div class="item-nombre">${item.nombre}</div>

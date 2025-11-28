@@ -11,6 +11,7 @@ use Src\Model\Article\Article;
 class CommonController
 {
 
+    // Carregar pagines (no tenen variables)
     public function dashboard()
     {
         require __DIR__ . '/../Views/common/usuaris/dashboard.php';
@@ -43,6 +44,7 @@ class CommonController
 
     public function carrito()
     {
+        //Comprovar si exsisteix la variable carreto 
         if (array_key_exists("carreto", $_COOKIE)) {
             $carreto = json_decode($_COOKIE["carreto"], true);
         }
@@ -52,10 +54,10 @@ class CommonController
 
     public function catalogo()
     {
+        // Obtenir Llistat Articles 
         $articulos = (new Article())->obtenirArticles();
-        // Obtener la hora actual (0-23)
         $horaActual = (int) date('H');
-        // Determinar el horario según la hora
+        // Determinar l'horari amb l'hora
         switch (true) {
             case ($horaActual >= 0 && $horaActual < 8):
                 $horarioActual = null;
@@ -76,10 +78,9 @@ class CommonController
                 $horarioActual = null;
                 break;
         }
-        // Filtrar artículos según el horario actual
-        $data = [];
         $horarioActual = 'Comida';
-
+        $data = [];
+        // Filtrar Articles segons l'horari
         if ($horarioActual !== null) {
             foreach ($articulos as $key => $articulo) {
                 if (isset($articulo['horario']) && $articulo['horario'] === $horarioActual) {
@@ -87,48 +88,36 @@ class CommonController
                 }
             }
         }
-
-        // Debug (puedes comentar estas líneas después)
-        // echo "<pre>";
-        // echo "Hora actual: " . $horaActual . "h\n";
-        // echo "Horario: " . ($horarioActual ?? 'Cerrado') . "\n";
-        // echo "Artículos disponibles:\n";
-        // var_dump($data);
-        // exit;
-
         require __DIR__ . '/../Views/common/usuaris/catalago.php';
         exit;
     }
 
     public function formulari()
     {
-        require __DIR__ . '/../Views/common/usuaris/formulari.php';
+        // No aplicat encara
         exit;
+        require __DIR__ . '/../Views/common/usuaris/formulari.php';
     }
 
     public function menu()
     {
+        // Obtenir tots els articles
         $articleClass = new Article();
         $data = array();
+        // Categoria articles
         $data["Entrante"] = array();
         $data["Principal"] = array();
         $data["Postre"] = array();
         $data["Bebida"] = array();
+        // Articles menu
         $data["Entrante"]["1-30122025-171618"] = $articleClass->obtenirArticle("1-30122025-171618");
         $data["Entrante"]["2-30122025-171618"] = $articleClass->obtenirArticle("2-30122025-171618");
         $data["Entrante"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
-
         $data["Principal"]["1-30122025-171618"] = $articleClass->obtenirArticle("1-30122025-171618");
         $data["Principal"]["2-30122025-171618"] = $articleClass->obtenirArticle("2-30122025-171618");
         $data["Principal"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
-
         $data["Postre"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
-
         $data["Bebida"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
-
-        // echo "<pre>";
-        // var_dump($data);
-        // exit;
         require __DIR__ . '/../Views/common/usuaris/menu.php';
         exit;
     }
@@ -141,54 +130,52 @@ class CommonController
 
     public function tickets()
     {
+        // Ruta llistat de tickets
         $pathUsuarioTickets = '../data/database/Comandas/usuarioComandas.json';
         $path = '../data/database/Comandas/';
+        // Obtenir contingut del fitxer
         $json = file_get_contents($pathUsuarioTickets);
+        // Transformar string a array
         $ticketsData = json_decode($json, true);
+        // Obtenir id amb la variable de sessio del usuari
         $userId = $_SESSION['user']['id'];
         if (!isset($ticketsData[$userId])) {
-            // Usuario sin tickets
+            // Usuari sense tickets
             $dato = [];
         } else {
-            $ticketsId = $ticketsData[$userId]; // array de tickets
+            $ticketsId = $ticketsData[$userId];
             $dato = [];
             foreach ($ticketsId as $ticket) {
-                // aquí sí puedes usar el nombre del ticket como índice
+                // Obtenir article especific
                 $dato[$ticket] = json_decode(file_get_contents($path . $ticket . '.json'), true);
             }
         }
-
-
-        // var_dump($ticketsId);
-        // echo "<pre>";
-        // var_dump($dato);
-        // // $fitxer = $id . '-' . $fechaCreacion;
-
-        // // $tickets = null;
-        // exit;
-
         require __DIR__ . '/../Views/common/usuaris/ticket.php';
         exit;
     }
 
     public function pedidos()
     {
-        require __DIR__ . '/../Views/common/usuaris/pedidos.php';
         exit;
+        require __DIR__ . '/../Views/common/usuaris/pedidos.php';
     }
 
     public function logOut()
     {
+        // Elimina la sessio
         session_destroy();
+        // Redireccio a dashboard
         header('Location:' . '/dashboard');
         exit;
     }
 
     public function ajaxAutenticarLogin()
     {
+        // Formata l'estil del header
         header('Content-Type: application/json; charset=utf-8');
         $email = $_POST["email"] ?? null;
         $password = $_POST["password"] ?? null;
+        // Recollir dades
         $usuari = (new Usuari())->obtenirUsuariPerEmail($email);
         if (!($usuari == null)) {
             $eq = hash_equals($usuari['password'], hash('sha512', $password . $usuari['fechaCreacion']));
@@ -225,9 +212,12 @@ class CommonController
     }
     public function obtenirIdComanda()
     {
+        // Ruta id Comanda
         $path = "../data/database/Id/comandaCurrentId.json";
+        // Obtenir contingut del fitxer com a objecte
         $file = file_get_contents($path);
         $currId = json_decode($file, true);
+        // Augmentar id en 1 i actualitzar id
         $id = $currId["id"] + 1;
         file_put_contents($path, json_encode(["id" => $id], JSON_PRETTY_PRINT), LOCK_EX);
         return $id;
@@ -237,6 +227,7 @@ class CommonController
 
     public function ajaxRegistrarUsuari()
     {
+        // Obtenir dades
         $id = $this->obtenirId();
         $nombre = $_POST["nombre"] ?? null;
         $apellidos = $_POST["apellidos"] ?? null;
@@ -244,11 +235,15 @@ class CommonController
         $fechaCreacion = date('dmY-His');
         $password = $_POST["password"] ?? null;
         $password2 = $_POST["password_comprovacio"] ?? null;
+        // Rol per defecte usuari
         $rol = 'usuario';
         $activo = True;
+        // Falta sanitititzar
         if ($password === $password2) {
+            // Hash de contrasenya amb data de creació
             $hash = hash('sha512', $password . $fechaCreacion);
             $json = file_get_contents('../data/class/User.json');
+            // A partir d'un json base afegir les dades del  usuari
             $jsondecode = json_decode($json, true);
             $jsondecode["id"] = $id;
             $jsondecode["nombre"] = $nombre;
@@ -260,25 +255,29 @@ class CommonController
             $jsondecode["activo"] = $activo;
             $fitxer = $id . '-' . $fechaCreacion;
             $path = '../data/database/Usuaris/' . $fitxer . '.json';
-            $res = $this->afegirCorreu($email, $fitxer);
+            // Afegir correu
+            $this->afegirCorreu($email, $fitxer);
+            // Afegir fitxer d'usuari
             file_put_contents($path, json_encode($jsondecode, JSON_PRETTY_PRINT), LOCK_EX);
-            return $res;
         } else {
-            header('Content-Type: application/json; charset=utf-8');
             $res = ["res" => 0, "msg" => "Contraseña diferente"];
-            return $res;
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode($res);
         }
         exit;
     }
 
     public function afegirCorreu($correu, $fitxer)
     {
+        // Ruta usuariCorreu
         $path = '../data/database/Usuaris/userEmail.json';
+        // Obtenir element en format objecte
         $json = file_get_contents($path);
         $jsondecode = json_decode($json, true);
+        // Afegir nou correu i guardar
         $jsondecode[$correu] = $fitxer;
         file_put_contents($path, json_encode($jsondecode, JSON_PRETTY_PRINT), LOCK_EX);
-
+        // Retornar missatge
         header('Content-Type: application/json; charset=utf-8');
         $res = ["res" => 1, "msg" => "Usuari afegit correctament."];
         echo json_encode($res, JSON_PRETTY_PRINT);
@@ -286,11 +285,15 @@ class CommonController
     }
     public function xmlAfegirArticle()
     {
+        // Comprovar si s'ha enviat un article o menu
         if (isset($_POST["data"])) {
             $jsonstring = $_POST["data"];
             $article = json_decode($jsonstring);
+            // Obtenir articles
             $data = (new Article())->obtenirArticle($article[0]);
+            // Si no existeix afegir la cookie
             if (!array_key_exists("carreto", $_COOKIE)) {
+                // Crear i afegir article
                 $carreto = array();
                 $carreto[$article[0]] = [
                     'id' => $data["id"],
@@ -300,6 +303,7 @@ class CommonController
                     'cantidad' => $article[1] ?? 1,
                     'precio' => $article[2] ?? $data["precio"]
                 ];
+                // Crear i afegir article
                 $cookie = json_encode($carreto);
                 setcookie("carreto", $cookie, time() + 2592000);
                 $res = ["res" => 1, "msg" => "Test."];
@@ -351,8 +355,6 @@ class CommonController
                 $jsonstring = $_POST["menu"];
                 $menu = json_decode($jsonstring);
 
-                // echo "Creació Cookie";
-                // $data = json_encode($data);
                 $carreto["menu"] = [
                     'id' => "0",
                     'imagen' => null,
@@ -364,10 +366,9 @@ class CommonController
                 $cookie = json_encode($carreto);
                 setcookie("carreto", $cookie, time() + 2592000);
                 $res = ["res" => 1, "msg" => "Test."];
-
                 $res = ["res" => 0, "msg" => "Test."];
-
                 $cookie = json_encode($carreto, JSON_PRETTY_PRINT);
+                setcookie("carreto", $cookie, time() - 10000000);
                 setcookie("carreto", $cookie, time() + 2592000);
             }
             exit;
@@ -382,8 +383,9 @@ class CommonController
             $json = json_decode($data);
 
             setcookie("carreto", "", time() - 10000000, "/");
-
             $res = ["res" => 1, "msg" => "Cargar Carreto.", "json" => $data];
+            header('Content-Type: application/json');
+            echo json_encode($res, JSON_PRETTY_PRINT);
         }
         exit;
     }
@@ -396,15 +398,14 @@ class CommonController
             setcookie("carreto", "", time() - 10000000, "/");
 
             $res = ["res" => 1, "msg" => "Cargar Carreto.", "json" => $data];
+            header('Content-Type: application/json');
+            echo json_encode($res, JSON_PRETTY_PRINT);
         }
-        return $res;
         exit;
     }
     public function xmlCarregarCarreto()
     {
-        //Debug
-        //echo "Explosionado";
-        //exit;
+        // Comprovar si exsisteix cookie carreto y extreurala
         if (array_key_exists("carreto", $_COOKIE)) {
             $carreto = json_decode($_COOKIE["carreto"], true);
             $res = [
@@ -418,6 +419,7 @@ class CommonController
                 "msg" => "No tienes Carreto."
             ];
         }
+        header('Content-Type: application/json');
         $res = json_encode($res);
         echo $res;
         exit;
@@ -442,10 +444,8 @@ class CommonController
                 $subtotal = $articulo['cantidad'] * $articulo['precio'];
                 $total += $subtotal;
             }
-
-            // Ahora sí puedes llamarlo (ya no tiene exit)
+            //  Eliminar cookie 
             $this->eliminarArticles();
-
             $fechaCreacion = date('dmY-His');
             $id = $this->obtenirIdComanda();
 

@@ -135,7 +135,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
             <div class="section-header">
                 <h2 class="section-title">Nuestro Proyecto</h2>
             </div>
-            
+
             <div class="project-card">
                 <div class="row">
                     <div class="col-12 col-md-6">
@@ -147,15 +147,19 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                         <div class="project-content">
                             <h3>¿Qué es Cantina Tony's?</h3>
                             <p>
-                                Cantina Tony's es un proyecto innovador desarrollado como parte de nuestra formación en desarrollo web. 
-                                Nace de la necesidad de digitalizar y modernizar la experiencia de pedidos en cantinas educativas.
+                                Cantina Tony's es un proyecto innovador desarrollado como parte de nuestra formación en
+                                desarrollo web.
+                                Nace de la necesidad de digitalizar y modernizar la experiencia de pedidos en cantinas
+                                educativas.
                             </p>
                             <p>
-                                Nuestro sistema permite a los estudiantes y profesores realizar pedidos de forma rápida y eficiente, 
-                                gestionar menús del día, y mantener un historial completo de sus compras. Todo desde una interfaz 
+                                Nuestro sistema permite a los estudiantes y profesores realizar pedidos de forma rápida
+                                y eficiente,
+                                gestionar menús del día, y mantener un historial completo de sus compras. Todo desde una
+                                interfaz
                                 intuitiva y moderna.
                             </p>
-                            
+
                             <div class="project-features">
                                 <div class="feature-item">
                                     <span class="feature-text">Sistema de pedidos online</span>
@@ -176,7 +180,6 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
             </div>
         </section>
 
-        <!-- Equipo de Desarrollo -->
         <section class="about-team">
             <div class="section-header">
                 <h2 class="section-title">Nuestro Equipo</h2>
@@ -184,7 +187,6 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
             </div>
 
             <div class="row team-grid">
-                <!-- Desarrollador 1 -->
                 <div class="col-12 col-md-4">
                     <div class="team-card">
                         <div class="team-image">
@@ -195,8 +197,8 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                             <h3 class="team-name">Jan Lopez</h3>
                             <p class="team-role">Desarrollador Full Stack</p>
                             <p class="team-description">
-                                Contribución integral en el proyecto, desde la arquitectura backend con PHP hasta 
-                                el diseño de interfaces responsive. Participación activa en la gestión de los fitxeros 
+                                Contribución integral en el proyecto, desde la arquitectura backend con PHP hasta
+                                el diseño de interfaces responsive. Participación activa en la gestión de los fitxeros
                                 de datos, sistema de autenticación y desarrollo del panel de administración.
                             </p>
                             <div class="team-skills">
@@ -208,12 +210,14 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                             <div class="team-social">
                                 <a href="#" class="team-social-link" aria-label="GitHub">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                                     </svg>
                                 </a>
                                 <a href="#" class="team-social-link" aria-label="LinkedIn">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        <path
+                                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                     </svg>
                                 </a>
                             </div>
@@ -232,8 +236,8 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                             <h3 class="team-name">Nico</h3>
                             <p class="team-role">Desarrollador Full Stack</p>
                             <p class="team-description">
-                                Desarrollo transversal en todas las capas del proyecto. Implementación del sistema 
-                                de carrito de compras, gestión de pedidos y diseño del sistema visual. Colaboración 
+                                Desarrollo transversal en todas las capas del proyecto. Implementación del sistema
+                                de carrito de compras, gestión de pedidos y diseño del sistema visual. Colaboración
                                 en la lógica de negocio y optimización de la experiencia de usuario.
                             </p>
                             <div class="team-skills">
@@ -245,12 +249,14 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                             <div class="team-social">
                                 <a href="#" class="team-social-link" aria-label="GitHub">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                                     </svg>
                                 </a>
                                 <a href="#" class="team-social-link" aria-label="LinkedIn">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        <path
+                                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                     </svg>
                                 </a>
                             </div>
@@ -269,8 +275,8 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                             <h3 class="team-name">John Esparrell Molina</h3>
                             <p class="team-role">Desarrollador Full Stack</p>
                             <p class="team-description">
-                                Participación completa en el ciclo de desarrollo del proyecto. Creación de la 
-                                gestión de productos, integración frontend-backend, y desarrollo del sistema de 
+                                Participación completa en el ciclo de desarrollo del proyecto. Creación de la
+                                gestión de productos, integración frontend-backend, y desarrollo del sistema de
                                 temas claro/oscuro. Trabajo colaborativo en debugging y testing de la aplicación.
                             </p>
                             <div class="team-skills">
@@ -282,12 +288,14 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                             <div class="team-social">
                                 <a href="#" class="team-social-link" aria-label="GitHub">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                                     </svg>
                                 </a>
                                 <a href="#" class="team-social-link" aria-label="LinkedIn">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        <path
+                                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                     </svg>
                                 </a>
                             </div>
@@ -339,14 +347,10 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="location-map">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d746.4804906100874!2d2.4383229765363468!3d41.54928688116325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4b51615a9afb5%3A0xb29dc50d1b9b10a4!2sInstitut%20p%C3%BAblic%20Thos%20i%20Codina!5e0!3m2!1sca!2ses!4v1764359704392!5m2!1sca!2ses" 
-                                width="100%" 
-                                height="400" 
-                                style="border:0; border-radius: 1rem;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d746.4804906100874!2d2.4383229765363468!3d41.54928688116325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4b51615a9afb5%3A0xb29dc50d1b9b10a4!2sInstitut%20p%C3%BAblic%20Thos%20i%20Codina!5e0!3m2!1sca!2ses!4v1764359704392!5m2!1sca!2ses"
+                                width="100%" height="400" style="border:0; border-radius: 1rem;" allowfullscreen=""
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
                         </div>
                     </div>
@@ -363,7 +367,8 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     <div class="footer-logo">
                         <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
                     </div>
-                    <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad educativa.</p>
+                    <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad
+                        educativa.</p>
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Facebook">F</a>
                         <a href="#" class="social-link" aria-label="Instagram">I</a>
