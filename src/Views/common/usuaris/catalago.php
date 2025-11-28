@@ -14,28 +14,23 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
     <script src="/assets/js/header.js"></script>
     <script src="/assets/js/themeChange.js"></script>
     <!-- <script src="/assets/js/carrito.js"></script> -->
-    <script src="/assets/js/carritoDEV.js"></script>
+    <script src="/assets/js/carritoDEV.js" defer></script>
 </head>
 
 <body>
     <!-- Header Principal -->
     <header class="header" id="mainHeader">
         <div class="header-content">
-            <!-- Logo (centrado por defecto, se mueve a la izquierda al hacer scroll) -->
             <div class="logo-container">
                 <a href="/dashboard">
                     <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
                 </a>
             </div>
-
-            <!-- Iconos de la derecha (carrito, perfil, hamburguesa) -->
             <div class="header-actions">
-                <!-- Botón de cambio de tema -->
                 <button id="theme-toggle" class="theme-toggle">
                     <span class="icon-light">☀️</span>
                     <span class="icon-dark">🌙</span>
                 </button>
-                <!-- Carrito -->
                 <a href="javascript:void(0)" class="header-icon cart-icon" aria-label="Carrito de compras">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="9" cy="21" r="1"></circle>
@@ -44,16 +39,12 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     </svg>
                     <span class="cart-badge">3</span>
                 </a>
-
-                <!-- Perfil -->
                 <a href="/perfil" class="header-icon profile-icon" aria-label="Mi perfil">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                 </a>
-
-                <!-- Botón Hamburguesa -->
                 <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
@@ -63,22 +54,28 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
         </div>
     </header>
 
-    <!-- Overlay oscuro -->
     <div class="menu-overlay" id="menuOverlay"></div>
 
-    <!-- Menú lateral -->
     <nav>
         <ul class="navigation" id="navigation">
             <li><a href="/catalogo">El Catálogo</a></li>
             <li><a href="/tickets">Mis Pedidos</a></li>
             <li><a href="/about-us">About Us</a></li>
-            <li><a href="/formulari">Contacto</a></li>
+            <!-- <li><a href="/formulari">Contacto</a></li> -->
 
             <?php if ($isAdmin): ?>
                 <li class="admin-only">
                     <a href="/admin/gestio-productes">
-                        <img src="/assets/media/admin.png" alt="Admin" class="logo-admin">
+                        <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
                         Gestió Productes
+                    </a>
+                </li>
+            <?php endif; ?>
+            <?php if ($isAdmin): ?>
+                <li class="admin-only">
+                    <a href="/admin/gestio-comandes">
+                        <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
+                        Gestió Comandes
                     </a>
                 </li>
             <?php endif; ?>
@@ -95,6 +92,17 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
             </div>
         </ul>
     </nav>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <div id="carreto">
+        <div class="cart-header">
+            <h4 style="margin: 0;">Mi Carrito</h4>
+            <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
+        </div>
+        <div class="cart-content">
+
+        </div>
+    </div>
 
     <!-- Contenido Principal -->
     <main class="content">
