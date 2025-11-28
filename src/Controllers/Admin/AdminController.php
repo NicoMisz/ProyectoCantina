@@ -13,15 +13,13 @@ use Src\Model\Comanda\Comanda;
 
 class AdminController
 {
-    // public function index()
-    // {
-    // }
-
+    //Existeix i funciona pero no te estils  
     public function cambiarPassword()
     {
         require __DIR__ . '/../../Views/common/usuaris/cambiarPassword.php';
         exit;
     }
+    // Llistar totes les comoandes en estil descendent(per id)
     public function gestioComandes()
     {
         $comandes = (new Comanda())->obtenirComandes();
@@ -32,6 +30,7 @@ class AdminController
         exit;
     }
 
+    // Administrador pot canviar contrasenyes
     public function ajaxCambiarPassword()
     {
         header('Content-Type: application/json; charset=utf-8');
@@ -47,11 +46,12 @@ class AdminController
             file_put_contents($path, json_encode($usuari, JSON_PRETTY_PRINT), LOCK_EX);
             $res = ["res" => 1, "msg" => "Usuari login correcte."];
             session_destroy();
-            return json_encode($res, JSON_PRETTY_PRINT);
+            echo json_encode($res, JSON_PRETTY_PRINT);
         } else {
             $res = ["res" => 0, "msg" => "Contraseña diferente"];
-            return json_encode($res, JSON_PRETTY_PRINT);
+            echo json_encode($res, JSON_PRETTY_PRINT);
         }
+        exit;
     }
 
 
@@ -76,13 +76,15 @@ class AdminController
         $articuloPrecio = filter_var($_POST['articulo-precio'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $articuloHorario = htmlspecialchars(trim($_POST['articulo-horario']), ENT_QUOTES, 'UTF-8');
         $articuloCantidad = filter_var($_POST['articulo-cantidad'], FILTER_SANITIZE_NUMBER_INT);
+        // Sanitizado campos 
 
         // Construir la ruta del archivo JSON
         $rutaJSON = __DIR__ . "/../../../data/database/Articles/" . $articuloFile . ".json";
 
         // Verificar que el archivo existe para obtener los datos previos
         if (!file_exists($rutaJSON)) {
-            die("Error: El archivo del artículo no existe");
+            echo "Error: El archivo del artículo no existe";
+            exit;
         }
 
         // Leer el artículo existente para mantener datos no modificados
@@ -144,10 +146,6 @@ class AdminController
         } else {
             echo "Error al guardar el artículo<br>";
         }
-
-        echo "<pre>";
-        print_r($articulo);
-        echo "</pre>";
         exit;
     }
 

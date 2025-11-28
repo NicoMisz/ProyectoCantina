@@ -100,6 +100,8 @@ if (!empty($_SESSION['user']) && !empty($_SESSION['user']['token'])) {
 
 
 $rol = $_SESSION['user']['rol'];
+// var_dump($rol);
+// exit;
 if (!empty($rol)) {
     // switch commun
     switch ($uri) {

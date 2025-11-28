@@ -1,7 +1,3 @@
-// ========================================
-// HEADER CANTINA TONY'S - JavaScript
-// ========================================
-
 class HeaderManager {
     constructor() {
         this.header = document.getElementById('mainHeader');
@@ -29,9 +25,6 @@ class HeaderManager {
         this.setupCartAnimation();
     }
 
-    // ========================================
-    // SCROLL - Logo animado
-    // ========================================
     setupScrollListener() {
         let ticking = false;
 
@@ -58,9 +51,6 @@ class HeaderManager {
         }
     }
 
-    // ========================================
-    // MENÚ HAMBURGUESA
-    // ========================================
     setupMenuListeners() {
         this.hamburgerBtn.addEventListener('click', () => this.toggleMenu());
         this.menuOverlay.addEventListener('click', () => this.closeMenu());
@@ -108,9 +98,6 @@ class HeaderManager {
         this.hamburgerBtn.setAttribute('aria-expanded', 'false');
     }
 
-    // ========================================
-    // CARRITO LATERAL
-    // ========================================
     setupCartListeners() {
         // Verificar que los elementos existen
         if (!this.carreto || !this.cartOverlay || !this.closeCartBtn) {
@@ -135,7 +122,6 @@ class HeaderManager {
     }
 
     openCart() {
-        // Cerrar menú si está abierto
         if (this.isMenuOpen) {
             this.closeMenu();
         }
@@ -152,8 +138,6 @@ class HeaderManager {
         this.isCartOpen = false;
         this.carreto.classList.remove('active');
         this.cartOverlay.classList.remove('active');
-
-        // Solo restaurar scroll si el menú tampoco está abierto
         if (!this.isMenuOpen) {
             document.body.style.overflow = '';
         }
@@ -165,9 +149,6 @@ class HeaderManager {
         this.isCartOpen ? this.closeCart() : this.openCart();
     }
 
-    // ========================================
-    // TECLADO
-    // ========================================
     setupKeyboardListeners() {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
@@ -181,9 +162,6 @@ class HeaderManager {
         });
     }
 
-    // ========================================
-    // LINK ACTIVO
-    // ========================================
     markActiveLink() {
         const currentPath = window.location.pathname;
         const menuLinks = this.navigation.querySelectorAll('a');
@@ -199,9 +177,6 @@ class HeaderManager {
         });
     }
 
-    // ========================================
-    // ANIMACIÓN CARRITO
-    // ========================================
     setupCartAnimation() {
         const cartIcon = document.querySelector('.cart-icon');
 
@@ -216,9 +191,6 @@ class HeaderManager {
         }
     }
 
-    // ========================================
-    // API PÚBLICA
-    // ========================================
     updateCartBadge(count) {
         const badge = document.querySelector('.cart-badge');
         if (badge) {
@@ -290,35 +262,3 @@ window.closeCart = () => {
         headerManager.forceCloseCart();
     }
 };
-
-// ========================================
-// EJEMPLOS DE USO
-// ========================================
-/*
-// Actualizar contador del carrito:
-window.updateCartCount(5);
-
-// Abrir/cerrar carrito:
-window.openCart();
-window.closeCart();
-
-// Cerrar menú:
-window.closeHeaderMenu();
-
-// Abrir menú:
-window.openHeaderMenu();
-
-// Ejemplo con fetch al añadir al carrito:
-function addToCart(productId) {
-    fetch('/api/cart/add', {
-        method: 'POST',
-        body: JSON.stringify({ productId }),
-        headers: { 'Content-Type': 'application/json' }
-    })
-    .then(response => response.json())
-    .then(data => {
-        window.updateCartCount(data.cartCount);
-        window.openCart(); // Abrir carrito automáticamente
-    });
-}
-*/

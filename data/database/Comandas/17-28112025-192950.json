@@ -1,0 +1,28 @@
+{
+    "id": 17,
+    "fecha": "28112025-192950",
+    "estado": true,
+    "total": 39.99,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "3-24112025-145923": {
+            "id": 3,
+            "imagen": "\/assets\/media\/Articles\/24112025-145923.jpg",
+            "nombre": "Gyozas",
+            "descripcion": "Gyozas de carne caseras",
+            "cantidad": 6,
+            "precio": 4.5
+        },
+        "menu": {
+            "id": "0",
+            "imagen": null,
+            "nombre": "Men\u00fa",
+            "descripcion": "Men\u00fa del Dia",
+            "cantidad": 1,
+            "precio": 12.99
+        }
+    }
+}

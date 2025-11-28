@@ -1,6 +1,3 @@
-// ========================================
-// THEME SWITCHER SIMPLE
-// ========================================
 
 class ThemeSwitcher {
     constructor() {
@@ -67,12 +64,8 @@ class ThemeSwitcher {
     }
 }
 
-// Inicializar
 const themeSwitcher = new ThemeSwitcher();
 
-// ========================================
-// BOTÓN DE TOGGLE
-// ========================================
 document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('theme-toggle');
 
@@ -94,7 +87,6 @@ function updateToggleIcon(btn) {
     const theme = themeSwitcher.getTheme();
     const lightIcon = btn.querySelector('.icon-light');
     const darkIcon = btn.querySelector('.icon-dark');
-
     if (theme === 'dark') {
         if (lightIcon) lightIcon.style.display = 'none';
         if (darkIcon) darkIcon.style.display = 'inline';
