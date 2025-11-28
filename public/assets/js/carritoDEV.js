@@ -1,5 +1,21 @@
 let carreto = null;
 
+function actualitzarBadgeCarreto(carreto) {
+    const badge = document.querySelector('.cart-badge');
+    if (badge) {
+        // Contar el número de artículos diferentes (claves del objeto)
+        const numArticulos = carreto && typeof carreto === 'object' ? Object.keys(carreto).length : 0;
+        badge.textContent = numArticulos;
+
+        // Opcional: ocultar badge si está vacío
+        if (numArticulos === 0) {
+            badge.style.display = 'none';
+        } else {
+            badge.style.display = 'flex';
+        }
+    }
+}
+
 function netejarCarreto() {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/netejar-carreto", true);
@@ -10,7 +26,8 @@ function netejarCarreto() {
                 console.log("Respuesta del servidor:", xhr.responseText);
                 carregarCarreto(function (carretoRecibido) {
                     carreto = carretoRecibido;
-                    console.log("Carreto limpiado:", carreto);
+                    // console.log("Carreto limpiado:", carreto);
+                    actualitzarBadgeCarreto(carreto);
                 });
             } else {
                 console.error("Error en la petición:", xhr.status);
@@ -30,7 +47,8 @@ function afegirArticle(id, quantitat, preu = null) {
                 console.log("Respuesta del servidor:", xhr.responseText);
                 carregarCarreto(function (carretoRecibido) {
                     carreto = carretoRecibido;
-                    console.log("Carreto actualizado:", carreto);
+                    // console.log("Carreto actualizado:", carreto);
+                    actualitzarBadgeCarreto(carreto);
                 });
             } else {
                 console.error("Error en la petición:", xhr.status);
@@ -60,7 +78,7 @@ function carregarCarreto(callback) {
 
                 // Actualizar la interfaz
                 actualitzarLlistaCarreto(carretoData);
-
+                actualitzarBadgeCarreto(carretoData);
                 // Llamar al callback con los datos
                 if (callback) {
                     callback(carretoData);
@@ -263,7 +281,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // 1. Cargar el carrito al iniciar
     carregarCarreto(function (carretoRecibido) {
         carreto = carretoRecibido;
-        console.log("Carreto inicial cargado:", carreto);
+        actualitzarBadgeCarreto(carreto);
+        // console.log("Carreto inicial cargado:", carreto);
     });
 
     // 2. Manejadores para botones + (aumentar cantidad)
