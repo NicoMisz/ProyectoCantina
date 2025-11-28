@@ -2,8 +2,6 @@
 $user = $_SESSION['user'] ?? null;
 $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -173,11 +171,11 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                             <div class="menu-dia-items">
                                 <div class="menu-item">
                                     <span class="item-icon"></span>
-                                    <span class="item-text">Ensalada o Sopa</span>
+                                    <span class="item-text">Entrante</span>
                                 </div>
                                 <div class="menu-item">
                                     <span class="item-icon"></span>
-                                    <span class="item-text">Plato Principal a elegir</span>
+                                    <span class="item-text">Principal a elegir</span>
                                 </div>
                                 <div class="menu-item">
                                     <span class="item-icon"></span>
@@ -205,53 +203,22 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
             <div class="row ofertas-grid">
                 <div class="col-12 col-md-4">
                     <div class="oferta-card">
-                        <div class="oferta-badge">-20%</div>
+                        <div class="oferta-badge">-25%</div>
                         <div class="oferta-image">
-                            <img src="/assets/media/huevos.webp" alt="Ramen Especial">
+                            <img src="/assets/media/Articles/28112025-210758.webp" alt="Empanadas Doradas">
                         </div>
                         <div class="oferta-content">
-                            <h3 class="oferta-title">Huevos Rellenos Especiales</h3>
-                            <p class="oferta-description">
-                                Huevos rellenos caseros cubiertos con una suave salsa cremosa y acabado de yema rallada.
-                                Sabrosos, frescos y perfectos para cualquier ocasión.
-                            </p>
-                            <div class="oferta-footer">
-                                <div class="oferta-price">
-                                    <span class="price-old">11.99€</span>
-                                    <span class="price-new">9.59€</span>
-                                </div>
-                                <button class="btn-add-cart">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <circle cx="9" cy="21" r="1"></circle>
-                                        <circle cx="20" cy="21" r="1"></circle>
-                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                        </path>
-                                    </svg>
-                                    Añadir
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="oferta-card">
-                        <div class="oferta-badge">-15%</div>
-                        <div class="oferta-image">
-                            <img src="/assets/media/empanadas.webp" alt="Sushi Variado">
-                        </div>
-                        <div class="oferta-content">
-                            <h3 class="oferta-title">Empanadas Doradas (20 piezas)</h3>
+                            <h3 class="oferta-title">Empanadas Doradas</h3>
                             <p class="oferta-description">
                                 Porción de empanadas artesanales, crujientes y recién fritas. Perfectas para compartir o
                                 disfrutar solas, con rellenos tradicionales y mucho sabor.
                             </p>
                             <div class="oferta-footer">
                                 <div class="oferta-price">
-                                    <span class="price-old">18.99€</span>
+                                    <span class="price-old">21.52€</span>
                                     <span class="price-new">16.14€</span>
                                 </div>
-                                <button class="btn-add-cart">
+                                <button class="btn-add-cart" onclick="afegirArticle('4-28112025-210758', 1)">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="2">
                                         <circle cx="9" cy="21" r="1"></circle>
@@ -265,11 +232,12 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                         </div>
                     </div>
                 </div>
+
                 <div class="col-12 col-md-4">
                     <div class="oferta-card">
                         <div class="oferta-badge">-25%</div>
                         <div class="oferta-image">
-                            <img src="/assets/media/quesadillas.jpg" alt="Bento Box">
+                            <img src="/assets/media/Articles/28112025-210846.jpg" alt="Quesadillas Mixtas">
                         </div>
                         <div class="oferta-content">
                             <h3 class="oferta-title">Quesadillas Mixtas</h3>
@@ -282,7 +250,39 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                                     <span class="price-old">14.99€</span>
                                     <span class="price-new">11.24€</span>
                                 </div>
-                                <button class="btn-add-cart">
+                                <button class="btn-add-cart" onclick="afegirArticle('5-28112025-210846', 1)">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="9" cy="21" r="1"></circle>
+                                        <circle cx="20" cy="21" r="1"></circle>
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
+                                        </path>
+                                    </svg>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="oferta-card">
+                        <div class="oferta-badge">-25%</div>
+                        <div class="oferta-image">
+                            <img src="/assets/media/Articles/28112025-210955.webp" alt="Huevos Rellenos Especiales">
+                        </div>
+                        <div class="oferta-content">
+                            <h3 class="oferta-title">Huevos Rellenos Especiales</h3>
+                            <p class="oferta-description">
+                                Huevos rellenos caseros cubiertos con una suave salsa cremosa y acabado de yema rallada.
+                                Sabrosos, frescos y perfectos para cualquier ocasión.
+                            </p>
+                            <div class="oferta-footer">
+                                <div class="oferta-price">
+                                    <span class="price-old">12.79€</span>
+                                    <span class="price-new">9.59€</span>
+                                </div>
+                                <button class="btn-add-cart" onclick="afegirArticle('6-28112025-210955', 1)">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="2">
                                         <circle cx="9" cy="21" r="1"></circle>

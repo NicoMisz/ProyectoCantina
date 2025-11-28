@@ -152,6 +152,13 @@ if (!empty($rol)) {
                     exit;
             }
             exit;
+        case '/eliminar-article-carreto':
+            switch ($method) {
+                case 'POST':
+                    (new CommonController())->xmlEliminarArticle();
+                    exit;
+            }
+            exit;
         case '/netejar-carreto':
             switch ($method) {
                 case 'POST':

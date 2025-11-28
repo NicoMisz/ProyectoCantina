@@ -110,13 +110,13 @@ class CommonController
         $data["Postre"] = array();
         $data["Bebida"] = array();
         // Articles menu
-        $data["Entrante"]["1-30122025-171618"] = $articleClass->obtenirArticle("1-30122025-171618");
-        $data["Entrante"]["2-30122025-171618"] = $articleClass->obtenirArticle("2-30122025-171618");
+        $data["Entrante"]["1-30122025-171618"] = $articleClass->obtenirArticle("12-28112025-212232");
+        $data["Entrante"]["2-30122025-171618"] = $articleClass->obtenirArticle("18-28112025-213202");
         $data["Entrante"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
         $data["Principal"]["1-30122025-171618"] = $articleClass->obtenirArticle("1-30122025-171618");
-        $data["Principal"]["2-30122025-171618"] = $articleClass->obtenirArticle("2-30122025-171618");
-        $data["Principal"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
-        $data["Postre"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
+        $data["Principal"]["2-30122025-171618"] = $articleClass->obtenirArticle("5-28112025-210846");
+        $data["Principal"]["3-24112025-145923"] = $articleClass->obtenirArticle("10-28112025-211951");
+        $data["Postre"]["3-24112025-145923"] = $articleClass->obtenirArticle("9-28112025-211837");
         $data["Bebida"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
         require __DIR__ . '/../Views/common/usuaris/menu.php';
         exit;
@@ -373,6 +373,50 @@ class CommonController
         }
         exit;
     }
+    public function xmlEliminarArticle()
+    {
+        if (isset($_POST["data"])) {
+            $jsonstring = $_POST["data"];
+            $key = json_decode($jsonstring, true); // La key completa: "2-30122025-171618"
+            if (array_key_exists("carreto", $_COOKIE)) {
+                $carreto = json_decode($_COOKIE["carreto"], true);
+                if (isset($carreto[$key])) {
+                    // Eliminar el artículo
+                    unset($carreto[$key]);
+                    if (empty($carreto)) {
+                        setcookie("carreto", "", time() - 3600, "/");
+                        $res = [
+                            "res" => 1,
+                            "msg" => "Artículo eliminado. Carrito vacío."
+                        ];
+                    } else {
+                        $cookie = json_encode($carreto);
+                        setcookie("carreto", $cookie, time() + 2592000, "/");
+                        $res = [
+                            "res" => 1,
+                            "msg" => "Artículo eliminado correctamente."
+                        ];
+                    }
+                } else {
+                    $res = [
+                        "res" => 0,
+                        "msg" => "Artículo no encontrado en el carrito."
+                    ];
+                }
+            } else {
+                $res = [
+                    "res" => 0,
+                    "msg" => "No existe carrito."
+                ];
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($res);
+            exit;
+        }
+
+        exit;
+    }
 
     public function xmlEliminarArticles()
     {
@@ -403,13 +447,12 @@ class CommonController
     }
     public function xmlCarregarCarreto()
     {
-        // Comprovar si exsisteix cookie carreto y extreurala
         if (array_key_exists("carreto", $_COOKIE)) {
             $carreto = json_decode($_COOKIE["carreto"], true);
             $res = [
                 "res" => 1,
                 "msg" => "Cargar Carreto.",
-                "carreto" => $carreto
+                "carreto" => (object) $carreto  // Convertir a objeto
             ];
         } else {
             $res = [
@@ -418,8 +461,7 @@ class CommonController
             ];
         }
         header('Content-Type: application/json');
-        $res = json_encode($res);
-        echo $res;
+        echo json_encode($res);
         exit;
     }
     public function xmlCrearTicket()

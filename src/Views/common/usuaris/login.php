@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <script src="/assets/js/themeChange.js"></script>
 </head>
+
 <body class="login-page">
     <!-- Botón de cambio de tema -->
     <button id="theme-toggle" class="theme-toggle theme-toggle-fixed" aria-label="Cambiar tema">
@@ -28,26 +30,13 @@
             <form id="userForm">
                 <div class="form-group">
                     <label for="email" class="form-label">Usuario o Email</label>
-                    <input 
-                        type="text" 
-                        id="email" 
-                        name="email" 
-                        class="form-input" 
-                        placeholder="tu@email.com"
-                        required
-                    >
+                    <input type="text" id="email" name="email" class="form-input" placeholder="tu@email.com" required>
                 </div>
 
                 <div class="form-group">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        class="form-input" 
-                        placeholder="••••••••"
-                        required
-                    >
+                    <input type="password" id="password" name="password" class="form-input" placeholder="••••••••"
+                        required>
                 </div>
 
                 <button type="submit" class="btn-login">Iniciar Sesión</button>
@@ -72,17 +61,18 @@
                 method: 'POST',
                 body: formData
             })
-            .then(r => r.text())
-            .then(d => {
-                // Aquí puedes manejar la respuesta del servidor
-                console.log('Respuesta:', d);
-                window.location.href = '/dashboard';
-            })
-            .catch(err => {
-                console.error('Error:', err);
-                document.getElementById('respuesta').innerHTML = "Error al iniciar sesión";
-            });
+                .then(r => r.text())
+                .then(d => {
+                    // Aquí puedes manejar la respuesta del servidor
+                    console.log('Respuesta:', d);
+                    window.location.href = '/dashboard';
+                })
+                .catch(err => {
+                    console.error('Error:', err);
+                    document.getElementById('respuesta').innerHTML = "Error al iniciar sesión";
+                });
         });
     </script>
 </body>
+
 </html>

@@ -117,24 +117,20 @@
     </div>
     <main class="content">
 
-
+        <!-- 
         <a href="#" onclick="netejarCarreto()">BOTON LIMPIAR CARRITO</a>
         <a href="#" onclick="afegirArticle('2-30122025-171618',2)">AÑADIR EJEMPLO</a>
         <a href="#" onclick="afegirArticle('1-30122025-171618',2)">AÑADIR EJEMPLO</a>
         <br>
-        <a href="#" onclick="carregarCarreto()">Cargarcookies</a>
+        <a href="#" onclick="carregarCarreto()">Cargarcookies</a> -->
         <!-- <div id="carretos"> -->
         <?php
 
-        
+
         if (isset($carreto)) {
             $total = 0;
 
             echo '
-        <div class="cart-header">
-            <h4 style="margin: 0;">🛒 Mi Carrito</h4>
-            <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
-        </div>
         <div class="cart-content">
             <div class="cart-items">';
 
@@ -216,7 +212,8 @@
                     <div class="footer-logo">
                         <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
                     </div>
-                    <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad educativa.</p>
+                    <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad
+                        educativa.</p>
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Facebook">F</a>
                         <a href="#" class="social-link" aria-label="Instagram">I</a>
@@ -291,4 +288,5 @@
     </footer>
 
 </body>
+
 </html>

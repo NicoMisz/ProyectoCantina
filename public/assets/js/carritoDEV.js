@@ -67,6 +67,28 @@ function afegirArticle(id, quantitat, preu = null) {
     xhr.send("data=" + json);
 }
 
+function eliminarArticle(key) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/eliminar-article-carreto", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                console.log("Respuesta del servidor:", xhr.responseText);
+                carregarCarreto(function (carretoRecibido) {
+                    carreto = carretoRecibido;
+                    actualitzarBadgeCarreto(carreto);
+                });
+            } else {
+                console.error("Error en la petición:", xhr.status);
+            }
+        }
+    };
+
+    let json = JSON.stringify(key);
+    xhr.send("data=" + json);
+}
+
 function carregarCarreto(callback) {
     // Petición AJAX para obtener el contenido actual del carrito
     let xhr = new XMLHttpRequest();
@@ -150,9 +172,6 @@ function actualitzarLlistaCarreto(carreto) {
     if (!carreto || Object.keys(carreto).length === 0) {
         // Mostrar mensaje de carrito vacío
         carretoElement.innerHTML = `
-        <div class="cart-header">
-            <h4 style="margin: 0;">Mi Carrito</h4>
-        </div>
         <div class="cart-content">
             <div class="cart-items">
                 <div style="text-align: center; padding: 40px 20px; color: #999;">
@@ -188,11 +207,14 @@ function actualitzarLlistaCarreto(carreto) {
         return;
     }
 
+    const items = Object.entries(carreto);
+    console.log(items);
+
     // Calcular subtotal sumando precio × cantidad de cada artículo
-    const items = Object.values(carreto);
-    console.log(items)
+    // const items = Object.values(carreto);
+    // console.log(items)
     let subtotal = 0;
-    items.forEach(item => {
+    items.forEach(([key, item]) => {
         const precio = parseFloat(item.precio) || 0;
         const cantidad = parseInt(item.cantidad) || 1;
         subtotal += precio * cantidad;
@@ -203,7 +225,7 @@ function actualitzarLlistaCarreto(carreto) {
     const total = subtotal + iva;
 
     // Generar HTML para cada artículo del carrito
-    const itemsHTML = items.map(item => {
+    const itemsHTML = items.map(([key, item]) => {
         const precio = parseFloat(item.precio) || 0;
         const cantidad = parseInt(item.cantidad) || 1;
         const totalItem = precio * cantidad;
@@ -211,7 +233,7 @@ function actualitzarLlistaCarreto(carreto) {
 
         return `
         <div class="item-card">
-            <a href>x</a>
+            <a onclick="eliminarArticle('${key}')">x</a>
             <div class="row" style="align-items: center;">
                 <div class="col-8">
                     <div class="item-nombre">${item.nombre}</div>
@@ -266,14 +288,16 @@ function actualitzarLlistaCarreto(carreto) {
 }
 
 
-function añadirAlCarrito(articleId) {
+function añadirAlCarrito(articleId, num = 0) {
     // A partir de data amb el id del fitxer i la quantitat es manda a la funcio afegir article
-    const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
-    const cantidad = parseInt(articleDiv.querySelector('.cantidad').textContent);
-    if (cantidad > 0) {
-        afegirArticle(articleId, cantidad);
-    } else {
-        alert('Selecciona una cantidad mayor a 0');
+    if (num != 0) {
+        const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
+        const cantidad = parseInt(articleDiv.querySelector('.cantidad').textContent);
+        if (cantidad > 0) {
+            afegirArticle(articleId, cantidad);
+        } else {
+            alert('Selecciona una cantidad mayor a 0');
+        }
     }
 }
 
