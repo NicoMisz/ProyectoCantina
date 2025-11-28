@@ -88,7 +88,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
             <?php if ($isAdmin): ?>
                 <!-- Solo visible para administradores -->
                 <li class="admin-only">
-                    <a href="/admin/ ">
+                    <a href="/admin/gestio-comandes">
                         <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
                         Gestió Comandes
                     </a>
