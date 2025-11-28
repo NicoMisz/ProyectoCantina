@@ -1,5 +1,6 @@
 <?php
-
+$user = $_SESSION['user'] ?? null;
+$isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -134,7 +135,7 @@
                 echo '<div class="item-card">
                 <div class="row" style="align-items: center;">
                 <div class="col-2">
-                        <img src="' . $item["imagen"] . '" alt="Pizza" class="item-img">
+                        <img src="' . $item["imagen"] . '"  class="item-img">
                     </div>
                     <div class="col-8">
                         <div class="item-nombre">' . htmlspecialchars($nombreProducto) . '</div>
@@ -178,10 +179,6 @@
 
         } else {
             echo '
-            <div class="cart-header">
-            <h4 style="margin: 0;">🛒 Mi Carrito</h4>
-            <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
-        </div>
         <div class="cart-content">
             <div>
             <span>Carreto Buit</span>

@@ -213,7 +213,7 @@ function actualitzarLlistaCarreto(carreto) {
                     <span>TOTAL:</span>
                     <span>0.00€</span>
                 </div>
-                <a class="btn-comprar" href="/carreto" style="opacity: 0.5; cursor: not-allowed;">
+                <a class="btn-comprar" href="/carrito" style="opacity: 0.5; cursor: not-allowed;">
                     Proceder al Pago
                 </a>
             </div>
@@ -247,6 +247,7 @@ function actualitzarLlistaCarreto(carreto) {
     const total = subtotal + iva;
 
     // Generar HTML para cada artículo del carrito
+
     const itemsHTML = items.map(([key, item]) => {
         const precio = parseFloat(item.precio) || 0;
         const cantidad = parseInt(item.cantidad) || 1;
@@ -314,7 +315,16 @@ function añadirAlCarrito(articleId, num = 0) {
     // A partir de data amb el id del fitxer i la quantitat es manda a la funcio afegir article
     if (num != 0) {
         const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
-        const cantidad = parseInt(articleDiv.querySelector('.cantidad').textContent);
+        const cantidad = parseInt(articleDiv.querySelector('.cantidad-display').textContent);
+        if (cantidad > 0) {
+            afegirArticle(articleId, cantidad);
+        } else {
+            alert('Selecciona una cantidad mayor a 0');
+        }
+    }
+    if (num == 0) {
+        const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
+        const cantidad = parseInt(articleDiv.querySelector('.cantidad-display').textContent);
         if (cantidad > 0) {
             afegirArticle(articleId, cantidad);
         } else {
@@ -339,9 +349,9 @@ document.addEventListener('DOMContentLoaded', function () {
             e.stopPropagation();
             const articleId = this.getAttribute('data-article');
             const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
-            const cantidadSpan = articleDiv.querySelector('.cantidad');
-            const totalSpan = articleDiv.querySelector('.total');
-            const precio = parseFloat(articleDiv.getAttribute('data-precio'));
+            const cantidadSpan = articleDiv.querySelector('.cantidad-display');
+            const totalSpan = articleDiv.querySelector('producto-total');
+            const precio = parseFloat(articleDiv.getAttribute('precio-valor'));
 
             // Incrementar cantidad y actualizar precio total
             let cantidad = parseInt(cantidadSpan.textContent);
@@ -359,9 +369,9 @@ document.addEventListener('DOMContentLoaded', function () {
             e.stopPropagation();
             const articleId = this.getAttribute('data-article');
             const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
-            const cantidadSpan = articleDiv.querySelector('.cantidad');
-            const totalSpan = articleDiv.querySelector('.total');
-            const precio = parseFloat(articleDiv.getAttribute('data-precio'));
+            const cantidadSpan = articleDiv.querySelector('.cantidad-display');
+            const totalSpan = articleDiv.querySelector('.producto-total');
+            const precio = parseFloat(articleDiv.getAttribute('precio-valor'));
 
             // Decrementar cantidad si es mayor que 0 y actualizar precio total
             let cantidad = parseInt(cantidadSpan.textContent);

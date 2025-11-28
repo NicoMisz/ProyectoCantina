@@ -118,7 +118,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     $total = $ticket['total'];
                     $articulos = $ticket['articulos'];
 
-            ?>
+                    ?>
 
                     <div class="row">
                         <div style="padding:10px; width:100%;">
@@ -163,7 +163,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                         </div>
                     </div>
 
-            <?php
+                    <?php
                 } // foreach
             } else {
                 echo "<p>No hay tickets.</p>";
@@ -180,7 +180,8 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     <div class="footer-logo">
                         <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
                     </div>
-                    <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad educativa.</p>
+                    <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad
+                        educativa.</p>
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Facebook">F</a>
                         <a href="#" class="social-link" aria-label="Instagram">I</a>

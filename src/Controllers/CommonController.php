@@ -486,7 +486,7 @@ class CommonController
                 'id' => $id,
                 'fecha' => $fechaCreacion,
                 'estado' => true,
-                'total' => round($total, 2),
+                'precio-valor' => round($total, 2),
                 'usuario' => [
                     'id' => $_SESSION['user']['id'],
                     'nombre' => $_SESSION['user']['email']

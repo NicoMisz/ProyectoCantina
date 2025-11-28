@@ -3816,3 +3816,32 @@ body {
     gap: 0.5rem;
   }
 }
+
+.item-card {
+  position: relative;
+  padding: 10px;
+}
+
+.item-card>a {
+  position: absolute;
+  top: -9px;
+  right: -10px;
+  cursor: pointer;
+  z-index: 10;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  background-color: white;
+  text-align: center;
+  border: 0.10rem solid black;
+  border-radius: 100%;
+  line-height: 1;
+  color: #666;
+  text-decoration: none;
+}
+
+.item-card>a:hover {
+  color: #000;
+}
