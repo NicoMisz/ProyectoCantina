@@ -335,8 +335,6 @@ class CommonController
             $menu = json_decode($jsonstring);
 
             if (!array_key_exists("carreto", $_COOKIE)) {
-                // echo "Creació Cookie";
-                // $data = json_encode($data);
                 $carreto = array();
                 $carreto["menu"] = [
                     'id' => "0",

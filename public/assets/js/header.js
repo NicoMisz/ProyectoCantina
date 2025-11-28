@@ -221,18 +221,12 @@ class HeaderManager {
     }
 }
 
-// ========================================
-// INICIALIZACIÓN
-// ========================================
 let headerManager;
 
 document.addEventListener('DOMContentLoaded', () => {
     headerManager = new HeaderManager();
 });
 
-// ========================================
-// API GLOBAL
-// ========================================
 window.updateCartCount = (count) => {
     if (headerManager) {
         headerManager.updateCartBadge(count);

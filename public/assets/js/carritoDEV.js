@@ -254,16 +254,12 @@ function actualitzarLlistaCarreto(carreto) {
 }
 
 
-
 function añadirAlCarrito(articleId) {
+    // A partir de data amb el id del fitxer i la quantitat es manda a la funcio afegir article
     const articleDiv = document.querySelector(`[data-file="${articleId}"]`);
     const cantidad = parseInt(articleDiv.querySelector('.cantidad').textContent);
-
     if (cantidad > 0) {
         afegirArticle(articleId, cantidad);
-        // Opcional: resetear cantidad después de añadir
-        // articleDiv.querySelector('.cantidad').textContent = '0';
-        // articleDiv.querySelector('.total').textContent = '0.00';
     } else {
         alert('Selecciona una cantidad mayor a 0');
     }
@@ -272,15 +268,14 @@ function añadirAlCarrito(articleId) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-
-    // 1. Cargar el carrito al iniciar
+    // Cargar el carrito al iniciar la pagina
     carregarCarreto(function (carretoRecibido) {
         carreto = carretoRecibido;
         actualitzarBadgeCarreto(carreto);
-        // console.log("Carreto inicial cargado:", carreto);
     });
 
-    // 2. Manejadores para botones + (aumentar cantidad)
+    // Event listener globales al cargar la pagina
+    // Sumar numero
     document.querySelectorAll('.btn-plus').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.stopPropagation();
@@ -299,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // 3. Manejadores para botones - (disminuir cantidad)
+    // Restar numero
     document.querySelectorAll('.btn-minus').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.stopPropagation();
