@@ -103,7 +103,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
 
     <div id="carreto">
         <div class="cart-header">
-            <h4 style="margin: 0;">🛒 Mi Carrito</h4>
+            <h4 style="margin: 0;">Mi Carrito</h4>
             <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
         </div>
         <div class="cart-content">
@@ -328,7 +328,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                 <!-- Sección: Sobre Nosotros -->
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="/assets/media/E.png" alt="" class="logo-image">
+                        <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
                     </div>
                     <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad educativa.</p>
                     <div class="social-links">

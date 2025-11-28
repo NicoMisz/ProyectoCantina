@@ -211,6 +211,87 @@
 
         <div id="respuesta"></div>
 
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Sección: Sobre Nosotros -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
+                    </div>
+                    <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad educativa.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">F</a>
+                        <a href="#" class="social-link" aria-label="Instagram">I</a>
+                        <a href="#" class="social-link" aria-label="Twitter">T</a>
+                        <a href="#" class="social-link" aria-label="YouTube">Y</a>
+                    </div>
+                </div>
+
+                <!-- Sección: Enlaces Rápidos -->
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/catalogo">Catálogo</a></li>
+                        <li><a href="/menu">Menú del Día</a></li>
+                        <li><a href="/carrito">Mis Pedidos</a></li>
+                        <li><a href="/aboutUs">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sección: Información -->
+                <div class="footer-section">
+                    <h3>Información</h3>
+                    <ul>
+                        <li><a href="">Cómo Funciona</a></li>
+                        <li><a href="">Programa de Fidelidad</a></li>
+                        <li><a href="">Alérgenos</a></li>
+                        <li><a href="">Política de Privacidad</a></li>
+                        <li><a href="">Términos y Condiciones</a></li>
+                        <li><a href="">Política de Cookies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sección: Contacto -->
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-item">
+                        <span><b>Direccion</b></span>
+                        <span>C/ Riera de Cirera 57<br> 08304 Mataró, Barcelona</span>
+                    </div>
+                    <div class="contact-item">
+                        <span><b>Telefono</b></span>
+                        <span>+34 937 41 42 03</span>
+                    </div>
+                    <div class="contact-item">
+                        <span><b>Correo</b></span>
+                        <span>info@cantinatonys.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span><b>Horario</b></span>
+                        <span>Lun-Vie: 8:00 - 22:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div>
+                    <p>&copy; 2025 Cantina Tony's. Todos los derechos reservados.</p>
+                </div>
+
+                <div class="footer-bottom-links">
+                    <a href="/aviso-legal">Aviso Legal</a>
+                    <a href="/politica-privacidad">Privacidad</a>
+                    <a href="/cookies">Cookies</a>
+                    <a href="/accesibilidad">Accesibilidad</a>
+                </div>
+
+
+            </div>
+        </div>
+    </footer>
         <script>
             document.getElementById('userForm').addEventListener('submit', function (e) {
                 e.preventDefault();

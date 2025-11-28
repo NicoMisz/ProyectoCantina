@@ -147,7 +147,6 @@ function actualitzarLlistaCarreto(carreto) {
         carretoElement.innerHTML = `
         <div class="cart-header">
             <h4 style="margin: 0;">Mi Carrito</h4>
-            <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
         </div>
         <div class="cart-content">
             <div class="cart-items">
