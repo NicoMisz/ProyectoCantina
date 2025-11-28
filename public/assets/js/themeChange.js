@@ -29,15 +29,15 @@ class ThemeSwitcher {
 
     // Cambiar logo según el tema
     updateLogo(theme) {
-        const logoImg = document.querySelector('.logo-image');
+        const logos = document.querySelectorAll('.logo-image'); // Selecciona TODOS los logos
 
-        if (logoImg) {
+        logos.forEach(logoImg => {
             if (theme === 'dark') {
                 logoImg.src = '/assets/media/Eb.png';
             } else {
                 logoImg.src = '/assets/media/E.png';
             }
-        }
+        });
     }
 
     toggle() {

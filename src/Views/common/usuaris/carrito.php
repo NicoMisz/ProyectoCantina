@@ -208,243 +208,87 @@
 
     </main>
 
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Sección: Sobre Nosotros -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
+                    </div>
+                    <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad educativa.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">F</a>
+                        <a href="#" class="social-link" aria-label="Instagram">I</a>
+                        <a href="#" class="social-link" aria-label="Twitter">T</a>
+                        <a href="#" class="social-link" aria-label="YouTube">Y</a>
+                    </div>
+                </div>
+
+                <!-- Sección: Enlaces Rápidos -->
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/catalogo">Catálogo</a></li>
+                        <li><a href="/menu">Menú del Día</a></li>
+                        <li><a href="/carrito">Mis Pedidos</a></li>
+                        <li><a href="/aboutUs">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sección: Información -->
+                <div class="footer-section">
+                    <h3>Información</h3>
+                    <ul>
+                        <li><a href="">Cómo Funciona</a></li>
+                        <li><a href="">Programa de Fidelidad</a></li>
+                        <li><a href="">Alérgenos</a></li>
+                        <li><a href="">Política de Privacidad</a></li>
+                        <li><a href="">Términos y Condiciones</a></li>
+                        <li><a href="">Política de Cookies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sección: Contacto -->
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-item">
+                        <span><b>Direccion</b></span>
+                        <span>C/ Riera de Cirera 57<br> 08304 Mataró, Barcelona</span>
+                    </div>
+                    <div class="contact-item">
+                        <span><b>Telefono</b></span>
+                        <span>+34 937 41 42 03</span>
+                    </div>
+                    <div class="contact-item">
+                        <span><b>Correo</b></span>
+                        <span>info@cantinatonys.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span><b>Horario</b></span>
+                        <span>Lun-Vie: 8:00 - 22:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div>
+                    <p>&copy; 2025 Cantina Tony's. Todos los derechos reservados.</p>
+                </div>
+
+                <div class="footer-bottom-links">
+                    <a href="/aviso-legal">Aviso Legal</a>
+                    <a href="/politica-privacidad">Privacidad</a>
+                    <a href="/cookies">Cookies</a>
+                    <a href="/accesibilidad">Accesibilidad</a>
+                </div>
+
+
+            </div>
+        </div>
+    </footer>
+
 </body>
-<!-- <script>
-
-    let carreto = null;
-
-    function netejarCarreto() {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/netejar-carreto", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    console.log("Respuesta del servidor:", xhr.responseText);
-                    // CORREGIDO: Añadir callback
-                    carregarCarreto(function (carretoRecibido) {
-                        carreto = carretoRecibido;
-                        console.log("Carreto actualizado:", carreto);
-                    });
-                } else {
-                    console.error("Error en la petición:", xhr.status);
-                }
-            }
-        };
-        xhr.send("msg=Hola desde JavaScript");
-    }
-
-    function afegirArticle(id, quantitat) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/afegir-article-carreto", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    console.log("Respuesta del servidor:", xhr.responseText);
-                    // CORREGIDO: Añadir callback
-                    carregarCarreto(function (carretoRecibido) {
-                        carreto = carretoRecibido;
-                        console.log("Carreto actualizado:", carreto);
-                    });
-                } else {
-                    console.error("Error en la petición:", xhr.status);
-                }
-            }
-        };
-        let data = [id, quantitat];
-        json = JSON.stringify(data);
-        xhr.send("data=" + json);
-    }
-
-    function carregarCarreto(callback) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/carregar-carreto", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    let res = JSON.parse(xhr.responseText);
-                    let carretoData = res.res === 1 ? res.carreto : null;
-
-                    // CORREGIDO: Actualizar con el carreto correcto
-                    actualitzarLlistaCarreto(carretoData);
-
-                    // Llamar al callback con los datos
-                    if (callback) {
-                        callback(carretoData);
-                    }
-                } else {
-                    if (callback) {
-                        callback(null);
-                    }
-                }
-            }
-        };
-
-        xhr.send();
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        carregarCarreto(function (carretoRecibido) {
-            carreto = carretoRecibido;
-            console.log("Carreto final:", carreto);
-        });
-    });
-
-    function actualitzarLlistaCarreto(carreto) {
-        const carretoElement = document.getElementById('carreto');
-
-        if (!carretoElement) {
-            console.error('No se encontró el elemento con id "carreto"');
-            return;
-        }
-
-        // Verificar si el carreto es null, undefined o está vacío
-        if (!carreto || Object.keys(carreto).length === 0) {
-            carretoElement.innerHTML = `
-<div class="cart-header">
-    <h4 style="margin: 0;">🛒 Mi Carrito</h4>
-    <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
-</div>
-<div class="cart-content">
-    <div class="cart-items">
-        <div style="text-align: center; padding: 40px 20px; color: #999;">
-            <p>Tu carrito está vacío</p>
-        </div>
-    </div>
-    <div class="cart-summary">
-        <div class="summary-row">
-            <span>Subtotal:</span>
-            <span>0.00€</span>
-        </div>
-        <div class="summary-row">
-            <span>IVA (10%):</span>
-            <span>0.00€</span>
-        </div>
-        <div class="summary-row summary-total">
-            <span>TOTAL:</span>
-            <span>0.00€</span>
-        </div>
-        <button class="btn-comprar" disabled style="opacity: 0.5; cursor: not-allowed;">
-            Proceder al Pago
-        </button>
-    </div>
-</div>
-
-`;
-
-            const closeBtn = document.getElementById('closeCart');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function () {
-                    carretoElement.style.display = 'none';
-                });
-            }
-
-            return;
-        }
-
-        const items = Object.values(carreto);
-
-        let subtotal = 0;
-        items.forEach(item => {
-            const precio = parseFloat(item.precio) || 0;
-            const cantidad = parseInt(item.cantidad) || 1;
-            subtotal += precio * cantidad;
-        });
-
-        const iva = subtotal * 0.10;
-        const total = subtotal + iva;
-
-        const itemsHTML = items.map(item => {
-            const precio = parseFloat(item.precio) || 0;
-            const cantidad = parseInt(item.cantidad) || 1;
-            const totalItem = precio * cantidad;
-            const descripcion = item.descripcion || '';
-
-            return `
-<div class="item-card">
-    <div class="row" style="align-items: center;">
-        <div class="col-8">
-            <div class="item-nombre">${item.nombre}</div>
-            <div class="item-descripcion">${descripcion}</div>
-        </div>
-        <div class="col-4 precio-info">
-            <div class="cantidad-precio">${cantidad} × ${precio.toFixed(2)}€</div>
-            <div class="total-item">${totalItem.toFixed(2)}€</div>
-        </div>
-    </div>
-</div>
-`;
-        }).join('');
-
-        const contenidoHTML = `
-<div class="cart-header">
-    <h4 style="margin: 0;">🛒 Mi Carrito</h4>
-    <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">×</button>
-</div>
-<div class="cart-content">
-    <div class="cart-items">
-        ${itemsHTML}
-    </div>
-    <div class="cart-summary">
-        <div class="summary-row">
-            <span>Subtotal:</span>
-            <span>${subtotal.toFixed(2)}€</span>
-        </div>
-        <div class="summary-row">
-            <span>IVA (10%):</span>
-            <span>${iva.toFixed(2)}€</span>
-        </div>
-        <div class="summary-row summary-total">
-            <span>TOTAL:</span>
-            <span>${total.toFixed(2)}€</span>
-        </div>
-        <button class="btn-comprar">
-            Proceder al Pago
-        </button>
-    </div>
-</div>
-`;
-
-        carretoElement.innerHTML = contenidoHTML;
-
-        const closeBtn = document.getElementById('closeCart');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function () {
-                carretoElement.style.display = 'none';
-            });
-        }
-    }
-
-    // CORREGIDO: Añadir parámetro callback
-    function crearTicket(callback) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/crear-ticket", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    let res = JSON.parse(xhr.responseText);
-                    if (callback) {
-                        callback(res.res === 1 ? res.ticket : null);
-                    }
-                } else {
-                    if (callback) {
-                        callback(null);
-                    }
-                }
-            }
-        };
-
-        xhr.send();
-    }
-</script>
-<script>
-    // window.onload = carregarCarreto();
-
-</script> -->
-
 </html>

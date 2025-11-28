@@ -15,238 +15,6 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
     <script src="/assets/js/header.js"></script>
     <script src="/assets/js/themeChange.js"></script>
 </head>
-<style>
-    /* ============================================
-   CARRITO LATERAL - STYLES
-   ============================================ */
-
-    /* Panel principal del carrito */
-    #carreto {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: min(450px, 85vw);
-        height: 100vh;
-        background: linear-gradient(135deg, var(--surface-primary) 0%, var(--bg-primary) 100%);
-        z-index: 1000;
-        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
-        overflow-y: auto;
-        border-left: 4px solid var(--color-primary);
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    #carreto.active {
-        right: 0;
-    }
-
-    /* Overlay del carrito */
-    .cart-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--overlay-dark);
-        backdrop-filter: blur(4px);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 999;
-    }
-
-    .cart-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* Header del carrito */
-    .cart-header {
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-        color: var(--text-on-primary);
-        padding: 1.5rem;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        border-bottom: 3px solid var(--color-primary-dark);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .cart-header h4 {
-        margin: 0;
-        font-size: 1.25rem;
-        font-weight: 700;
-    }
-
-    /* Botón cerrar */
-    .cart-close-btn {
-        background: transparent;
-        border: 2px solid var(--text-on-primary);
-        color: var(--text-on-primary);
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        line-height: 1;
-    }
-
-    .cart-close-btn:hover {
-        background: var(--text-on-primary);
-        color: var(--color-primary);
-        transform: rotate(90deg);
-    }
-
-    .cart-close-btn:active {
-        transform: rotate(90deg) scale(0.9);
-    }
-
-    /* Contenido del carrito */
-    .cart-content {
-        padding: 1.5rem;
-    }
-
-    .cart-items {
-        margin-bottom: 2rem;
-    }
-
-    /* Cards de items */
-    .item-card {
-        background: var(--surface-primary);
-        border: 2px solid var(--border-color);
-        border-radius: 10px;
-        padding: 1rem;
-        margin-bottom: 15px;
-        transition: all 0.3s ease;
-    }
-
-    .item-card:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-        border-color: var(--color-primary);
-    }
-
-    /* Imagen del producto */
-    .item-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 8px;
-        min-height: 60px;
-    }
-
-    /* Información del producto */
-    .item-nombre {
-        font-weight: 600;
-        font-size: 1rem;
-        margin-bottom: 5px;
-        color: var(--text-primary);
-    }
-
-    .item-descripcion {
-        color: var(--text-secondary);
-        font-size: 0.85rem;
-        line-height: 1.3;
-    }
-
-    /* Precio */
-    .precio-info {
-        text-align: right;
-    }
-
-    .cantidad-precio {
-        color: var(--text-secondary);
-        font-size: 0.85rem;
-        margin-bottom: 5px;
-    }
-
-    .total-item {
-        font-weight: bold;
-        font-size: 1.1rem;
-        color: var(--color-success);
-    }
-
-    /* Resumen del carrito */
-    .cart-summary {
-        background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
-        color: var(--text-on-secondary);
-        border-radius: 1rem;
-        padding: 1.5rem;
-        position: sticky;
-        bottom: 0;
-        margin: 0 -1.5rem -1.5rem -1.5rem;
-    }
-
-    .summary-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 0.75rem;
-        font-size: 1rem;
-    }
-
-    .summary-total {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 2px solid rgba(255, 255, 255, 0.3);
-        font-size: 1.25rem;
-        font-weight: 700;
-    }
-
-    /* Botón comprar */
-    .btn-comprar {
-        background: linear-gradient(135deg, var(--color-success) 0%, #1e7e34 100%);
-        color: white;
-        border: none;
-        padding: 1rem;
-        font-size: 1.1rem;
-        font-weight: 700;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-        width: 100%;
-        cursor: pointer;
-        margin-top: 1rem;
-        box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
-    }
-
-    .btn-comprar:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
-    }
-
-    .btn-comprar:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-        #carreto {
-            width: 100vw;
-        }
-
-        .cart-header {
-            padding: 1rem;
-        }
-
-        .cart-content {
-            padding: 1rem;
-        }
-
-        .item-nombre {
-            font-size: 0.9rem;
-        }
-
-        .item-descripcion {
-            font-size: 0.8rem;
-        }
-    }
-</style>
 
 <body>
     <!-- Header Principal -->
@@ -399,11 +167,87 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
         </div>
     </main>
 
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Sección: Sobre Nosotros -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
+                    </div>
+                    <p>Programamos tu comida con la mejor calidad y tecnología. Desde 2020 sirviendo a la comunidad educativa.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">F</a>
+                        <a href="#" class="social-link" aria-label="Instagram">I</a>
+                        <a href="#" class="social-link" aria-label="Twitter">T</a>
+                        <a href="#" class="social-link" aria-label="YouTube">Y</a>
+                    </div>
+                </div>
 
-    <main class="demo-content">
+                <!-- Sección: Enlaces Rápidos -->
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/catalogo">Catálogo</a></li>
+                        <li><a href="/menu">Menú del Día</a></li>
+                        <li><a href="/carrito">Mis Pedidos</a></li>
+                        <li><a href="/aboutUs">Sobre Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sección: Información -->
+                <div class="footer-section">
+                    <h3>Información</h3>
+                    <ul>
+                        <li><a href="">Cómo Funciona</a></li>
+                        <li><a href="">Programa de Fidelidad</a></li>
+                        <li><a href="">Alérgenos</a></li>
+                        <li><a href="">Política de Privacidad</a></li>
+                        <li><a href="">Términos y Condiciones</a></li>
+                        <li><a href="">Política de Cookies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sección: Contacto -->
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-item">
+                        <span><b>Direccion</b></span>
+                        <span>C/ Riera de Cirera 57<br> 08304 Mataró, Barcelona</span>
+                    </div>
+                    <div class="contact-item">
+                        <span><b>Telefono</b></span>
+                        <span>+34 937 41 42 03</span>
+                    </div>
+                    <div class="contact-item">
+                        <span><b>Correo</b></span>
+                        <span>info@cantinatonys.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span><b>Horario</b></span>
+                        <span>Lun-Vie: 8:00 - 22:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div>
+                    <p>&copy; 2025 Cantina Tony's. Todos los derechos reservados.</p>
+                </div>
+
+                <div class="footer-bottom-links">
+                    <a href="/aviso-legal">Aviso Legal</a>
+                    <a href="/politica-privacidad">Privacidad</a>
+                    <a href="/cookies">Cookies</a>
+                    <a href="/accesibilidad">Accesibilidad</a>
+                </div>
 
 
-    </main>
+            </div>
+        </div>
+    </footer>
 
 </body>
 
