@@ -89,6 +89,28 @@ function eliminarArticle(key) {
     xhr.send("data=" + json);
 }
 
+function eliminarArticle(key) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/eliminar-article-carreto", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                console.log("Respuesta del servidor:", xhr.responseText);
+                carregarCarreto(function (carretoRecibido) {
+                    carreto = carretoRecibido;
+                    actualitzarBadgeCarreto(carreto);
+                });
+            } else {
+                console.error("Error en la petición:", xhr.status);
+            }
+        }
+    };
+
+    let json = JSON.stringify(key);
+    xhr.send("data=" + json);
+}
+
 function carregarCarreto(callback) {
     // Petición AJAX para obtener el contenido actual del carrito
     let xhr = new XMLHttpRequest();
