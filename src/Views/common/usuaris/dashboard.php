@@ -172,7 +172,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="menu-dia-image">
-                            <img src="https://placehold.co/600x400/DB380D/FFFFFF?text=Menu+del+Dia" alt="Menú del Día">
+                            <img src="/assets/media/MDL.png" alt="Menú del Día">
                             <div class="menu-dia-badge">
                                 <span class="badge-price">12.99€</span>
                             </div>
@@ -225,12 +225,12 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     <div class="oferta-card">
                         <div class="oferta-badge">-20%</div>
                         <div class="oferta-image">
-                            <img src="https://placehold.co/400x300/DB380D/FFFFFF?text=Ramen+Especial" alt="Ramen Especial">
+                            <img src="/assets/media/huevos.webp" alt="Ramen Especial">
                         </div>
                         <div class="oferta-content">
-                            <h3 class="oferta-title">Ramen Especial</h3>
+                            <h3 class="oferta-title">Huevos Rellenos Especiales</h3>
                             <p class="oferta-description">
-                                Delicioso ramen con caldo casero, chashu, huevo marinado y vegetales frescos.
+                                Huevos rellenos caseros cubiertos con una suave salsa cremosa y acabado de yema rallada. Sabrosos, frescos y perfectos para cualquier ocasión.
                             </p>
                             <div class="oferta-footer">
                                 <div class="oferta-price">
@@ -255,12 +255,12 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     <div class="oferta-card">
                         <div class="oferta-badge">-15%</div>
                         <div class="oferta-image">
-                            <img src="https://placehold.co/400x300/5382A1/FFFFFF?text=Sushi+Variado" alt="Sushi Variado">
+                            <img src="/assets/media/empanadas.webp" alt="Sushi Variado">
                         </div>
                         <div class="oferta-content">
-                            <h3 class="oferta-title">Sushi Variado (16 piezas)</h3>
+                            <h3 class="oferta-title">Empanadas Doradas (20 piezas)</h3>
                             <p class="oferta-description">
-                                Selección premium de sushi: nigiri, maki y california rolls con ingredientes frescos.
+                                Porción de empanadas artesanales, crujientes y recién fritas. Perfectas para compartir o disfrutar solas, con rellenos tradicionales y mucho sabor.
                             </p>
                             <div class="oferta-footer">
                                 <div class="oferta-price">
@@ -285,12 +285,12 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     <div class="oferta-card">
                         <div class="oferta-badge">-25%</div>
                         <div class="oferta-image">
-                            <img src="https://placehold.co/400x300/27AE60/FFFFFF?text=Bento+Box" alt="Bento Box">
+                            <img src="/assets/media/quesadillas.jpg" alt="Bento Box">
                         </div>
                         <div class="oferta-content">
-                            <h3 class="oferta-title">Bento Box Completo</h3>
+                            <h3 class="oferta-title">Quesadillas Mixtas</h3>
                             <p class="oferta-description">
-                                Caja bento con teriyaki, arroz, gyoza, ensalada y mochi de postre. ¡Todo incluido!
+                                Quesadillas rellenas con mezcla de queso, vegetales salteados y maíz. Doradas a la plancha, calientes y listas para disfrutar en cualquier momento.
                             </p>
                             <div class="oferta-footer">
                                 <div class="oferta-price">
