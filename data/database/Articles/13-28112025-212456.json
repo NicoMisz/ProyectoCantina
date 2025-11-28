@@ -1,0 +1,10 @@
+{
+    "id": 13,
+    "nombre": "Croissant Relleno de Chocolate",
+    "descripcion": "Croissant hojaldrado relleno de suave crema de chocolate. Dulce, crujiente y perfecto para acompañar con bebida caliente.",
+    "precio": 2.79,
+    "horario": "Merienda",
+    "cantidad": 2,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-212456.webp"
+}

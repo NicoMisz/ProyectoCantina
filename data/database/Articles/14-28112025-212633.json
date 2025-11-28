@@ -1,0 +1,10 @@
+{
+    "id": 14,
+    "nombre": "Sándwich de Pavo y Queso",
+    "descripcion": "Sándwich fresco con pechuga de pavo, queso suave y lechuga crujiente. Ideal para una merienda ligera.",
+    "precio": 4.79,
+    "horario": "Merienda",
+    "cantidad": 3,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-212633.jpg"
+}

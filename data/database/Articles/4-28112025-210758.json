@@ -1,0 +1,10 @@
+{
+    "id": 4,
+    "nombre": "Empanadas Doradas",
+    "descripcion": "Porción de empanadas artesanales, crujientes y recién fritas. Perfectas para compartir o disfrutar solas, con rellenos tradicionales y mucho sabor.",
+    "precio": 16.14,
+    "horario": "Oferta",
+    "cantidad": 20,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-210758.webp"
+}

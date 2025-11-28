@@ -1,0 +1,10 @@
+{
+    "id": 18,
+    "nombre": "Quesadilla de Pollo",
+    "descripcion": "Quesadilla dorada a la plancha rellena de pollo desmenuzado y queso fundido. Caliente, rápida y muy sabrosa.",
+    "precio": 6.79,
+    "horario": "Cena",
+    "cantidad": 2,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-213202.jpg"
+}

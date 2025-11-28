@@ -1,0 +1,10 @@
+{
+    "id": 17,
+    "nombre": "Tortilla de Patatas",
+    "descripcion": "Tortilla española tradicional, jugosa y dorada. Ideal para una cena sencilla pero deliciosa.",
+    "precio": 6.39,
+    "horario": "Cena",
+    "cantidad": 1,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-213112.webp"
+}

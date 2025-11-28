@@ -1,0 +1,10 @@
+{
+    "id": 10,
+    "nombre": "Pollo a la Plancha con Arroz",
+    "descripcion": "Pechuga de pollo a la plancha acompañada de arroz blanco y ensalada fresca. Un plato completo y nutritivo.",
+    "precio": 8.79,
+    "horario": "Comida",
+    "cantidad": 1,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-211951.jpg"
+}

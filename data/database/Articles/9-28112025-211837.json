@@ -1,0 +1,10 @@
+{
+    "id": 9,
+    "nombre": "Yogur con Frutas y Granola",
+    "descripcion": "Yogur natural servido con frutas frescas y granola crujiente. Equilibrado, ligero y delicioso para empezar el día.",
+    "precio": 3.99,
+    "horario": "Desayuno",
+    "cantidad": 2,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-211837.jpg"
+}

@@ -1,0 +1,10 @@
+{
+    "id": 7,
+    "nombre": "Tostadas con Aguacate",
+    "descripcion": "Tostadas crujientes con aguacate fresco, sazonado con sal, aceite de oliva y un toque de limón. Un desayuno saludable y lleno de energía.",
+    "precio": 4.39,
+    "horario": "Desayuno",
+    "cantidad": 4,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-211544.webp"
+}

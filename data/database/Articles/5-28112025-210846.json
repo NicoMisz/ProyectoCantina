@@ -1,0 +1,10 @@
+{
+    "id": 5,
+    "nombre": "Quesadillas Mixtas",
+    "descripcion": "Quesadillas rellenas con mezcla de queso, vegetales salteados y maíz. Doradas a la plancha, calientes y listas para disfrutar en cualquier momento.",
+    "precio": 11.24,
+    "horario": "Oferta",
+    "cantidad": 4,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-210846.jpg"
+}

@@ -1,0 +1,10 @@
+{
+    "id": 8,
+    "nombre": "Tortilla Francesa Rellena",
+    "descripcion": "Tortilla francesa esponjosa rellena de jamón iberico, perfecta para un desayuno rápido, caliente y completo.",
+    "precio": 5.59,
+    "horario": "Desayuno",
+    "cantidad": 1,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-211708.jpg"
+}

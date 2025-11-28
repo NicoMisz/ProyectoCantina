@@ -1,0 +1,10 @@
+{
+    "id": 12,
+    "nombre": "Ensalada Mixta con Atún",
+    "descripcion": "Ensalada ligera y completa con lechuga fresca, tomate, huevo, maíz y atún. Ideal para una comida saludable.",
+    "precio": 7.19,
+    "horario": "Comida",
+    "cantidad": 1,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-212232.jpg"
+}

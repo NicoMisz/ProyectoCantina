@@ -1,0 +1,10 @@
+{
+    "id": 16,
+    "nombre": "Sopa Caliente de Verduras",
+    "descripcion": "Sopa casera de verduras en caldo suave. Reconfortante y ligera para terminar el día.",
+    "precio": 5.19,
+    "horario": "Cena",
+    "cantidad": 1,
+    "ingredientes": [],
+    "imagen": "\/assets\/media\/Articles\/28112025-212956.jpg"
+}
