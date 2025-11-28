@@ -331,7 +331,6 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
     </nav>
     <div class="cart-overlay" id="cartOverlay"></div>
 
-<<<<<<< Updated upstream
     <main class="content">
         <div id="tickets">
             <h1>Tickets</h1>
@@ -346,7 +345,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     $total = $ticket['total'];
                     $articulos = $ticket['articulos'];
 
-                    ?>
+            ?>
 
                     <div class="row">
                         <div style="padding:10px; width:100%;">
@@ -391,7 +390,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                         </div>
                     </div>
 
-                    <?php
+            <?php
                 } // foreach
             } else {
                 echo "<p>No hay tickets.</p>";
@@ -404,19 +403,6 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
     <main class="demo-content">
 
 
-=======
-
-
-
-    <main class="demo-content">
-        <div id="ticket">
-            <?php
-            echo "aa";
-
-
-            ?>
-        </div>
->>>>>>> Stashed changes
     </main>
 
 </body>
