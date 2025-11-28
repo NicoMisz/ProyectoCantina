@@ -85,6 +85,15 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     </a>
                 </li>
             <?php endif; ?>
+            <?php if ($isAdmin): ?>
+                <!-- Solo visible para administradores -->
+                <li class="admin-only">
+                    <a href="/admin/gestio-comandes">
+                        <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
+                        Gestió Comandes
+                    </a>
+                </li>
+            <?php endif; ?>
 
             <!-- Footer del menú -->
             <div class="menu-footer">

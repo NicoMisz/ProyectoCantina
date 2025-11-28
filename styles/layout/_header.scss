@@ -259,7 +259,7 @@
     border-left: 4px solid var(--color-primary);
 
     &::before {
-        content: '🤖👨‍🍳';
+
         position: absolute;
         top: 2rem;
         left: 50%;
@@ -301,7 +301,7 @@
             border-left: 4px solid transparent;
 
             &::before {
-                content: '';
+
                 position: absolute;
                 left: 0;
                 top: 50%;
@@ -664,4 +664,10 @@
     .item-descripcion {
         font-size: 0.8rem;
     }
+}
+
+.logo-admin {
+    height: 2.5rem;
+    width: auto;
+    vertical-align: middle;
 }

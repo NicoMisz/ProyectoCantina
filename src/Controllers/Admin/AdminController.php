@@ -1,11 +1,15 @@
 <?php
+
 namespace Src\Controllers\Admin;
+
 require_once __DIR__ . '/../../Model/Usuari.php';
 require_once __DIR__ . '/../../Model/Article.php';
+require_once __DIR__ . '/../../Model/Comanda.php';
 
 use DateTime;
 use Src\Model\Usuari\Usuari;
 use Src\Model\Article\Article;
+use Src\Model\Comanda\Comanda;
 
 class AdminController
 {
@@ -20,7 +24,11 @@ class AdminController
     }
     public function gestioComandes()
     {
-        require __DIR__ . '/../../Views/common/usuaris/cambiarPassword.php';
+        $comandes = (new Comanda())->obtenirComandes();
+        usort($comandes, function ($a, $b) {
+            return $b['id'] - $a['id'];
+        });
+        require __DIR__ . '/../../Views/admin/gestioComandes.php';
         exit;
     }
 

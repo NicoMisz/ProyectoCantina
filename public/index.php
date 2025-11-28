@@ -199,6 +199,13 @@ switch ($rol) {
                 }
                 exit;
 
+            case '/admin/gestio-tickets':
+                $controller = new AdminController();
+                if ($method === 'GET') {
+                    $controller->gestioComandes();
+                }
+                exit;
+
             case '/admin/editar-producte':
                 $controller = new AdminController();
                 if ($method === 'POST') {
@@ -247,6 +254,7 @@ switch ($rol) {
                     $controller->gestioUsuaris();
                 }
                 exit;
+
 
             default:
                 http_response_code(404);

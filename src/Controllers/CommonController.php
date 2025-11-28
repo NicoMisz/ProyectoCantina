@@ -45,7 +45,6 @@ class CommonController
     {
         if (array_key_exists("carreto", $_COOKIE)) {
             $carreto = json_decode($_COOKIE["carreto"], true);
-
         }
         require __DIR__ . '/../Views/common/usuaris/carrito.php';
         exit;
@@ -115,16 +114,18 @@ class CommonController
         $data["Principal"] = array();
         $data["Postre"] = array();
         $data["Bebida"] = array();
-        array_push($data["Entrante"], $articleClass->obtenirArticle("1-30122025-171618"));
-        array_push($data["Entrante"], $articleClass->obtenirArticle("2-30122025-171618"));
-        array_push($data["Entrante"], $articleClass->obtenirArticle("3-24112025-145923"));
+        $data["Entrante"]["1-30122025-171618"] = $articleClass->obtenirArticle("1-30122025-171618");
+        $data["Entrante"]["2-30122025-171618"] = $articleClass->obtenirArticle("2-30122025-171618");
+        $data["Entrante"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
 
-        array_push($data["Principal"], $articleClass->obtenirArticle("1-30122025-171618"));
-        array_push($data["Principal"], $articleClass->obtenirArticle("2-30122025-171618"));
-        array_push($data["Principal"], $articleClass->obtenirArticle("3-24112025-145923"));
+        $data["Principal"]["1-30122025-171618"] = $articleClass->obtenirArticle("1-30122025-171618");
+        $data["Principal"]["2-30122025-171618"] = $articleClass->obtenirArticle("2-30122025-171618");
+        $data["Principal"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
 
-        array_push($data["Postre"], $articleClass->obtenirArticle("3-24112025-145923"));
-        array_push($data["Bebida"], $articleClass->obtenirArticle("3-24112025-145923"));
+        $data["Postre"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
+
+        $data["Bebida"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
+
         // echo "<pre>";
         // var_dump($data);
         // exit;
@@ -156,6 +157,7 @@ class CommonController
                 $dato[$ticket] = json_decode(file_get_contents($path . $ticket . '.json'), true);
             }
         }
+
 
         // var_dump($ticketsId);
         // echo "<pre>";
@@ -220,7 +222,6 @@ class CommonController
         file_put_contents($path, json_encode(["id" => $id], JSON_PRETTY_PRINT), LOCK_EX);
         return $id;
         exit;
-
     }
     public function obtenirIdComanda()
     {
@@ -231,7 +232,6 @@ class CommonController
         file_put_contents($path, json_encode(["id" => $id], JSON_PRETTY_PRINT), LOCK_EX);
         return $id;
         exit;
-
     }
 
 
@@ -269,7 +269,6 @@ class CommonController
             return $res;
         }
         exit;
-
     }
 
     public function afegirCorreu($correu, $fitxer)
@@ -287,60 +286,92 @@ class CommonController
     }
     public function xmlAfegirArticle()
     {
-        $jsonstring = $_POST["data"];
-        $article = json_decode($jsonstring);
-        $data = (new Article())->obtenirArticle($article[0]);
-
-        // echo "<pre>";
-        // var_dump($data);
-        // var_dump($article);
-        // exit;
-
-        if (!array_key_exists("carreto", $_COOKIE)) {
-            // echo "Creació Cookie";
-            // $data = json_encode($data);
-            $carreto = array();
-            $carreto[$article[0]] = [
-                'id' => $data["id"],
-                'imagen' => $data["imagen"],
-                'nombre' => $data["nombre"],
-                'descripcion' => $data["descripcion"],
-                'cantidad' => $article[1] ?? 1,
-                'precio' => $article[2] ?? $data["precio"]
-            ];
-            $cookie = json_encode($carreto);
-            setcookie("carreto", $cookie, time() + 2592000);
-            $res = ["res" => 1, "msg" => "Test."];
-        } else {
-            $carreto = json_decode($_COOKIE["carreto"], true);
-
-            if (array_key_exists($article[0], $carreto)) {
-                $carreto[$article[0]]["cantidad"] += $article[1];
-            } else {
+        if (isset($_POST["data"])) {
+            $jsonstring = $_POST["data"];
+            $article = json_decode($jsonstring);
+            $data = (new Article())->obtenirArticle($article[0]);
+            if (!array_key_exists("carreto", $_COOKIE)) {
+                $carreto = array();
                 $carreto[$article[0]] = [
                     'id' => $data["id"],
                     'imagen' => $data["imagen"],
                     'nombre' => $data["nombre"],
                     'descripcion' => $data["descripcion"],
-                    'cantidad' => $article[1],
-                    'precio' => $data["precio"]
+                    'cantidad' => $article[1] ?? 1,
+                    'precio' => $article[2] ?? $data["precio"]
                 ];
+                $cookie = json_encode($carreto);
+                setcookie("carreto", $cookie, time() + 2592000);
+                $res = ["res" => 1, "msg" => "Test."];
+            } else {
+                $carreto = json_decode($_COOKIE["carreto"], true);
+
+                if (array_key_exists($article[0], $carreto)) {
+                    $carreto[$article[0]]["cantidad"] += $article[1];
+                } else {
+                    $carreto[$article[0]] = [
+                        'id' => $data["id"],
+                        'imagen' => $data["imagen"],
+                        'nombre' => $data["nombre"],
+                        'descripcion' => $data["descripcion"],
+                        'cantidad' => $article[1],
+                        'precio' => $data["precio"]
+                    ];
+                }
+
+                $res = ["res" => 0, "msg" => "Test."];
+                $cookie = json_encode($carreto, JSON_PRETTY_PRINT);
+                setcookie("carreto", $cookie, time() - 10000000);
+                setcookie("carreto", $cookie, time() + 2592000);
             }
+            echo json_encode($res, JSON_PRETTY_PRINT);
+            exit;
+        } else if (isset($_POST["menu"])) {
+            $jsonstring = $_POST["menu"];
+            $menu = json_decode($jsonstring);
 
-            $res = ["res" => 0, "msg" => "Test."];
+            if (!array_key_exists("carreto", $_COOKIE)) {
+                // echo "Creació Cookie";
+                // $data = json_encode($data);
+                $carreto = array();
+                $carreto["menu"] = [
+                    'id' => "0",
+                    'imagen' => null,
+                    'nombre' => "Menú",
+                    'descripcion' => "Menú del Dia",
+                    'cantidad' => 1,
+                    'precio' => 12.99
+                ];
+                $cookie = json_encode($carreto);
+                setcookie("carreto", $cookie, time() + 2592000);
+                $res = ["res" => 1, "msg" => "Test."];
+            } else {
+                $carreto = json_decode($_COOKIE["carreto"], true);
 
-            // $carreto[$article[0]] = $data;
-            // echo "<pre>";
-            // var_dump($carreto);
-            // exit;
-            $cookie = json_encode($carreto, JSON_PRETTY_PRINT);
-            setcookie("carreto", $cookie, time() - 10000000);
-            setcookie("carreto", $cookie, time() + 2592000);
+                $jsonstring = $_POST["menu"];
+                $menu = json_decode($jsonstring);
+
+                // echo "Creació Cookie";
+                // $data = json_encode($data);
+                $carreto["menu"] = [
+                    'id' => "0",
+                    'imagen' => null,
+                    'nombre' => "Menú",
+                    'descripcion' => "Menú del Dia",
+                    'cantidad' => 1,
+                    'precio' => 12.99
+                ];
+                $cookie = json_encode($carreto);
+                setcookie("carreto", $cookie, time() + 2592000);
+                $res = ["res" => 1, "msg" => "Test."];
+
+                $res = ["res" => 0, "msg" => "Test."];
+
+                $cookie = json_encode($carreto, JSON_PRETTY_PRINT);
+                setcookie("carreto", $cookie, time() + 2592000);
+            }
+            exit;
         }
-        // $msg = $_POST["msg"];
-        // echo $msg;
-        // exit;
-        echo json_encode($res, JSON_PRETTY_PRINT);
         exit;
     }
 
@@ -464,7 +495,4 @@ class CommonController
         ]);
         exit;
     }
-
-
-
 }
