@@ -117,7 +117,7 @@ class CommonController
         $data["Principal"]["2-30122025-171618"] = $articleClass->obtenirArticle("5-28112025-210846");
         $data["Principal"]["3-24112025-145923"] = $articleClass->obtenirArticle("10-28112025-211951");
         $data["Postre"]["3-24112025-145923"] = $articleClass->obtenirArticle("9-28112025-211837");
-        $data["Bebida"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
+        $data["Bebida"]["3-24112025-145923"] = $articleClass->obtenirArticle("19-28112025-221930");
         require __DIR__ . '/../Views/common/usuaris/menu.php';
         exit;
     }
@@ -289,88 +289,81 @@ class CommonController
         if (isset($_POST["data"])) {
             $jsonstring = $_POST["data"];
             $article = json_decode($jsonstring);
+
             // Obtenir articles
             $data = (new Article())->obtenirArticle($article[0]);
-            // Si no existeix afegir la cookie
-            if (!array_key_exists("carreto", $_COOKIE)) {
-                // Crear i afegir article
-                $carreto = array();
-                $carreto[$article[0]] = [
-                    'id' => $data["id"],
-                    'imagen' => $data["imagen"],
-                    'nombre' => $data["nombre"],
-                    'descripcion' => $data["descripcion"],
-                    'cantidad' => $article[1] ?? 1,
-                    'precio' => $article[2] ?? $data["precio"]
-                ];
-                // Crear i afegir article
-                $cookie = json_encode($carreto);
-                setcookie("carreto", $cookie, time() + 2592000);
-                $res = ["res" => 1, "msg" => "Test."];
-            } else {
-                $carreto = json_decode($_COOKIE["carreto"], true);
 
-                if (array_key_exists($article[0], $carreto)) {
-                    $carreto[$article[0]]["cantidad"] += $article[1];
-                } else {
-                    $carreto[$article[0]] = [
-                        'id' => $data["id"],
-                        'imagen' => $data["imagen"],
-                        'nombre' => $data["nombre"],
-                        'descripcion' => $data["descripcion"],
-                        'cantidad' => $article[1],
-                        'precio' => $data["precio"]
-                    ];
-                }
+            // Obtener carrito existente o crear uno nuevo
+            $carreto = array_key_exists("carreto", $_COOKIE)
+                ? json_decode($_COOKIE["carreto"], true)
+                : array();
 
-                $res = ["res" => 0, "msg" => "Test."];
-                $cookie = json_encode($carreto, JSON_PRETTY_PRINT);
-                setcookie("carreto", $cookie, time() - 10000000);
-                setcookie("carreto", $cookie, time() + 2592000);
-            }
-            echo json_encode($res, JSON_PRETTY_PRINT);
+            // Crear key única: id-fecha
+            $articleKey = $article[0] . "-" . date("dmY-His");
+
+            // Añadir o actualizar artículo
+            $carreto[$articleKey] = [
+                'id' => $data["id"],
+                'imagen' => $data["imagen"],
+                'nombre' => $data["nombre"],
+                'descripcion' => $data["descripcion"],
+                'cantidad' => $article[1] ?? 1,
+                'precio' => $article[2] ?? $data["precio"]
+            ];
+
+            // Guardar cookie
+            $cookie = json_encode($carreto);
+            setcookie("carreto", $cookie, time() + 2592000, "/");
+
+            $res = ["res" => 1, "msg" => "Artículo añadido correctamente."];
+
+            header('Content-Type: application/json');
+            echo json_encode($res);
             exit;
+
         } else if (isset($_POST["menu"])) {
             $jsonstring = $_POST["menu"];
             $menu = json_decode($jsonstring);
 
-            if (!array_key_exists("carreto", $_COOKIE)) {
-                $carreto = array();
-                $carreto["menu"] = [
-                    'id' => "0",
-                    'imagen' => null,
-                    'nombre' => "Menú",
-                    'descripcion' => "Menú del Dia",
-                    'cantidad' => 1,
-                    'precio' => 12.99
-                ];
-                $cookie = json_encode($carreto);
-                setcookie("carreto", $cookie, time() + 2592000);
-                $res = ["res" => 1, "msg" => "Test."];
-            } else {
-                $carreto = json_decode($_COOKIE["carreto"], true);
+            // Obtener carrito existente o crear uno nuevo
+            $carreto = array_key_exists("carreto", $_COOKIE)
+                ? json_decode($_COOKIE["carreto"], true)
+                : array();
 
-                $jsonstring = $_POST["menu"];
-                $menu = json_decode($jsonstring);
+            // Crear key única para el menú
+            $menuKey = "menu-" . date("dmY-His");
 
-                $carreto["menu"] = [
-                    'id' => "0",
-                    'imagen' => null,
-                    'nombre' => "Menú",
-                    'descripcion' => "Menú del Dia",
-                    'cantidad' => 1,
-                    'precio' => 12.99
-                ];
-                $cookie = json_encode($carreto);
-                setcookie("carreto", $cookie, time() + 2592000);
-                $res = ["res" => 1, "msg" => "Test."];
-                $res = ["res" => 0, "msg" => "Test."];
-                $cookie = json_encode($carreto, JSON_PRETTY_PRINT);
-                setcookie("carreto", $cookie, time() - 10000000);
-                setcookie("carreto", $cookie, time() + 2592000);
-            }
+            // Crear descripción del menú
+            $descripcion = "Entrante: " . $menu->entrante->nombre .
+                ", Principal: " . $menu->principal->nombre .
+                ", Postre: " . $menu->postre->nombre .
+                ", Bebida: " . $menu->bebida->nombre;
+
+            // Añadir menú al carrito
+            $carreto[$menuKey] = [
+                'id' => 0,
+                'imagen' => null,
+                'nombre' => "Menú del Día",
+                'descripcion' => $descripcion,
+                'cantidad' => 1,
+                'precio' => 12.99
+            ];
+
+            // Guardar cookie
+            $cookie = json_encode($carreto);
+            setcookie("carreto", $cookie, time() + 2592000, "/");
+
+            $res = ["res" => 1, "msg" => "Menú añadido correctamente."];
+
+            header('Content-Type: application/json');
+            echo json_encode($res);
             exit;
         }
+
+        // Si no hay datos
+        $res = ["res" => 0, "msg" => "No se recibieron datos."];
+        header('Content-Type: application/json');
+        echo json_encode($res);
         exit;
     }
     public function xmlEliminarArticle()
