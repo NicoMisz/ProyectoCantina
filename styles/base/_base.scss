@@ -9,6 +9,10 @@
     align-items: center;
     justify-content: center;
     font-size: 1.75rem;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 * {

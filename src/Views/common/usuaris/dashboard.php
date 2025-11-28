@@ -12,10 +12,10 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cantina Tony's</title>
     <link rel="stylesheet" href="/css/main.css">
-    <script src="/assets/js/header.js"></script>
+    <script src="/assets/js/header.js" defer></script>
     <script src="/assets/js/themeChange.js" defer></script>
-    <!-- <script src="/assets/js/carrito.js"></script> -->
-    <script src="/assets/js/carritoDEV.js"></script>
+    <!-- <script src="/assets/js/carrito.js" defer></script> -->
+    <script src="/assets/js/carritoDEV.js" defer></script>
 </head>
 
 <body>
