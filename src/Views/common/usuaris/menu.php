@@ -14,7 +14,7 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
     <script src="/assets/js/header.js"></script>
     <script src="/assets/js/themeChange.js"></script>
     <!-- <script src="/assets/js/carrito.js"></script> -->
-    <script src="/assets/js/carritoDEV.js"></script>
+    <script src="/assets/js/carritoDEV.js" defer></script>
 </head>
 
 <body>
@@ -25,7 +25,6 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     <img src="/assets/media/E.png" alt="Cantina Tony's" class="logo-image">
                 </a>
             </div>
-
             <div class="header-actions">
                 <button id="theme-toggle" class="theme-toggle">
                     <span class="icon-light">☀️</span>
@@ -39,20 +38,17 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                     </svg>
                     <span class="cart-badge">3</span>
                 </a>
-
                 <a href="/perfil" class="header-icon profile-icon" aria-label="Mi perfil">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                 </a>
-
                 <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
                 </button>
-
             </div>
         </div>
     </header>
@@ -62,15 +58,23 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
     <nav>
         <ul class="navigation" id="navigation">
             <li><a href="/catalogo">El Catálogo</a></li>
-            <li><a href="/pedidos">Mis Pedidos</a></li>
+            <li><a href="/tickets">Mis Pedidos</a></li>
             <li><a href="/about-us">About Us</a></li>
-            <li><a href="/formulari">Contacto</a></li>
+            <!-- <li><a href="/formulari">Contacto</a></li> -->
 
             <?php if ($isAdmin): ?>
                 <li class="admin-only">
                     <a href="/admin/gestio-productes">
                         <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
                         Gestió Productes
+                    </a>
+                </li>
+            <?php endif; ?>
+            <?php if ($isAdmin): ?>
+                <li class="admin-only">
+                    <a href="/admin/gestio-comandes">
+                        <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
+                        Gestió Comandes
                     </a>
                 </li>
             <?php endif; ?>
