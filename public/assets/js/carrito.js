@@ -1,10 +1,13 @@
 let carreto = null; function netejarCarreto() { let e = new XMLHttpRequest; e.open("POST", "/netejar-carreto", !0), e.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"), e.onreadystatechange = function () { 4 === e.readyState && (200 === e.status ? (console.log("Respuesta del servidor:", e.responseText), carregarCarreto(function (e) { carreto = e, console.log("Carreto limpiado:", carreto) })) : console.error("Error en la petici\xf3n:", e.status)) }, e.send("msg=Hola desde JavaScript") } function afegirArticle(e, t) { let a = new XMLHttpRequest; a.open("POST", "/afegir-article-carreto", !0), a.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"), a.onreadystatechange = function () { 4 === a.readyState && (200 === a.status ? (console.log("Respuesta del servidor:", a.responseText), carregarCarreto(function (e) { carreto = e, console.log("Carreto actualizado:", carreto) })) : console.error("Error en la petici\xf3n:", a.status)) }; let r = JSON.stringify([e, t]); a.send("data=" + r) } function carregarCarreto(e) { let t = new XMLHttpRequest; t.open("POST", "/carregar-carreto", !0), t.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"), t.onreadystatechange = function () { if (4 === t.readyState) { if (200 === t.status) { let a = JSON.parse(t.responseText), r = 1 === a.res ? a.carreto : null; actualitzarLlistaCarreto(r), e && e(r) } else e && e(null) } }, t.send() } function crearTicket(e) { let t = new XMLHttpRequest; t.open("POST", "/crear-ticket", !0), t.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"), t.onreadystatechange = function () { if (4 === t.readyState) { if (200 === t.status) { let a = JSON.parse(t.responseText); e && e(1 === a.res ? a.ticket : null) } else e && e(null) } }, t.send() } function actualitzarLlistaCarreto(e) {
     let t = document.getElementById("carreto"); if (!t) { console.error('No se encontr\xf3 el elemento con id "carreto"'); return } if (!e || 0 === Object.keys(e).length) {
         t.innerHTML = `
+<<<<<<< Updated upstream
         <div class="cart-header">
             <h4 style="margin: 0;">Mi Carrito</h4>
             <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">\xd7</button>
         </div>
+=======
+>>>>>>> Stashed changes
         <div class="cart-content">
             <div class="cart-items">
                 <div style="text-align: center; padding: 40px 20px; color: #999;">
@@ -45,10 +48,13 @@ let carreto = null; function netejarCarreto() { let e = new XMLHttpRequest; e.op
             </div>
         </div>
     `}).join(""), c = `
+<<<<<<< Updated upstream
     <div class="cart-header">
         <h4 style="margin: 0;">Mi Carrito</h4>
         <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">\xd7</button>
     </div>
+=======
+>>>>>>> Stashed changes
     <div class="cart-content">
         <div class="cart-items">
             ${s}
