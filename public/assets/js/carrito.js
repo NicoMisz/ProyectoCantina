@@ -2,7 +2,7 @@ let carreto = null; function netejarCarreto() { let e = new XMLHttpRequest; e.op
     let t = document.getElementById("carreto"); if (!t) { console.error('No se encontr\xf3 el elemento con id "carreto"'); return } if (!e || 0 === Object.keys(e).length) {
         t.innerHTML = `
         <div class="cart-header">
-            <h4 style="margin: 0;">🛒 Mi Carrito</h4>
+            <h4 style="margin: 0;">Mi Carrito</h4>
             <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">\xd7</button>
         </div>
         <div class="cart-content">
@@ -46,7 +46,7 @@ let carreto = null; function netejarCarreto() { let e = new XMLHttpRequest; e.op
         </div>
     `}).join(""), c = `
     <div class="cart-header">
-        <h4 style="margin: 0;">🛒 Mi Carrito</h4>
+        <h4 style="margin: 0;">Mi Carrito</h4>
         <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">\xd7</button>
     </div>
     <div class="cart-content">

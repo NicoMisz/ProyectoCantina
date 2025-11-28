@@ -1,5 +1,6 @@
 class HeaderManager {
     constructor() {
+        // Elementos del header y menú
         this.header = document.getElementById('mainHeader');
         this.hamburgerBtn = document.getElementById('hamburgerBtn');
         this.navigation = document.getElementById('navigation');
@@ -17,31 +18,34 @@ class HeaderManager {
     }
 
     init() {
-        this.setupScrollListener();
-        this.setupMenuListeners();
-        this.setupCartListeners();
-        this.setupKeyboardListeners();
-        this.markActiveLink();
-        this.setupCartAnimation();
+        // Inicializar todos los listeners y funcionalidades
+        this.configurarListenerScroll();
+        this.configurarListenersMenu();
+        this.configurarListenersCarret();
+        this.configurarListenersTeclat();
+        this.marcarEnllacActiu();
+        this.configurarAnimacioCarret();
     }
 
-    setupScrollListener() {
+    configurarListenerScroll() {
+        // Optimizar scroll con requestAnimationFrame
         let ticking = false;
 
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    this.handleScroll();
+                    this.gestionarScroll();
                     ticking = false;
                 });
                 ticking = true;
             }
         });
 
-        this.handleScroll();
+        this.gestionarScroll();
     }
 
-    handleScroll() {
+    gestionarScroll() {
+        // Añadir clase 'scrolled' al header al hacer scroll
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         if (scrollTop > this.scrollThreshold) {
@@ -51,28 +55,31 @@ class HeaderManager {
         }
     }
 
-    setupMenuListeners() {
-        this.hamburgerBtn.addEventListener('click', () => this.toggleMenu());
-        this.menuOverlay.addEventListener('click', () => this.closeMenu());
+    configurarListenersMenu() {
+        // Event listeners para abrir/cerrar menú hamburguesa
+        this.hamburgerBtn.addEventListener('click', () => this.alternarMenu());
+        this.menuOverlay.addEventListener('click', () => this.tancarMenu());
 
         const menuLinks = this.navigation.querySelectorAll('a');
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                this.closeMenu();
+                this.tancarMenu();
             });
         });
     }
 
-    toggleMenu() {
-        this.isMenuOpen ? this.closeMenu() : this.openMenu();
+    alternarMenu() {
+        // Alternar entre abrir y cerrar el menú
+        this.isMenuOpen ? this.tancarMenu() : this.obrirMenu();
     }
 
-    openMenu() {
+    obrirMenu() {
         // Cerrar carrito si está abierto
         if (this.isCartOpen) {
-            this.closeCart();
+            this.tancarCarret();
         }
 
+        // Abrir menú y bloquear scroll
         this.isMenuOpen = true;
         this.hamburgerBtn.classList.add('active');
         this.navigation.classList.add('active');
@@ -83,7 +90,8 @@ class HeaderManager {
         this.hamburgerBtn.setAttribute('aria-expanded', 'true');
     }
 
-    closeMenu() {
+    tancarMenu() {
+        // Cerrar menú y restaurar scroll si el carrito no está abierto
         this.isMenuOpen = false;
         this.hamburgerBtn.classList.remove('active');
         this.navigation.classList.remove('active');
@@ -98,7 +106,7 @@ class HeaderManager {
         this.hamburgerBtn.setAttribute('aria-expanded', 'false');
     }
 
-    setupCartListeners() {
+    configurarListenersCarret() {
         // Verificar que los elementos existen
         if (!this.carreto || !this.cartOverlay || !this.closeCartBtn) {
             console.warn('Elementos del carrito no encontrados');
@@ -106,26 +114,28 @@ class HeaderManager {
         }
 
         // Botón cerrar carrito
-        this.closeCartBtn.addEventListener('click', () => this.closeCart());
+        this.closeCartBtn.addEventListener('click', () => this.tancarCarret());
 
         // Overlay del carrito
-        this.cartOverlay.addEventListener('click', () => this.closeCart());
+        this.cartOverlay.addEventListener('click', () => this.tancarCarret());
 
         // Botón abrir carrito
         const cartIcon = document.querySelector('.cart-icon');
         if (cartIcon) {
             cartIcon.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.openCart();
+                this.obrirCarret();
             });
         }
     }
 
-    openCart() {
+    obrirCarret() {
+        // Cerrar menú si está abierto
         if (this.isMenuOpen) {
-            this.closeMenu();
+            this.tancarMenu();
         }
 
+        // Abrir carrito y bloquear scroll
         this.isCartOpen = true;
         this.carreto.classList.add('active');
         this.cartOverlay.classList.add('active');
@@ -134,7 +144,8 @@ class HeaderManager {
         this.carreto.setAttribute('aria-hidden', 'false');
     }
 
-    closeCart() {
+    tancarCarret() {
+        // Cerrar carrito y restaurar scroll si el menú no está abierto
         this.isCartOpen = false;
         this.carreto.classList.remove('active');
         this.cartOverlay.classList.remove('active');
@@ -145,30 +156,34 @@ class HeaderManager {
         this.carreto.setAttribute('aria-hidden', 'true');
     }
 
-    toggleCart() {
-        this.isCartOpen ? this.closeCart() : this.openCart();
+    alternarCarret() {
+        // Alternar entre abrir y cerrar el carrito
+        this.isCartOpen ? this.tancarCarret() : this.obrirCarret();
     }
 
-    setupKeyboardListeners() {
+    configurarListenersTeclat() {
+        // Cerrar menú y carrito con la tecla Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 if (this.isMenuOpen) {
-                    this.closeMenu();
+                    this.tancarMenu();
                 }
                 if (this.isCartOpen) {
-                    this.closeCart();
+                    this.tancarCarret();
                 }
             }
         });
     }
 
-    markActiveLink() {
+    marcarEnllacActiu() {
+        // Marcar el enlace activo según la ruta actual
         const currentPath = window.location.pathname;
         const menuLinks = this.navigation.querySelectorAll('a');
 
         menuLinks.forEach(link => {
             const href = link.getAttribute('href');
 
+            // Coincidencia exacta o ruta que comienza con el href
             if (href === currentPath) {
                 link.classList.add('active');
             } else if (currentPath.startsWith(href) && href !== '/') {
@@ -177,7 +192,8 @@ class HeaderManager {
         });
     }
 
-    setupCartAnimation() {
+    configurarAnimacioCarret() {
+        // Animación hover en el icono del carrito
         const cartIcon = document.querySelector('.cart-icon');
 
         if (cartIcon) {
@@ -191,7 +207,8 @@ class HeaderManager {
         }
     }
 
-    updateCartBadge(count) {
+    actualitzarBadgeCarret(count) {
+        // Actualizar el badge del carrito con animación
         const badge = document.querySelector('.cart-badge');
         if (badge) {
             badge.textContent = count;
@@ -204,55 +221,58 @@ class HeaderManager {
         }
     }
 
-    forceCloseMenu() {
-        this.closeMenu();
+    forçarTancarMenu() {
+        this.tancarMenu();
     }
 
-    forceOpenMenu() {
-        this.openMenu();
+    forçarObrirMenu() {
+        this.obrirMenu();
     }
 
-    forceCloseCart() {
-        this.closeCart();
+    forçarTancarCarret() {
+        this.tancarCarret();
     }
 
-    forceOpenCart() {
-        this.openCart();
+    forçarObrirCarret() {
+        this.obrirCarret();
     }
 }
 
 let headerManager;
 
+// Inicializar el HeaderManager al cargar el DOM
 document.addEventListener('DOMContentLoaded', () => {
     headerManager = new HeaderManager();
 });
 
+
+// Funciones globales para actualizar el carrito desde otros scripts
 window.updateCartCount = (count) => {
     if (headerManager) {
-        headerManager.updateCartBadge(count);
+        headerManager.actualitzarBadgeCarret(count);
     }
 };
 
 window.closeHeaderMenu = () => {
     if (headerManager) {
-        headerManager.forceCloseMenu();
+        headerManager.forçarTancarMenu();
     }
 };
 
 window.openHeaderMenu = () => {
     if (headerManager) {
-        headerManager.forceOpenMenu();
+        headerManager.forçarObrirMenu();
     }
 };
 
 window.openCart = () => {
     if (headerManager) {
-        headerManager.forceOpenCart();
+        headerManager.forçarObrirCarret();
     }
 };
 
 window.closeCart = () => {
     if (headerManager) {
-        headerManager.forceCloseCart();
+        headerManager.forçarTancarCarret();
     }
 };

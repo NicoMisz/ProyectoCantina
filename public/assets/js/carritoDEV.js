@@ -17,6 +17,7 @@ function actualitzarBadgeCarreto(carreto) {
 }
 
 function netejarCarreto() {
+    // Petición AJAX para limpiar el carrito en el servidor
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/netejar-carreto", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -24,6 +25,7 @@ function netejarCarreto() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 console.log("Respuesta del servidor:", xhr.responseText);
+                // Recargar el carrito después de limpiarlo
                 carregarCarreto(function (carretoRecibido) {
                     carreto = carretoRecibido;
                     // console.log("Carreto limpiado:", carreto);
@@ -38,6 +40,7 @@ function netejarCarreto() {
 }
 
 function afegirArticle(id, quantitat, preu = null) {
+    // Petición AJAX para añadir artículo al carrito
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/afegir-article-carreto", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -45,6 +48,7 @@ function afegirArticle(id, quantitat, preu = null) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 console.log("Respuesta del servidor:", xhr.responseText);
+                // Recargar carrito para reflejar los cambios
                 carregarCarreto(function (carretoRecibido) {
                     carreto = carretoRecibido;
                     actualitzarBadgeCarreto(carreto);
@@ -54,6 +58,7 @@ function afegirArticle(id, quantitat, preu = null) {
             }
         }
     };
+    // Preparar datos: [id, cantidad, precio (opcional)]
     let data = [id, quantitat];
     if (preu != null) {
         data.push(preu)
@@ -63,6 +68,7 @@ function afegirArticle(id, quantitat, preu = null) {
 }
 
 function carregarCarreto(callback) {
+    // Petición AJAX para obtener el contenido actual del carrito
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/carregar-carreto", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -92,6 +98,7 @@ function carregarCarreto(callback) {
 }
 
 function crearTicket(callback) {
+    // Petición AJAX para generar un ticket de compra
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/crear-ticket", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -131,6 +138,7 @@ function crearTicket(callback) {
 
 
 function actualitzarLlistaCarreto(carreto) {
+    // Actualiza el HTML del panel lateral del carrito
     const carretoElement = document.getElementById('carreto');
 
     if (!carretoElement) {
@@ -140,6 +148,7 @@ function actualitzarLlistaCarreto(carreto) {
 
     // Verificar si el carreto es null
     if (!carreto || Object.keys(carreto).length === 0) {
+        // Mostrar mensaje de carrito vacío
         carretoElement.innerHTML = `
         <div class="cart-header">
             <h4 style="margin: 0;">Mi Carrito</h4>
@@ -169,7 +178,6 @@ function actualitzarLlistaCarreto(carreto) {
             </div>
         </div>
     `;
-
         const closeBtn = document.getElementById('closeCart');
         if (closeBtn) {
             closeBtn.addEventListener('click', function () {
@@ -180,6 +188,7 @@ function actualitzarLlistaCarreto(carreto) {
         return;
     }
 
+    // Calcular subtotal sumando precio × cantidad de cada artículo
     const items = Object.values(carreto);
     console.log(items)
     let subtotal = 0;
@@ -189,9 +198,11 @@ function actualitzarLlistaCarreto(carreto) {
         subtotal += precio * cantidad;
     });
 
+    // Calcular IVA (10%) y total
     const iva = subtotal * 0.10;
     const total = subtotal + iva;
 
+    // Generar HTML para cada artículo del carrito
     const itemsHTML = items.map(item => {
         const precio = parseFloat(item.precio) || 0;
         const cantidad = parseInt(item.cantidad) || 1;
@@ -215,6 +226,7 @@ function actualitzarLlistaCarreto(carreto) {
     `;
     }).join('');
 
+    // Construir HTML completo del carrito con artículos y resumen
     const contenidoHTML = `
     <div class="cart-header">
         <h4 style="margin: 0;">Mi Carrito</h4>
@@ -285,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const totalSpan = articleDiv.querySelector('.total');
             const precio = parseFloat(articleDiv.getAttribute('data-precio'));
 
+            // Incrementar cantidad y actualizar precio total
             let cantidad = parseInt(cantidadSpan.textContent);
             cantidad++;
             cantidadSpan.textContent = cantidad;
@@ -304,6 +317,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const totalSpan = articleDiv.querySelector('.total');
             const precio = parseFloat(articleDiv.getAttribute('data-precio'));
 
+            // Decrementar cantidad si es mayor que 0 y actualizar precio total
             let cantidad = parseInt(cantidadSpan.textContent);
             if (cantidad > 0) {
                 cantidad--;
