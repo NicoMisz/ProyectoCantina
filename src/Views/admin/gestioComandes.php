@@ -83,9 +83,9 @@ $isAdmin = $user && isset($user['rol']) && $user['rol'] === 'admin';
                         <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
                         Gestió Productes
                     </a>
-                    <a href="/admin/gestio-tickets">
+                    <a href="/admin/gestio-comandes">
                         <img src="/assets/media/admin.png" alt="Cantina Tony's" class="logo-admin">
-                        Gestió Productes
+                        Gestió Comandes
                     </a>
                 </li>
             <?php endif; ?>
