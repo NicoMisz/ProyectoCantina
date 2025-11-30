@@ -118,6 +118,7 @@ class CommonController
         $data["Principal"]["3-24112025-145923"] = $articleClass->obtenirArticle("10-28112025-211951");
         $data["Postre"]["3-24112025-145923"] = $articleClass->obtenirArticle("9-28112025-211837");
         $data["Bebida"]["3-24112025-145923"] = $articleClass->obtenirArticle("19-28112025-221930");
+        $data["Bebida"]["3-24112025-145923"] = $articleClass->obtenirArticle("3-24112025-145923");
         require __DIR__ . '/../Views/common/usuaris/menu.php';
         exit;
     }
@@ -364,6 +365,50 @@ class CommonController
         $res = ["res" => 0, "msg" => "No se recibieron datos."];
         header('Content-Type: application/json');
         echo json_encode($res);
+        exit;
+    }
+    public function xmlEliminarArticle()
+    {
+        if (isset($_POST["data"])) {
+            $jsonstring = $_POST["data"];
+            $key = json_decode($jsonstring, true); // La key completa: "2-30122025-171618"
+            if (array_key_exists("carreto", $_COOKIE)) {
+                $carreto = json_decode($_COOKIE["carreto"], true);
+                if (isset($carreto[$key])) {
+                    // Eliminar el artículo
+                    unset($carreto[$key]);
+                    if (empty($carreto)) {
+                        setcookie("carreto", "", time() - 3600, "/");
+                        $res = [
+                            "res" => 1,
+                            "msg" => "Artículo eliminado. Carrito vacío."
+                        ];
+                    } else {
+                        $cookie = json_encode($carreto);
+                        setcookie("carreto", $cookie, time() + 2592000, "/");
+                        $res = [
+                            "res" => 1,
+                            "msg" => "Artículo eliminado correctamente."
+                        ];
+                    }
+                } else {
+                    $res = [
+                        "res" => 0,
+                        "msg" => "Artículo no encontrado en el carrito."
+                    ];
+                }
+            } else {
+                $res = [
+                    "res" => 0,
+                    "msg" => "No existe carrito."
+                ];
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($res);
+            exit;
+        }
+
         exit;
     }
     public function xmlEliminarArticle()
