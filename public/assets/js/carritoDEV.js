@@ -141,7 +141,7 @@ function carregarCarreto(callback) {
     xhr.send();
 }
 
-function crearTicket(callback) {
+function crearTicket() {
     // Petición AJAX para generar un ticket de compra
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/crear-ticket", true);
@@ -156,23 +156,13 @@ function crearTicket(callback) {
                     if (res.redirect) {
                         window.location.href = res.redirect;
                     }
-                    // Ejecutar callback si existe
-                    if (callback) {
-                        callback(res.ticket || true);
-                    }
                 } else {
                     // Error del servidor (res === 0)
                     console.error(res.msg || "Error desconocido");
                     alert(res.msg || "Error al crear el ticket");
-                    if (callback) {
-                        callback(null);
-                    }
                 }
             } else {
                 console.error("Error:", xhr.status);
-                if (callback) {
-                    callback(null);
-                }
             }
         }
     };
@@ -352,10 +342,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const cantidadSpan = articleDiv.querySelector('.cantidad-display');
             const totalSpan = articleDiv.querySelector('producto-total');
             const precio = parseFloat(articleDiv.getAttribute('precio-valor'));
-
+            console.log(cantidadSpan.textContent)
             // Incrementar cantidad y actualizar precio total
             let cantidad = parseInt(cantidadSpan.textContent);
-            cantidad++;
+            // cantidad++;
             cantidadSpan.textContent = cantidad;
 
             const total = (precio * cantidad).toFixed(2);

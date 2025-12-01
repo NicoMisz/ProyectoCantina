@@ -2,10 +2,13 @@ let carreto = null; function netejarCarreto() { let e = new XMLHttpRequest; e.op
     let t = document.getElementById("carreto"); if (!t) { console.error('No se encontr\xf3 el elemento con id "carreto"'); return } if (!e || 0 === Object.keys(e).length) {
         t.innerHTML = `
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <div class="cart-header">
             <h4 style="margin: 0;">Mi Carrito</h4>
             <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">\xd7</button>
         </div>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         <div class="cart-content">
@@ -48,13 +51,10 @@ let carreto = null; function netejarCarreto() { let e = new XMLHttpRequest; e.op
             </div>
         </div>
     `}).join(""), c = `
-<<<<<<< Updated upstream
     <div class="cart-header">
         <h4 style="margin: 0;">Mi Carrito</h4>
         <button class="cart-close-btn" id="closeCart" aria-label="Cerrar carrito">\xd7</button>
     </div>
-=======
->>>>>>> Stashed changes
     <div class="cart-content">
         <div class="cart-items">
             ${s}

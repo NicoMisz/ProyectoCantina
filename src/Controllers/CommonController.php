@@ -78,7 +78,12 @@ class CommonController
                 $horarioActual = null;
                 break;
         }
-        $horarioActual = 'Comida';
+        // $horarioActual = 'Desayuno';
+
+        // $horarioActual = 'Comida';
+        // $horarioActual = 'Merienda';
+        $horarioActual = 'Cena';
+
         $data = [];
         // Filtrar Articles segons l'horari
         if ($horarioActual !== null) {
@@ -171,8 +176,9 @@ class CommonController
 
     public function ajaxAutenticarLogin()
     {
+
         // Formata l'estil del header
-        header('Content-Type: application/json; charset=utf-8');
+        // header('Content-Type: application/json; charset=utf-8');
         $email = $_POST["email"] ?? null;
         $password = $_POST["password"] ?? null;
         // Recollir dades
@@ -256,12 +262,15 @@ class CommonController
             $fitxer = $id . '-' . $fechaCreacion;
             $path = '../data/database/Usuaris/' . $fitxer . '.json';
             // Afegir correu
+            // var_dump($jsondecode);
+            // exit;
+            file_put_contents($path, json_encode($jsondecode, JSON_PRETTY_PRINT), LOCK_EX);
             $this->afegirCorreu($email, $fitxer);
             // Afegir fitxer d'usuari
-            file_put_contents($path, json_encode($jsondecode, JSON_PRETTY_PRINT), LOCK_EX);
         } else {
+            // exit;
+
             $res = ["res" => 0, "msg" => "Contraseña diferente"];
-            header('Content-Type: application/json; charset=utf-8');
             echo json_encode($res);
         }
         exit;
@@ -278,7 +287,6 @@ class CommonController
         $jsondecode[$correu] = $fitxer;
         file_put_contents($path, json_encode($jsondecode, JSON_PRETTY_PRINT), LOCK_EX);
         // Retornar missatge
-        header('Content-Type: application/json; charset=utf-8');
         $res = ["res" => 1, "msg" => "Usuari afegit correctament."];
         echo json_encode($res, JSON_PRETTY_PRINT);
         exit;
@@ -475,12 +483,7 @@ class CommonController
             $json = json_decode($data);
 
             setcookie("carreto", "", time() - 10000000, "/");
-
-            $res = ["res" => 1, "msg" => "Cargar Carreto.", "json" => $data];
-            header('Content-Type: application/json');
-            echo json_encode($res, JSON_PRETTY_PRINT);
         }
-        exit;
     }
     public function xmlCarregarCarreto()
     {
@@ -503,8 +506,7 @@ class CommonController
     }
     public function xmlCrearTicket()
     {
-        header('Content-Type: application/json');
-
+        // header('Content-Type: application/json');
         if (array_key_exists("carreto", $_COOKIE)) {
             $carreto = json_decode($_COOKIE["carreto"], true);
 
@@ -521,16 +523,21 @@ class CommonController
                 $subtotal = $articulo['cantidad'] * $articulo['precio'];
                 $total += $subtotal;
             }
+            $iva = $total * 0.10;
+            $total = $total + $iva;
+
             //  Eliminar cookie 
             $this->eliminarArticles();
             $fechaCreacion = date('dmY-His');
             $id = $this->obtenirIdComanda();
 
+            // echo "<pre>";
+            // var_dump($carreto);
             $comanda = [
                 'id' => $id,
                 'fecha' => $fechaCreacion,
                 'estado' => true,
-                'precio-valor' => round($total, 2),
+                'total' => round($total, 2),
                 'usuario' => [
                     'id' => $_SESSION['user']['id'],
                     'nombre' => $_SESSION['user']['email']

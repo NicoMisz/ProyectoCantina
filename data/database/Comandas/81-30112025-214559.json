@@ -1,0 +1,44 @@
+{
+    "id": 81,
+    "fecha": "30112025-214559",
+    "estado": true,
+    "total": 78.66,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "4-28112025-210758-30112025-214227": {
+            "id": 4,
+            "imagen": "\/assets\/media\/Articles\/28112025-210758.webp",
+            "nombre": "Empanadas Doradas",
+            "descripcion": "Porci\u00f3n de empanadas artesanales, crujientes y reci\u00e9n fritas. Perfectas para compartir o disfrutar solas, con rellenos tradicionales y mucho sabor.",
+            "cantidad": 1,
+            "precio": 16.14
+        },
+        "5-28112025-210846-30112025-214228": {
+            "id": 5,
+            "imagen": "\/assets\/media\/Articles\/28112025-210846.jpg",
+            "nombre": "Quesadillas Mixtas",
+            "descripcion": "Quesadillas rellenas con mezcla de queso, vegetales salteados y ma\u00edz. Doradas a la plancha, calientes y listas para disfrutar en cualquier momento.",
+            "cantidad": 1,
+            "precio": 11.24
+        },
+        "menu-30112025-214259": {
+            "id": 0,
+            "imagen": null,
+            "nombre": "Men\u00fa del D\u00eda",
+            "descripcion": "Entrante: Quesadilla de Pollo, Principal: Quesadillas Mixtas, Postre: Yogur con Frutas y Granola, Bebida: Bebida",
+            "cantidad": 1,
+            "precio": 12.99
+        },
+        "16-28112025-212956-30112025-214537": {
+            "id": 16,
+            "imagen": "\/assets\/media\/Articles\/28112025-212956.jpg",
+            "nombre": "Sopa Caliente de Verduras",
+            "descripcion": "Sopa casera de verduras en caldo suave. Reconfortante y ligera para terminar el d\u00eda.",
+            "cantidad": 6,
+            "precio": 5.19
+        }
+    }
+}

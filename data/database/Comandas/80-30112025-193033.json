@@ -1,0 +1,52 @@
+{
+    "id": 80,
+    "fecha": "30112025-193033",
+    "estado": true,
+    "total": 126.62,
+    "usuario": {
+        "id": "19-30112025-192831",
+        "nombre": "janlopezfernandez2@gmail.com"
+    },
+    "articulos": {
+        "4-28112025-210758-30112025-192843": {
+            "id": 4,
+            "imagen": "\/assets\/media\/Articles\/28112025-210758.webp",
+            "nombre": "Empanadas Doradas",
+            "descripcion": "Porci\u00f3n de empanadas artesanales, crujientes y reci\u00e9n fritas. Perfectas para compartir o disfrutar solas, con rellenos tradicionales y mucho sabor.",
+            "cantidad": 1,
+            "precio": 16.14
+        },
+        "4-28112025-210758-30112025-192846": {
+            "id": 4,
+            "imagen": "\/assets\/media\/Articles\/28112025-210758.webp",
+            "nombre": "Empanadas Doradas",
+            "descripcion": "Porci\u00f3n de empanadas artesanales, crujientes y reci\u00e9n fritas. Perfectas para compartir o disfrutar solas, con rellenos tradicionales y mucho sabor.",
+            "cantidad": 1,
+            "precio": 16.14
+        },
+        "4-28112025-210758-30112025-192847": {
+            "id": 4,
+            "imagen": "\/assets\/media\/Articles\/28112025-210758.webp",
+            "nombre": "Empanadas Doradas",
+            "descripcion": "Porci\u00f3n de empanadas artesanales, crujientes y reci\u00e9n fritas. Perfectas para compartir o disfrutar solas, con rellenos tradicionales y mucho sabor.",
+            "cantidad": 1,
+            "precio": 16.14
+        },
+        "16-28112025-212956-30112025-192856": {
+            "id": 16,
+            "imagen": "\/assets\/media\/Articles\/28112025-212956.jpg",
+            "nombre": "Sopa Caliente de Verduras",
+            "descripcion": "Sopa casera de verduras en caldo suave. Reconfortante y ligera para terminar el d\u00eda.",
+            "cantidad": 3,
+            "precio": 5.19
+        },
+        "17-28112025-213112-30112025-192907": {
+            "id": 17,
+            "imagen": "\/assets\/media\/Articles\/28112025-213112.webp",
+            "nombre": "Tortilla de Patatas",
+            "descripcion": "Tortilla espa\u00f1ola tradicional, jugosa y dorada. Ideal para una cena sencilla pero deliciosa.",
+            "cantidad": 8,
+            "precio": 6.39
+        }
+    }
+}

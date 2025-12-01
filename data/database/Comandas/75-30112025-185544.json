@@ -1,0 +1,20 @@
+{
+    "id": 75,
+    "fecha": "30112025-185544",
+    "estado": true,
+    "precio-valor": 11.24,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "5-28112025-210846-30112025-185542": {
+            "id": 5,
+            "imagen": "\/assets\/media\/Articles\/28112025-210846.jpg",
+            "nombre": "Quesadillas Mixtas",
+            "descripcion": "Quesadillas rellenas con mezcla de queso, vegetales salteados y ma\u00edz. Doradas a la plancha, calientes y listas para disfrutar en cualquier momento.",
+            "cantidad": 1,
+            "precio": 11.24
+        }
+    }
+}

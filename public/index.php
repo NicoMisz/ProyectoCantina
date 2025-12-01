@@ -41,9 +41,9 @@ if ($uri === '/login' || $uri === '/registrar' || $uri === '/log-out') {
                     break;
                 case 'POST':
                     $controller = new CommonController();
-                    $response = $controller->ajaxRegistrarUsuari();
-                    header('Content-Type: application/json');
-                    echo json_encode($response);
+                    $controller->ajaxRegistrarUsuari();
+                    // $response = $controller->ajaxRegistrarUsuari();
+                    // echo json_encode($response);
                     break;
             }
             exit;

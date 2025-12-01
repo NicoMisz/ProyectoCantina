@@ -1,0 +1,20 @@
+{
+    "id": 73,
+    "fecha": "30112025-185333",
+    "estado": true,
+    "precio-valor": 9.59,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "6-28112025-210955-30112025-184955": {
+            "id": 6,
+            "imagen": "\/assets\/media\/Articles\/28112025-210955.webp",
+            "nombre": "Huevos Rellenos Especiales",
+            "descripcion": "Huevos rellenos caseros cubiertos con una suave salsa cremosa y acabado de yema rallada. Sabrosos, frescos y perfectos para cualquier ocasi\u00f3n.",
+            "cantidad": 1,
+            "precio": 9.59
+        }
+    }
+}

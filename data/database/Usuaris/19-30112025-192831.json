@@ -1,0 +1,11 @@
+{
+    "id": 19,
+    "nombre": "test",
+    "apellidos": "test",
+    "email": "janlopezfernandez2@gmail.com",
+    "fechaCreacion": "30112025-192831",
+    "password": "c782bb5df569b6f3fc9f48975aa55167590d4d72fba30bbb1e8805122d25bb9af87a5ae9c58fe7c4c8cc096ae536c94f465674e3af52d39f1913ccdfdb54fe1a",
+    "rol": "usuario",
+    "activo": true,
+    "imagen": "data\/assets\/media\/img"
+}

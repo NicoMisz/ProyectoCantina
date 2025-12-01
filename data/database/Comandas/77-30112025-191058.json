@@ -1,0 +1,36 @@
+{
+    "id": 77,
+    "fecha": "30112025-191058",
+    "estado": true,
+    "total": 18.37,
+    "usuario": {
+        "id": "4-06112025-204003",
+        "nombre": "test@gmail.com"
+    },
+    "articulos": {
+        "17-28112025-213112-30112025-190852": {
+            "id": 17,
+            "imagen": "\/assets\/media\/Articles\/28112025-213112.webp",
+            "nombre": "Tortilla de Patatas",
+            "descripcion": "Tortilla espa\u00f1ola tradicional, jugosa y dorada. Ideal para una cena sencilla pero deliciosa.",
+            "cantidad": 1,
+            "precio": 6.39
+        },
+        "18-28112025-213202-30112025-190910": {
+            "id": 18,
+            "imagen": "\/assets\/media\/Articles\/28112025-213202.jpg",
+            "nombre": "Quesadilla de Pollo",
+            "descripcion": "Quesadilla dorada a la plancha rellena de pollo desmenuzado y queso fundido. Caliente, r\u00e1pida y muy sabrosa.",
+            "cantidad": 1,
+            "precio": 6.79
+        },
+        "16-28112025-212956-30112025-190911": {
+            "id": 16,
+            "imagen": "\/assets\/media\/Articles\/28112025-212956.jpg",
+            "nombre": "Sopa Caliente de Verduras",
+            "descripcion": "Sopa casera de verduras en caldo suave. Reconfortante y ligera para terminar el d\u00eda.",
+            "cantidad": 1,
+            "precio": 5.19
+        }
+    }
+}
